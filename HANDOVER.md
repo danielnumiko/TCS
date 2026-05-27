@@ -20,6 +20,7 @@ Repo: https://github.com/danielnumiko/TCS
 | Typography (font scale, heading sizes per breakpoint, header spacing) | `docs/typography.md` |
 | Component catalogue (every Block / Slice / Atom with variants) | `docs/components.md` |
 | How to compose pages, name new components, bind tokens | `docs/usage.md` |
+| **Homepage — every bound token per component** | `docs/homepage-token-spec.md` |
 | Machine-readable token dump | `docs/tokens.json` |
 
 ## TL;DR
