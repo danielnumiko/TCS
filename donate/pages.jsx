@@ -94,11 +94,16 @@ function HomePage({ navigate }) {
 // ---------- Donate page · matches Figma 4474:36554 ----------
 
 function DonatePage({ navigate, mode, setMode }) {
-  const [amount, setAmount] = useStatePages("25");
   // Falls back to local state if not wired through (older route entry)
   const [localTab, setLocalTab] = useStatePages("oneoff");
   const tab = mode || localTab;
-  const setTab = setMode || setLocalTab;
+  const baseSetTab = setMode || setLocalTab;
+  const [amount, setAmount] = useStatePages(tab === "oneoff" ? "26" : "25");
+  // Reset amount to the "most popular" default for the new tab on switch
+  const setTab = (newTab) => {
+    baseSetTab(newTab);
+    setAmount(newTab === "oneoff" ? "26" : "25");
+  };
 
   return (
     <div className="tcs-page-content" data-screen-label="02 Donate">
@@ -218,7 +223,7 @@ function DonateWidget({ navigate, tab, setTab, amount, setAmount }) {
       </div>
 
       <div className="tcs-donate-widget-amounts">
-        {["5", "25", "50", "Other"].map((a) => (
+        {(tab === "monthly" ? ["5", "25", "50", "Other"] : ["10", "26", "50", "Other"]).map((a) => (
           <button key={a} className={amount === a ? "active" : ""} onClick={() => setAmount(a)}>
             {a === "Other" ? "Other" : `£${a}`}
           </button>
@@ -226,10 +231,17 @@ function DonateWidget({ navigate, tab, setTab, amount, setAmount }) {
       </div>
 
       <p className="tcs-donate-widget-impact">
-        {amount === "5"      ? "£5 a month could pay for a hot meal, shower and living essentials for a young runaway."
-         : amount === "25"   ? <><strong>Our most popular gift —</strong> £25 a month could fund a one-to-one mental health support session for a young person in crisis.</>
-         : amount === "50"   ? "£50 a month could provide a week of safe accommodation for a young person facing homelessness."
-         : "Whether it's a little or a lot, give as much as you can and make a huge difference to a young person."}
+        {tab === "monthly" ? (
+          amount === "5"      ? "£5 a month could pay for a hot meal, shower and living essentials for a young runaway."
+          : amount === "25"   ? <><strong>Our most popular gift —</strong> £25 a month could fund a one-to-one mental health support session for a young person in crisis.</>
+          : amount === "50"   ? "£50 a month could provide a week of safe accommodation for a young person facing homelessness."
+          : "Whether it's a little or a lot, give as much as you can and make a huge difference to a young person."
+        ) : (
+          amount === "10"     ? "£10 could allow a teenager to travel to one of our services, so they can begin to move forward."
+          : amount === "26"   ? "£26 could fund a 30-minute support session between a young person and a trained professional."
+          : amount === "50"   ? "£50 could help provide a group session for teenagers who are struggling with their wellbeing."
+          : "Whether a little or a lot, whatever you can give will make a huge difference to a young person."
+        )}
       </p>
 
       {amount === "Other" ? (
