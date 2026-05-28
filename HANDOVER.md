@@ -22,6 +22,7 @@ Repo: https://github.com/danielnumiko/TCS
 | How to compose pages, name new components, bind tokens | `docs/usage.md` |
 | **Homepage — every bound token per component** | `docs/homepage-token-spec.md` |
 | **Content page — every bound token per component** | `docs/content-page-token-spec.md` |
+| **Donate page — every bound token per component** | `docs/donate-page-token-spec.md` |
 | Machine-readable token dump | `docs/tokens.json` |
 
 ## TL;DR
