@@ -1,8 +1,8 @@
 /* =====================================================================
    TCS marketing-site UI Kit — layout styles
    Tokens:
-     ../../colors_and_type.css    — semantic + breakpoint tokens (--pad-*, --text-*, --fs-*)
-     ../../figma-tokens.css       — raw Figma-Variable exports (--spacing-padding-*, --button-*, etc.)
+     colors_and_type.css    — semantic + breakpoint tokens (--pad-*, --text-*, --fs-*)
+     figma-tokens.css       — raw Figma-Variable exports (--spacing-padding-*, --button-*, etc.)
 
    Built at 1280 master per the Figma Sitekit. All spatial values bind
    to the spacing/padding tokens so the kit reflows correctly when the
@@ -69,7 +69,7 @@ body {
 /* Real TCS icon set. Loaded as CSS masks so they inherit currentColor —
    a chevron inside a primary button picks up brand-accent, the same
    chevron inside a yellow button picks up black, etc.
-   Source: ../../assets/icons/*.svg (exported from Figma 3893:34624). */
+   Source: assets/icons/*.svg (exported from Figma 3893:34624). */
 
 .tcs-icon {
   display: inline-block;
@@ -86,36 +86,36 @@ body {
   flex-shrink: 0;
 }
 .tcs-icon-sm { width: var(--icon-sm, 16px); height: var(--icon-sm, 16px); }
-.tcs-icon-search        { -webkit-mask-image: url('../../assets/icons/search.svg'); mask-image: url('../../assets/icons/search.svg'); }
-.tcs-icon-donate        { -webkit-mask-image: url('../../assets/icons/donate.svg'); mask-image: url('../../assets/icons/donate.svg'); }
-.tcs-icon-give          { -webkit-mask-image: url('../../assets/icons/give.svg'); mask-image: url('../../assets/icons/give.svg'); }
-.tcs-icon-hamburger     { -webkit-mask-image: url('../../assets/icons/hamburger.svg'); mask-image: url('../../assets/icons/hamburger.svg'); }
-.tcs-icon-author        { -webkit-mask-image: url('../../assets/icons/author.svg'); mask-image: url('../../assets/icons/author.svg'); }
-.tcs-icon-bullets       { -webkit-mask-image: url('../../assets/icons/bullets.svg'); mask-image: url('../../assets/icons/bullets.svg'); }
-.tcs-icon-category-tag  { -webkit-mask-image: url('../../assets/icons/category-tag.svg'); mask-image: url('../../assets/icons/category-tag.svg'); }
-.tcs-icon-cost          { -webkit-mask-image: url('../../assets/icons/cost.svg'); mask-image: url('../../assets/icons/cost.svg'); }
-.tcs-icon-date          { -webkit-mask-image: url('../../assets/icons/date.svg'); mask-image: url('../../assets/icons/date.svg'); }
-.tcs-icon-download      { -webkit-mask-image: url('../../assets/icons/download.svg'); mask-image: url('../../assets/icons/download.svg'); }
-.tcs-icon-end-date      { -webkit-mask-image: url('../../assets/icons/end-date.svg'); mask-image: url('../../assets/icons/end-date.svg'); }
-.tcs-icon-padlock       { -webkit-mask-image: url('../../assets/icons/padlock.svg'); mask-image: url('../../assets/icons/padlock.svg'); }
-.tcs-icon-pages         { -webkit-mask-image: url('../../assets/icons/pages.svg'); mask-image: url('../../assets/icons/pages.svg'); }
-.tcs-icon-pause         { -webkit-mask-image: url('../../assets/icons/pause.svg'); mask-image: url('../../assets/icons/pause.svg'); }
-.tcs-icon-pin           { -webkit-mask-image: url('../../assets/icons/pin.svg'); mask-image: url('../../assets/icons/pin.svg'); }
-.tcs-icon-time          { -webkit-mask-image: url('../../assets/icons/time.svg'); mask-image: url('../../assets/icons/time.svg'); }
-.tcs-icon-chevron-right { -webkit-mask-image: url('../../assets/icons/chevron-right.svg'); mask-image: url('../../assets/icons/chevron-right.svg'); }
-.tcs-icon-chevron-left  { -webkit-mask-image: url('../../assets/icons/chevron-left.svg'); mask-image: url('../../assets/icons/chevron-left.svg'); }
-.tcs-icon-chevron-up    { -webkit-mask-image: url('../../assets/icons/chevron-up.svg'); mask-image: url('../../assets/icons/chevron-up.svg'); }
-.tcs-icon-chevron-down  { -webkit-mask-image: url('../../assets/icons/chevron-down.svg'); mask-image: url('../../assets/icons/chevron-down.svg'); }
-.tcs-icon-chevron-right-sm { -webkit-mask-image: url('../../assets/icons/chevron-right-sm.svg'); mask-image: url('../../assets/icons/chevron-right-sm.svg'); }
-.tcs-icon-chevron-left-sm  { -webkit-mask-image: url('../../assets/icons/chevron-left-sm.svg'); mask-image: url('../../assets/icons/chevron-left-sm.svg'); }
-.tcs-icon-chevron-up-sm    { -webkit-mask-image: url('../../assets/icons/chevron-up-sm.svg'); mask-image: url('../../assets/icons/chevron-up-sm.svg'); }
-.tcs-icon-chevron-down-sm  { -webkit-mask-image: url('../../assets/icons/chevron-down-sm.svg'); mask-image: url('../../assets/icons/chevron-down-sm.svg'); }
-.tcs-icon-twitter       { -webkit-mask-image: url('../../assets/icons/twitter.svg'); mask-image: url('../../assets/icons/twitter.svg'); }
-.tcs-icon-facebook      { -webkit-mask-image: url('../../assets/icons/facebook.svg'); mask-image: url('../../assets/icons/facebook.svg'); }
-.tcs-icon-linkedin      { -webkit-mask-image: url('../../assets/icons/linkedin.svg'); mask-image: url('../../assets/icons/linkedin.svg'); }
-.tcs-icon-x             { -webkit-mask-image: url('../../assets/icons/x.svg'); mask-image: url('../../assets/icons/x.svg'); }
-.tcs-icon-bluesky       { -webkit-mask-image: url('../../assets/icons/bluesky.svg'); mask-image: url('../../assets/icons/bluesky.svg'); }
-.tcs-icon-mail          { -webkit-mask-image: url('../../assets/icons/mail.svg'); mask-image: url('../../assets/icons/mail.svg'); }
+.tcs-icon-search        { -webkit-mask-image: url('assets/icons/search.svg'); mask-image: url('assets/icons/search.svg'); }
+.tcs-icon-donate        { -webkit-mask-image: url('assets/icons/donate.svg'); mask-image: url('assets/icons/donate.svg'); }
+.tcs-icon-give          { -webkit-mask-image: url('assets/icons/give.svg'); mask-image: url('assets/icons/give.svg'); }
+.tcs-icon-hamburger     { -webkit-mask-image: url('assets/icons/hamburger.svg'); mask-image: url('assets/icons/hamburger.svg'); }
+.tcs-icon-author        { -webkit-mask-image: url('assets/icons/author.svg'); mask-image: url('assets/icons/author.svg'); }
+.tcs-icon-bullets       { -webkit-mask-image: url('assets/icons/bullets.svg'); mask-image: url('assets/icons/bullets.svg'); }
+.tcs-icon-category-tag  { -webkit-mask-image: url('assets/icons/category-tag.svg'); mask-image: url('assets/icons/category-tag.svg'); }
+.tcs-icon-cost          { -webkit-mask-image: url('assets/icons/cost.svg'); mask-image: url('assets/icons/cost.svg'); }
+.tcs-icon-date          { -webkit-mask-image: url('assets/icons/date.svg'); mask-image: url('assets/icons/date.svg'); }
+.tcs-icon-download      { -webkit-mask-image: url('assets/icons/download.svg'); mask-image: url('assets/icons/download.svg'); }
+.tcs-icon-end-date      { -webkit-mask-image: url('assets/icons/end-date.svg'); mask-image: url('assets/icons/end-date.svg'); }
+.tcs-icon-padlock       { -webkit-mask-image: url('assets/icons/padlock.svg'); mask-image: url('assets/icons/padlock.svg'); }
+.tcs-icon-pages         { -webkit-mask-image: url('assets/icons/pages.svg'); mask-image: url('assets/icons/pages.svg'); }
+.tcs-icon-pause         { -webkit-mask-image: url('assets/icons/pause.svg'); mask-image: url('assets/icons/pause.svg'); }
+.tcs-icon-pin           { -webkit-mask-image: url('assets/icons/pin.svg'); mask-image: url('assets/icons/pin.svg'); }
+.tcs-icon-time          { -webkit-mask-image: url('assets/icons/time.svg'); mask-image: url('assets/icons/time.svg'); }
+.tcs-icon-chevron-right { -webkit-mask-image: url('assets/icons/chevron-right.svg'); mask-image: url('assets/icons/chevron-right.svg'); }
+.tcs-icon-chevron-left  { -webkit-mask-image: url('assets/icons/chevron-left.svg'); mask-image: url('assets/icons/chevron-left.svg'); }
+.tcs-icon-chevron-up    { -webkit-mask-image: url('assets/icons/chevron-up.svg'); mask-image: url('assets/icons/chevron-up.svg'); }
+.tcs-icon-chevron-down  { -webkit-mask-image: url('assets/icons/chevron-down.svg'); mask-image: url('assets/icons/chevron-down.svg'); }
+.tcs-icon-chevron-right-sm { -webkit-mask-image: url('assets/icons/chevron-right-sm.svg'); mask-image: url('assets/icons/chevron-right-sm.svg'); }
+.tcs-icon-chevron-left-sm  { -webkit-mask-image: url('assets/icons/chevron-left-sm.svg'); mask-image: url('assets/icons/chevron-left-sm.svg'); }
+.tcs-icon-chevron-up-sm    { -webkit-mask-image: url('assets/icons/chevron-up-sm.svg'); mask-image: url('assets/icons/chevron-up-sm.svg'); }
+.tcs-icon-chevron-down-sm  { -webkit-mask-image: url('assets/icons/chevron-down-sm.svg'); mask-image: url('assets/icons/chevron-down-sm.svg'); }
+.tcs-icon-twitter       { -webkit-mask-image: url('assets/icons/twitter.svg'); mask-image: url('assets/icons/twitter.svg'); }
+.tcs-icon-facebook      { -webkit-mask-image: url('assets/icons/facebook.svg'); mask-image: url('assets/icons/facebook.svg'); }
+.tcs-icon-linkedin      { -webkit-mask-image: url('assets/icons/linkedin.svg'); mask-image: url('assets/icons/linkedin.svg'); }
+.tcs-icon-x             { -webkit-mask-image: url('assets/icons/x.svg'); mask-image: url('assets/icons/x.svg'); }
+.tcs-icon-bluesky       { -webkit-mask-image: url('assets/icons/bluesky.svg'); mask-image: url('assets/icons/bluesky.svg'); }
+.tcs-icon-mail          { -webkit-mask-image: url('assets/icons/mail.svg'); mask-image: url('assets/icons/mail.svg'); }
 
 
 /* =========================== HEADER ================================ */
@@ -133,7 +133,7 @@ body {
   pointer-events: none;
 }
 .tcs-header-minimal .tcs-logo-square {
-  background: transparent url('../../assets/logo-white.svg') center/contain no-repeat;
+  background: transparent url('assets/logo-white.svg') center/contain no-repeat;
   pointer-events: auto;
 }
 .tcs-header-bar {
@@ -216,7 +216,7 @@ body {
   left: 0; top: 0;
   width: var(--pad-logo-width);
   height: var(--pad-logo-width);
-  background: var(--black-950, #000) url('../../assets/logo-white.svg') center/contain no-repeat;
+  background: var(--black-950, #000) url('assets/logo-white.svg') center/contain no-repeat;
   z-index: 30;
   text-indent: -9999px;
   cursor: pointer;
@@ -273,7 +273,7 @@ body {
   position: absolute;
   left: 0; right: 0; bottom: 0;
   height: 20px;
-  background: url('../../assets/decoration/brush-bottom.png') bottom center/100% 100% no-repeat;
+  background: url('assets/decoration/brush-bottom.png') bottom center/100% 100% no-repeat;
   z-index: 3;
 }
 .tcs-hero .corner-arrow {
@@ -282,7 +282,7 @@ body {
   bottom: -70px;
   width: 61px;
   height: 140px;
-  background: url('../../assets/dividers/arrow-centred.png') center/contain no-repeat;
+  background: url('assets/dividers/arrow-centred.png') center/contain no-repeat;
   z-index: 4;
   pointer-events: none;
   filter: hue-rotate(-30deg) saturate(1.2);
@@ -407,7 +407,7 @@ body {
 
 .tcs-divider {
   height: 140px;
-  background: url('../../assets/dividers/arrow-centred.png') center/100% 100% no-repeat;
+  background: url('assets/dividers/arrow-centred.png') center/100% 100% no-repeat;
   margin-top: calc(var(--pad-vertical-margin, 120px) * -0.5);
   margin-bottom: calc(var(--pad-vertical-margin, 120px) * -0.5);
   filter: hue-rotate(-30deg) saturate(1.2);
@@ -445,7 +445,7 @@ body {
   width: 280px;
   height: 280px;
   margin-top: -68px;
-  background: url('../../assets/illustrations/rainbow.png') left top/contain no-repeat;
+  background: url('assets/illustrations/rainbow.png') left top/contain no-repeat;
 }
 .tcs-intro .body {
   display: grid;
@@ -584,7 +584,7 @@ body {
   bottom: -50px;
   width: 220px;
   height: 240px;
-  background: url('../../assets/decoration/brush-stroke-left.png') center/contain no-repeat;
+  background: url('assets/decoration/brush-stroke-left.png') center/contain no-repeat;
   z-index: 0;
   pointer-events: none;
 }
@@ -918,7 +918,7 @@ body {
 /* Right panel — photo bg + scrim + handwritten signature + back-to-top */
 .tcs-footer-right {
   position: relative;
-  background: #2c2618 url('../../assets/photos/footer-basketball.jpg') center/cover no-repeat;
+  background: #2c2618 url('assets/photos/footer-basketball.jpg') center/cover no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -986,7 +986,7 @@ body {
 
 .tcs-donate-slice {
   position: relative;
-  background-image: url('../../assets/photos/headshot-girl.jpg') !important;
+  background-image: url('assets/photos/headshot-girl.jpg') !important;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1431,7 +1431,7 @@ body {
   top: 38%;
   width: 160px;
   height: 180px;
-  background: url('../../assets/decoration/brush-stroke-left.png') center/contain no-repeat;
+  background: url('assets/decoration/brush-stroke-left.png') center/contain no-repeat;
   z-index: -1;
 }
 .tcs-donate-difference-media::after {
@@ -1440,7 +1440,7 @@ body {
   bottom: -64px;
   width: 260px;
   height: 110px;
-  background: url('../../assets/decoration/brush-stroke-right.png') center/contain no-repeat;
+  background: url('assets/decoration/brush-stroke-right.png') center/contain no-repeat;
   z-index: 1;
 }
 
@@ -1530,14 +1530,14 @@ body {
   right: 0;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background-image: var(--form-bg, url('../../assets/photos/portrait-2.jpg'));
+  background-image: var(--form-bg, url('assets/photos/portrait-2.jpg'));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 0;
   margin-bottom: -56.25%;   /* pulls next siblings up to overlay the bg */
 }
-.tcs-form-slice.img-portrait-2::before { background-image: url('../../assets/photos/form-hero.jpg'); }
+.tcs-form-slice.img-portrait-2::before { background-image: url('assets/photos/form-hero.jpg'); }
 .tcs-form-slice .tcs-form-panel {
   position: relative;
   z-index: 1;
@@ -1674,7 +1674,7 @@ body {
   right: 0;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background-image: url('../../assets/photos/group-laughing.jpg');
+  background-image: url('assets/photos/group-laughing.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2376,31 +2376,31 @@ body {
 
 /* =========================== IMAGE STAND-INS ======================= */
 
-.img-park           { background: #2c2618 url('../../assets/photos/hero-headphones.jpg') center/cover no-repeat; }
-.img-hero-looking-up{ background: #2c2618 url('../../assets/photos/hero-looking-up.jpg') center/cover no-repeat; }
-.img-paint          { background: #6E5642 url('../../assets/photos/girl-red-coat.jpg') center/cover no-repeat; }
-.img-shoes          { background: #80604A url('../../assets/photos/yellow-sneaker.jpg') center/cover no-repeat; }
-.img-promo-garden   { background: #2c3a20 url('../../assets/photos/rhs-garden.jpg') center/cover no-repeat; }
-.img-young-girl     { background: #80604A url('../../assets/photos/portrait-1.jpg') center/cover no-repeat; }
-.img-young-boy      { background: #4D3A2A url('../../assets/photos/portrait-4.jpg') center/cover no-repeat; }
-.img-portrait-1     { background: #A37A60 url('../../assets/photos/portrait-1.jpg') center/cover no-repeat; }
-.img-portrait-2     { background: #2C2C2C url('../../assets/photos/portrait-2.jpg') center/cover no-repeat; }
-.img-portrait-3     { background: #6A4A36 url('../../assets/photos/portrait-3.jpg') center/cover no-repeat; }
-.img-portrait-4     { background: #8B6B45 url('../../assets/photos/portrait-4.jpg') center/cover no-repeat; }
-.img-group          { background: #5D4030 url('../../assets/photos/group-laughing.jpg') center/cover no-repeat; }
-.img-three-girls    { background: #5D4030 url('../../assets/photos/three-girls.jpg') center/cover no-repeat; }
-.img-flower         { background: #6E8A50 url('../../assets/photos/three-girls.jpg') center/cover no-repeat; }
-.img-christingle    { background: #2C1610 url('../../assets/photos/scene-3.jpg') center/cover no-repeat; }
-.img-laughter       { background: #5D4030 url('../../assets/photos/group-laughing.jpg') center/cover no-repeat; }
-.img-cafe           { background: #C9A488 url('../../assets/photos/group-3.jpg') center/cover no-repeat; }
+.img-park           { background: #2c2618 url('assets/photos/hero-headphones.jpg') center/cover no-repeat; }
+.img-hero-looking-up{ background: #2c2618 url('assets/photos/hero-looking-up.jpg') center/cover no-repeat; }
+.img-paint          { background: #6E5642 url('assets/photos/girl-red-coat.jpg') center/cover no-repeat; }
+.img-shoes          { background: #80604A url('assets/photos/yellow-sneaker.jpg') center/cover no-repeat; }
+.img-promo-garden   { background: #2c3a20 url('assets/photos/rhs-garden.jpg') center/cover no-repeat; }
+.img-young-girl     { background: #80604A url('assets/photos/portrait-1.jpg') center/cover no-repeat; }
+.img-young-boy      { background: #4D3A2A url('assets/photos/portrait-4.jpg') center/cover no-repeat; }
+.img-portrait-1     { background: #A37A60 url('assets/photos/portrait-1.jpg') center/cover no-repeat; }
+.img-portrait-2     { background: #2C2C2C url('assets/photos/portrait-2.jpg') center/cover no-repeat; }
+.img-portrait-3     { background: #6A4A36 url('assets/photos/portrait-3.jpg') center/cover no-repeat; }
+.img-portrait-4     { background: #8B6B45 url('assets/photos/portrait-4.jpg') center/cover no-repeat; }
+.img-group          { background: #5D4030 url('assets/photos/group-laughing.jpg') center/cover no-repeat; }
+.img-three-girls    { background: #5D4030 url('assets/photos/three-girls.jpg') center/cover no-repeat; }
+.img-flower         { background: #6E8A50 url('assets/photos/three-girls.jpg') center/cover no-repeat; }
+.img-christingle    { background: #2C1610 url('assets/photos/scene-3.jpg') center/cover no-repeat; }
+.img-laughter       { background: #5D4030 url('assets/photos/group-laughing.jpg') center/cover no-repeat; }
+.img-cafe           { background: #C9A488 url('assets/photos/group-3.jpg') center/cover no-repeat; }
 
 /* Help-card illustrations */
-.ill-placard        { background-image: url('../../assets/illustrations/campaign.png'); }
-.ill-heart-hand     { background-image: url('../../assets/illustrations/donate.png'); }
-.ill-two-hearts     { background-image: url('../../assets/illustrations/fundraising.png'); }
-.ill-volunteer-hand { background-image: url('../../assets/illustrations/volunteer.png'); }
-.ill-running        { background-image: url('../../assets/illustrations/heart.png'); }
-.ill-rainbow-svg    { background-image: url('../../assets/illustrations/rainbow.png'); }
+.ill-placard        { background-image: url('assets/illustrations/campaign.png'); }
+.ill-heart-hand     { background-image: url('assets/illustrations/donate.png'); }
+.ill-two-hearts     { background-image: url('assets/illustrations/fundraising.png'); }
+.ill-volunteer-hand { background-image: url('assets/illustrations/volunteer.png'); }
+.ill-running        { background-image: url('assets/illustrations/heart.png'); }
+.ill-rainbow-svg    { background-image: url('assets/illustrations/rainbow.png'); }
 
 /* Spacer between final content section and the Newsletter band.
    The Newsletter has its own --pad-vertical-margin so we just need a
@@ -2618,7 +2618,7 @@ body { margin: 0; }
   left: calc(50% - 50vw);
   width: 100vw;
   background-color: #2c2618;
-  background-image: url('../../assets/photos/hero-headphones.jpg');
+  background-image: url('assets/photos/hero-headphones.jpg');
   background-size: cover;
   background-position: center;
   z-index: 0;
@@ -2637,7 +2637,7 @@ body { margin: 0; }
   width: 100vw;
   height: 20px;
   bottom: -1px;
-  background: url('../../assets/decoration/brush-bottom.png') bottom center/100% 100% no-repeat;
+  background: url('assets/decoration/brush-bottom.png') bottom center/100% 100% no-repeat;
   z-index: 3;
 }
 .tcs-hero .content {
@@ -2656,7 +2656,7 @@ body { margin: 0; }
   bottom: -70px;
   width: 61px;
   height: 140px;
-  background: url('../../assets/dividers/arrow-centred.png') center/contain no-repeat;
+  background: url('assets/dividers/arrow-centred.png') center/contain no-repeat;
   background-size: 1280px auto;
   z-index: 4;
 }
@@ -2669,9 +2669,9 @@ body { margin: 0; }
   width: 100vw;
   background-color: #2c2c2c;
   background-image:
-    url('../../assets/decoration/brush-bottom.png'),
+    url('assets/decoration/brush-bottom.png'),
     linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 60%),
-    url('../../assets/photos/rhs-garden.jpg');
+    url('assets/photos/rhs-garden.jpg');
   background-size:
     100% 20px,
     100% 100%,
@@ -2692,8 +2692,8 @@ body { margin: 0; }
   width: 100vw;
   height: 20px;
   background: #fff;
-  -webkit-mask-image: url('../../assets/decoration/brush-top.png');
-  mask-image: url('../../assets/decoration/brush-top.png');
+  -webkit-mask-image: url('assets/decoration/brush-top.png');
+  mask-image: url('assets/decoration/brush-top.png');
   -webkit-mask-size: 100% 100%;
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;

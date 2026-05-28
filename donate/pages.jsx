@@ -495,7 +495,7 @@ function DetailsPage({ navigate, mode = "monthly", setMode }) {
     <div className="tcs-page-content" data-screen-label={mode === "monthly" ? "Monthly donation" : "One-off donation"}>
       <section className="tcs-form-slice img-portrait-2">
         <a href="#" className="tcs-form-logo" onClick={(e) => { e.preventDefault(); navigate("home"); }} aria-label="The Children's Society — home">
-          <img src="../../assets/logo-white.svg" alt="The Children's Society" />
+          <img src="assets/logo-white.svg" alt="The Children's Society" />
         </a>
         <div className="tcs-form-panel">
           <h2 className="tcs-form-panel-heading">{mode === "monthly" ? "Monthly donation" : "Your donation"}</h2>
@@ -816,7 +816,7 @@ function PaymentPage({ navigate, mode = "monthly", setMode }) {
     <div className="tcs-page-content" data-screen-label="04 Payment">
       <section className="tcs-form-slice img-portrait-2">
         <a href="#" className="tcs-form-logo" onClick={(e) => { e.preventDefault(); navigate("home"); }} aria-label="The Children's Society — home">
-          <img src="../../assets/logo-white.svg" alt="The Children's Society" />
+          <img src="assets/logo-white.svg" alt="The Children's Society" />
         </a>
         <div className="tcs-form-panel">
           <p className="tcs-form-context">
@@ -929,7 +929,7 @@ function ThanksPage({ navigate, mode = "monthly", setMode }) {
     <div className="tcs-page-content" data-screen-label="05 Confirmation">
       <section className="tcs-thanks-slice img-laughter">
         <a href="#" className="tcs-form-logo" onClick={(e) => { e.preventDefault(); navigate("home"); }} aria-label="The Children's Society — home">
-          <img src="../../assets/logo-white.svg" alt="The Children's Society" />
+          <img src="assets/logo-white.svg" alt="The Children's Society" />
         </a>
         <div className="tcs-thanks-card">
           <span className="tcs-thanks-eyebrow">Donation confirmed</span>
