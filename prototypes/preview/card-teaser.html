@@ -1,0 +1,43 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="_card.css" />
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; }
+  .teaser { display: flex; flex-direction: column; gap: 10px; }
+  .teaser .img { aspect-ratio: 1 / 1; background-size: cover; background-position: center; }
+  .teaser .eyebrow-2 { font-size: 12px; color: #5D5D5D; font-weight: 400; margin-top: 4px; }
+  .teaser h3 { font-size: 16px; font-weight: 700; color: #000; line-height: 1.2; letter-spacing: -0.005em; margin: 0; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="eyebrow">Teaser card · 4-up · square image · "Category tag" eyebrow + headline</div>
+  <div class="grid">
+    <div class="teaser">
+      <div class="img" style="background-image: url('../assets/photos/group-1.jpg');"></div>
+      <div class="eyebrow-2">Category tag</div>
+      <h3>110 character lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+    </div>
+    <div class="teaser">
+      <div class="img" style="background-image: url('../assets/photos/scene-4.jpg');"></div>
+      <div class="eyebrow-2">Category tag</div>
+      <h3>110 character lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+    </div>
+    <div class="teaser">
+      <div class="img" style="background-image: url('../assets/photos/scene-2.jpg');"></div>
+      <div class="eyebrow-2">Category tag</div>
+      <h3>110 character lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+    </div>
+    <div class="teaser">
+      <div class="img" style="background-image: url('../assets/photos/scene-1.jpg');"></div>
+      <div class="eyebrow-2">Category tag</div>
+      <h3>110 character lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+    </div>
+  </div>
+</div>
+</body>
+</html>

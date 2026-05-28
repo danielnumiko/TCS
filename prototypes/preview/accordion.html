@@ -1,0 +1,29 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="_card.css" />
+<style>
+  .acc { border-top: 1px solid #BDBDBD; }
+  .item { display: flex; align-items: center; justify-content: space-between; padding: 16px 4px; border-bottom: 1px solid #BDBDBD; cursor: pointer; }
+  .item .ti { font-size: 17px; font-weight: 700; color: #000; }
+  .item .ic { width: 24px; height: 24px; border-radius: 50%; background: #000; color: #FFEB00; font-size: 13px; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+  .item.open .ic { background: #FFEB00; color: #000; }
+  .panel { padding: 4px 4px 18px; font-size: 14px; line-height: 1.5; color: #000; border-bottom: 1px solid #BDBDBD; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="eyebrow">Accordion · "Other ways to donate"</div>
+  <div class="acc">
+    <div class="item open"><span class="ti">Donate by post</span><span class="ic">−</span></div>
+    <div class="panel">Send a cheque made payable to The Children's Society to 50 Banner Street, London EC1Y 8ST. Include a note with your name and a return address if you'd like a receipt.</div>
+    <div class="item"><span class="ti">Donate by phone</span><span class="ic">＋</span></div>
+    <div class="item"><span class="ti">Donate to a young person</span><span class="ic">＋</span></div>
+    <div class="item"><span class="ti">Any questions for us?</span><span class="ic">＋</span></div>
+  </div>
+</div>
+</body>
+</html>

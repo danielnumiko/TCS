@@ -21,6 +21,7 @@ Repo: https://github.com/danielnumiko/TCS
 | Component catalogue (every Block / Slice / Atom with variants) | `docs/components.md` |
 | How to compose pages, name new components, bind tokens | `docs/usage.md` |
 | **UI page — every atom + every bound token (for Claude Design)** | `docs/ui-page-atom-spec.md` |
+| **Interactive HTML/JSX prototype (Home / Donate / Story)** | `prototypes/ui_kits/website/index.html` — open in browser |
 | **Homepage — every bound token per component** | `docs/homepage-token-spec.md` |
 | **Content page — every bound token per component** | `docs/content-page-token-spec.md` |
 | **Donate page — every bound token per component** | `docs/donate-page-token-spec.md` |

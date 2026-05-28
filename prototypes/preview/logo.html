@@ -1,0 +1,36 @@
+<!-- @dsCard group="Brand" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="_card.css" />
+<style>
+  .logo-box { width: 120px; height: 120px; background-repeat: no-repeat; background-position: center; background-size: contain; }
+  .lab { font-family: ui-monospace, monospace; font-size: 11px; color: #6D6D6D; text-align: center; margin-top: 8px; }
+  .col { display: flex; flex-direction: column; align-items: center; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="eyebrow">TCS logo · three variants · square 120 × 120 mark</div>
+  <div style="display: flex; gap: 32px; align-items: flex-start; margin-top: 8px;">
+    <div class="col">
+      <div class="logo-box" style="background-image: url('../assets/logo-white.svg');"></div>
+      <div class="lab">White · default</div>
+    </div>
+    <div class="col">
+      <div class="logo-box" style="background-image: url('../assets/logo-black.svg');"></div>
+      <div class="lab">Black · inverse</div>
+    </div>
+    <div class="col">
+      <div class="logo-box" style="background-image: url('../assets/logo-transparent.svg'); background-color: #FFEB00;"></div>
+      <div class="lab">Transparent · on yellow</div>
+    </div>
+  </div>
+  <div style="font-size: 12px; color: #5D5D5D; margin-top: 18px; line-height: 1.55;">
+    Use the <strong>Black</strong> variant on white surfaces and the <strong>Transparent</strong> variant on yellow / dark / photographic backgrounds. The mark is always set in a clear square — never crop or rotate.
+  </div>
+</div>
+</body>
+</html>

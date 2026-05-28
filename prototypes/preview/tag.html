@@ -1,0 +1,38 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="_card.css" />
+<style>
+  .tag {
+    display: inline-flex; align-items: center; padding: 8px 14px;
+    background: #fff; color: #000; border: 1.5px solid #000;
+    font-family: var(--font-brand); font-weight: 500; font-size: 14px;
+    letter-spacing: 0.02em; cursor: pointer;
+  }
+  .tag.hover { border-color: #454545; color: #454545; }
+  .tag.disabled { color: #BDBDBD; border-color: #BDBDBD; }
+  .row { display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
+  .label { font-size: 11px; color: #6D6D6D; font-family: ui-monospace, monospace; margin-top: 16px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="eyebrow">Tag · category &amp; filter chips</div>
+  <div class="row">
+    <span class="tag">Mental health</span>
+    <span class="tag">Story</span>
+    <span class="tag">Young carers</span>
+    <span class="tag">Campaign</span>
+    <span class="tag">Research</span>
+  </div>
+  <div class="row">
+    <span class="tag hover">Mental health</span>
+    <span class="tag disabled">Mental health</span>
+  </div>
+  <div class="label">2px border · sentence case · default · hover (border darkens) · disabled (border 300)</div>
+</div>
+</body>
+</html>

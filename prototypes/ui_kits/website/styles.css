@@ -1,0 +1,2762 @@
+/* =====================================================================
+   TCS marketing-site UI Kit — layout styles
+   Tokens:
+     ../../colors_and_type.css    — semantic + breakpoint tokens (--pad-*, --text-*, --fs-*)
+     ../../figma-tokens.css       — raw Figma-Variable exports (--spacing-padding-*, --button-*, etc.)
+
+   Built at 1280 master per the Figma Sitekit. All spatial values bind
+   to the spacing/padding tokens so the kit reflows correctly when the
+   host page sets data-mode="320-sm" / "768-md" / "1600-xxl".
+
+   Where this file uses --spacing-padding-foo, the value comes straight
+   from the Figma file. Where it uses --pad-foo / --space-foo, it's
+   an alias defined in colors_and_type.css.
+   ===================================================================== */
+
+body {
+  margin: 0;
+  background: #fff;
+  min-height: 100vh;
+  font-family: var(--font-brand);
+  color: var(--type-body);
+}
+
+/* Force the brand accent to yellow regardless of any data-theme leakage
+   from the Figma-exported tokens.css. Same intent for body/heading colour
+   defaults — the homepage is the Light/1280 frame in the spec. */
+:root, :root[data-mode] {
+  --brand-accent: #FFEB00;
+  --type-heading: #000000;
+  --type-body: #000000;
+  --primary-bg: #FFFFFF;
+  --secondary-bg: #EFEFEF;
+}
+
+
+/* Bridge the project's --pad-* alias names to the Figma-canonical
+   --spacing-padding-* tokens. Defined at :root and re-declared at the
+   breakpoint blocks via figma-tokens.css so they reflow automatically. */
+
+:root, :root[data-mode] {
+  --pad-outer-margin:    var(--spacing-padding-outer-margin, 100px);
+  --pad-vertical-margin: var(--spacing-padding-vertical-margin, 120px);
+  --pad-gutters:         var(--spacing-padding-gutters, 48px);
+  --pad-slice-title-gap: var(--spacing-padding-slice-title-gap, 40px);
+  --pad-body-width:      var(--spacing-padding-body-width, 854px);
+  --pad-logo-width:      var(--spacing-padding-logo-width, 120px);
+  --pad-button-height:   var(--spacing-padding-button-height, 60px);
+  --pad-button-weight:   var(--spacing-padding-button-weight, 2px);
+  --pad-page-width:      var(--spacing-padding-width, 1280px);
+  --pad-hero-height:     var(--spacing-padding-hero-height, 700px);
+  --pad-between-slices:  var(--spacing-padding-between-slices-sitewide, 120px);
+}
+
+/* Scale aliases — same bridge for spacing scale */
+:root, :root[data-mode] {
+  --space-xs:  var(--spacing-scale-xs, 8px);
+  --space-sm:  var(--spacing-scale-sm, 12px);
+  --space-m:   var(--spacing-scale-m, 16px);
+  --space-l:   var(--spacing-scale-lg, 20px);   /* spec calls "lg" but value is 20 */
+  --space-lg:  var(--spacing-scale-lg, 20px);
+  --space-xl:  var(--spacing-scale-xl, 28px);
+  --space-2xl: var(--spacing-scale-2xl, 40px);
+  --space-3xl: var(--spacing-scale-3xl, 60px);
+  --space-4xl: var(--spacing-scale-4xl, 80px);
+  --space-6xl: var(--spacing-scale-6xl, 140px);
+}
+
+/* =========================== ICONS ================================ */
+/* Real TCS icon set. Loaded as CSS masks so they inherit currentColor —
+   a chevron inside a primary button picks up brand-accent, the same
+   chevron inside a yellow button picks up black, etc.
+   Source: ../../assets/icons/*.svg (exported from Figma 3893:34624). */
+
+.tcs-icon {
+  display: inline-block;
+  width: var(--icon-lg, 28px);
+  height: var(--icon-lg, 28px);
+  vertical-align: middle;
+  background-color: currentColor;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  flex-shrink: 0;
+}
+.tcs-icon-sm { width: var(--icon-sm, 16px); height: var(--icon-sm, 16px); }
+.tcs-icon-search        { -webkit-mask-image: url('../../assets/icons/search.svg'); mask-image: url('../../assets/icons/search.svg'); }
+.tcs-icon-donate        { -webkit-mask-image: url('../../assets/icons/donate.svg'); mask-image: url('../../assets/icons/donate.svg'); }
+.tcs-icon-give          { -webkit-mask-image: url('../../assets/icons/give.svg'); mask-image: url('../../assets/icons/give.svg'); }
+.tcs-icon-hamburger     { -webkit-mask-image: url('../../assets/icons/hamburger.svg'); mask-image: url('../../assets/icons/hamburger.svg'); }
+.tcs-icon-author        { -webkit-mask-image: url('../../assets/icons/author.svg'); mask-image: url('../../assets/icons/author.svg'); }
+.tcs-icon-bullets       { -webkit-mask-image: url('../../assets/icons/bullets.svg'); mask-image: url('../../assets/icons/bullets.svg'); }
+.tcs-icon-category-tag  { -webkit-mask-image: url('../../assets/icons/category-tag.svg'); mask-image: url('../../assets/icons/category-tag.svg'); }
+.tcs-icon-cost          { -webkit-mask-image: url('../../assets/icons/cost.svg'); mask-image: url('../../assets/icons/cost.svg'); }
+.tcs-icon-date          { -webkit-mask-image: url('../../assets/icons/date.svg'); mask-image: url('../../assets/icons/date.svg'); }
+.tcs-icon-download      { -webkit-mask-image: url('../../assets/icons/download.svg'); mask-image: url('../../assets/icons/download.svg'); }
+.tcs-icon-end-date      { -webkit-mask-image: url('../../assets/icons/end-date.svg'); mask-image: url('../../assets/icons/end-date.svg'); }
+.tcs-icon-padlock       { -webkit-mask-image: url('../../assets/icons/padlock.svg'); mask-image: url('../../assets/icons/padlock.svg'); }
+.tcs-icon-pages         { -webkit-mask-image: url('../../assets/icons/pages.svg'); mask-image: url('../../assets/icons/pages.svg'); }
+.tcs-icon-pause         { -webkit-mask-image: url('../../assets/icons/pause.svg'); mask-image: url('../../assets/icons/pause.svg'); }
+.tcs-icon-pin           { -webkit-mask-image: url('../../assets/icons/pin.svg'); mask-image: url('../../assets/icons/pin.svg'); }
+.tcs-icon-time          { -webkit-mask-image: url('../../assets/icons/time.svg'); mask-image: url('../../assets/icons/time.svg'); }
+.tcs-icon-chevron-right { -webkit-mask-image: url('../../assets/icons/chevron-right.svg'); mask-image: url('../../assets/icons/chevron-right.svg'); }
+.tcs-icon-chevron-left  { -webkit-mask-image: url('../../assets/icons/chevron-left.svg'); mask-image: url('../../assets/icons/chevron-left.svg'); }
+.tcs-icon-chevron-up    { -webkit-mask-image: url('../../assets/icons/chevron-up.svg'); mask-image: url('../../assets/icons/chevron-up.svg'); }
+.tcs-icon-chevron-down  { -webkit-mask-image: url('../../assets/icons/chevron-down.svg'); mask-image: url('../../assets/icons/chevron-down.svg'); }
+.tcs-icon-chevron-right-sm { -webkit-mask-image: url('../../assets/icons/chevron-right-sm.svg'); mask-image: url('../../assets/icons/chevron-right-sm.svg'); }
+.tcs-icon-chevron-left-sm  { -webkit-mask-image: url('../../assets/icons/chevron-left-sm.svg'); mask-image: url('../../assets/icons/chevron-left-sm.svg'); }
+.tcs-icon-chevron-up-sm    { -webkit-mask-image: url('../../assets/icons/chevron-up-sm.svg'); mask-image: url('../../assets/icons/chevron-up-sm.svg'); }
+.tcs-icon-chevron-down-sm  { -webkit-mask-image: url('../../assets/icons/chevron-down-sm.svg'); mask-image: url('../../assets/icons/chevron-down-sm.svg'); }
+.tcs-icon-twitter       { -webkit-mask-image: url('../../assets/icons/twitter.svg'); mask-image: url('../../assets/icons/twitter.svg'); }
+.tcs-icon-facebook      { -webkit-mask-image: url('../../assets/icons/facebook.svg'); mask-image: url('../../assets/icons/facebook.svg'); }
+.tcs-icon-linkedin      { -webkit-mask-image: url('../../assets/icons/linkedin.svg'); mask-image: url('../../assets/icons/linkedin.svg'); }
+.tcs-icon-x             { -webkit-mask-image: url('../../assets/icons/x.svg'); mask-image: url('../../assets/icons/x.svg'); }
+.tcs-icon-bluesky       { -webkit-mask-image: url('../../assets/icons/bluesky.svg'); mask-image: url('../../assets/icons/bluesky.svg'); }
+.tcs-icon-mail          { -webkit-mask-image: url('../../assets/icons/mail.svg'); mask-image: url('../../assets/icons/mail.svg'); }
+
+
+/* =========================== HEADER ================================ */
+/* Figma 2890:212935 · height 60 · logo 120x120 sits at left 0 top 0
+   and extends below the header bar. Menu cluster centred. */
+
+.tcs-header { position: relative; z-index: 20; }
+.tcs-header-minimal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  height: var(--spacing-padding-logo-width, 120px);
+  background: transparent;
+  pointer-events: none;
+}
+.tcs-header-minimal .tcs-logo-square {
+  background: transparent url('../../assets/logo-white.svg') center/contain no-repeat;
+  pointer-events: auto;
+}
+.tcs-header-bar {
+  display: grid;
+  grid-template-columns: var(--pad-logo-width) 1fr auto;
+  align-items: stretch;
+  height: var(--pad-button-height);
+}
+.tcs-header-black {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+}
+.tcs-header-nav {
+  display: flex;
+  gap: var(--space-lg);
+  color: #fff;
+  font-size: var(--fs-md);
+  font-weight: var(--weight-medium);
+  align-items: center;
+  height: 100%;
+}
+.tcs-header-nav a {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  padding: var(--space-sm) 0;
+  outline: none;
+}
+.tcs-header-nav a.active::after,
+.tcs-header-nav a:hover::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 6px;
+  height: 2px;
+  background: #FFEB00;
+}
+.tcs-header-actions { display: flex; align-items: stretch; }
+.tcs-header-search {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-scale-sm, 12px);
+  padding: 0 var(--spacing-scale-m, 16px);
+  background: #fff;
+  color: #000;
+  font-family: var(--font-brand);
+  font-weight: var(--weight-medium);
+  font-size: var(--fs-md, 18px);
+  line-height: calc(26 / 18);
+  letter-spacing: -0.011em;
+  cursor: pointer;
+  border: none;
+  height: 100%;
+}
+.tcs-header-donate {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-scale-sm, 12px);
+  padding: 0 var(--spacing-scale-m, 16px);
+  background: #FFEB00;
+  color: #000;
+  border: none;
+  font-family: var(--font-brand);
+  font-weight: var(--weight-medium);
+  font-size: var(--fs-md, 18px);
+  line-height: calc(26 / 18);
+  letter-spacing: -0.011em;
+  cursor: pointer;
+  height: 100%;
+}
+.tcs-header-donate svg { color: #000; width: 18px; height: 18px; }
+.tcs-header-donate .tcs-icon { background-color: #000; width: var(--icon-lg); height: var(--icon-lg); }
+.tcs-header-search svg { color: #000; width: 18px; height: 18px; }
+.tcs-header-search .tcs-icon { background-color: #000; width: var(--icon-lg); height: var(--icon-lg); }
+.tcs-logo-square {
+  position: absolute;
+  left: 0; top: 0;
+  width: var(--pad-logo-width);
+  height: var(--pad-logo-width);
+  background: var(--black-950, #000) url('../../assets/logo-white.svg') center/contain no-repeat;
+  z-index: 30;
+  text-indent: -9999px;
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
+
+
+/* =========================== HERO =================================== */
+/* Figma 3537:739 · 1280 x 600 · scrim BOTTOM-dark only ·
+   HeadingBox at left:100 top:120 · quote TCS Beta 48px ·
+   Secondary button "Make a donation" 215x60 ·
+   Arrow on the right edge at left:1170 overhanging the bottom. */
+
+.tcs-hero {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: visible;
+  background-color: #2c2618;
+  background-size: cover;
+  background-position: center;
+}
+.tcs-hero .scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+}
+.tcs-hero .content {
+  position: absolute;
+  left: var(--pad-outer-margin);
+  bottom: var(--pad-vertical-margin);
+  width: var(--columns-6-1280, 516px);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  pointer-events: none;
+}
+.tcs-hero .content > * { pointer-events: auto; }
+.tcs-hero .quote {
+  font-family: var(--font-handwritten);
+  font-size: var(--text-headings-h1, 80px);   /* Text/Headings/H1 per spec */
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.4);
+  letter-spacing: -0.01em;
+}
+.tcs-hero .pause-btn {
+  display: none;   /* not in the Home page Figma frame */
+}
+.tcs-hero .brush {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 20px;
+  background: url('../../assets/decoration/brush-bottom.png') bottom center/100% 100% no-repeat;
+  z-index: 3;
+}
+.tcs-hero .corner-arrow {
+  position: absolute;
+  right: var(--pad-outer-margin);
+  bottom: -70px;
+  width: 61px;
+  height: 140px;
+  background: url('../../assets/dividers/arrow-centred.png') center/contain no-repeat;
+  z-index: 4;
+  pointer-events: none;
+  filter: hue-rotate(-30deg) saturate(1.2);
+  /* The divider PNG is 1280 wide. Use a smaller window mask to crop
+     to just the centred arrow glyph. */
+  background-size: 1280px auto;
+  background-position: center;
+}
+
+
+/* =========================== BUTTON ================================ */
+/* Figma 3961:38 Primary · height 60 · padding 0 16 · gap 12 ·
+   font BentonSans 500 18px · border 2px. The Figma's icon is a
+   black-on-yellow chevron inside a 28x28 square positioned right. */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 0 var(--space-m);
+  background: var(--btn-primary-bg, #000);
+  color: var(--btn-primary-text, #fff);
+  border: var(--pad-button-weight) solid var(--btn-primary-border, #000);
+  font-family: var(--font-brand);
+  font-weight: var(--weight-medium);
+  font-size: var(--fs-md);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 180ms ease-out, color 180ms ease-out, border-color 180ms ease-out;
+  letter-spacing: -0.005em;
+  line-height: 1;
+  height: var(--pad-button-height);
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+.btn .tcs-icon {
+  width: var(--icon-lg, 28px);
+  height: var(--icon-lg, 28px);
+  flex-shrink: 0;
+}
+.btn {
+  color: #fff;
+}
+.btn > span:not(.tcs-icon) { display: inline-block; }
+/* Chevron inside a default (black) button is yellow */
+.btn .tcs-icon-chevron-right,
+.btn .tcs-icon-chevron-up,
+.btn .tcs-icon-chevron-down,
+.btn .tcs-icon-chevron-left,
+.btn .tcs-icon-donate { background-color: #FFEB00; }
+.btn:hover .tcs-icon-chevron-right,
+.btn:hover .tcs-icon-chevron-up,
+.btn:hover .tcs-icon-chevron-down,
+.btn:hover .tcs-icon-chevron-left,
+.btn:hover .tcs-icon-donate { background-color: #000; }
+.btn-yellow .tcs-icon { background-color: #000; }
+.btn-yellow:hover .tcs-icon { background-color: #000; }
+.btn[disabled] .tcs-icon { background-color: var(--white-200, #DCDCDC); }
+.btn:hover {
+  background: var(--white-50, #fff);
+  color: #000;
+  border-color: #000;
+}
+.btn:hover svg, .btn:hover .btn-glyph { color: #000; }
+.btn:active { background: #fff; color: #000; }
+.btn[disabled] {
+  background: var(--white-300, #BDBDBD);
+  color: var(--white-200, #DCDCDC);
+  border-color: var(--white-300, #BDBDBD);
+  cursor: not-allowed;
+}
+.btn[disabled] svg, .btn[disabled] .btn-glyph { color: var(--white-200, #DCDCDC); }
+.btn-yellow {
+  background: #FFEB00;
+  color: #000;
+  border-color: #FFEB00;
+}
+.btn-yellow svg, .btn-yellow .btn-glyph { color: #000; }
+
+.tcs-hero .btn:hover,
+.tcs-hero .btn-yellow:hover {
+  background: #FFEB00 !important;
+  color: #000 !important;
+  border-color: #FFEB00 !important;
+}
+.tcs-hero .btn:hover .tcs-icon,
+.tcs-hero .btn-yellow:hover .tcs-icon { background-color: #000 !important; }
+.tcs-hero .btn:hover svg,
+.tcs-hero .btn-yellow:hover svg { color: #000 !important; }
+
+.btn-yellow:hover {
+  background: var(--btn-secondary-hover-bg, #EFEFEF);
+  color: var(--btn-secondary-text, #000);
+  border-color: var(--btn-secondary-hover-border, #FFEB00);
+}
+.btn-yellow:active {
+  background: var(--btn-secondary-active-bg, #000);
+  color: var(--btn-secondary-active-text, #fff);
+  border-color: #000;
+}
+.btn-yellow:active svg, .btn-yellow:active .btn-glyph { color: #fff; }
+
+.btn-sm {
+  height: var(--sz-5xl);
+  padding: 0 var(--space-sm);
+  font-size: var(--fs-base);
+  gap: var(--space-xs);
+}
+.btn-sm svg { width: 12px; height: 12px; }
+
+
+/* =========================== SECTION RHYTHM ========================= */
+/* Between major slices = var(--pad-between-slices), realised via the
+   .tcs-divider which contains the centred down-arrow. */
+
+/* =========================== SECTION DIVIDER ====================== */
+/* Spec §4 · the divider PNG is 1280×140 with rule + arrow pre-composed.
+   Span the full container width. Use negative margins so the divider
+   overlaps the surrounding slices' vertical padding, reducing the
+   visual gap between sections. */
+
+.tcs-divider {
+  height: 140px;
+  background: url('../../assets/dividers/arrow-centred.png') center/100% 100% no-repeat;
+  margin-top: calc(var(--pad-vertical-margin, 120px) * -0.5);
+  margin-bottom: calc(var(--pad-vertical-margin, 120px) * -0.5);
+  filter: hue-rotate(-30deg) saturate(1.2);
+  position: relative;
+  z-index: 2;
+}
+.tcs-section {
+  padding-left: var(--pad-outer-margin);
+  padding-right: var(--pad-outer-margin);
+}
+.tcs-section-title {
+  font-size: var(--text-h3);
+  font-weight: var(--weight-bold);
+  margin: 0 0 var(--pad-slice-title-gap);
+  color: #000;
+  line-height: 1.05;
+  letter-spacing: -0.012em;
+}
+
+
+/* =========================== INTRO (Px12802 Home variant) ========= */
+/* Figma 4486:61750 · padding 120/100 · 4-col illustration + 8-col body.
+   Illustration 280x280 with NEGATIVE top:-68 to overhang into the hero.
+   Body H2 BentonSans 40px bold, 2-column body @ 16px, Primary button below. */
+
+.tcs-intro {
+  display: grid;
+  grid-template-columns: var(--columns-4-1280, 422px) var(--columns-8-1280, 854px);
+  column-gap: var(--pad-gutters);
+  padding: var(--pad-vertical-margin) var(--pad-outer-margin);
+  align-items: start;
+  background: var(--primary-bg);
+}
+.tcs-intro .ill {
+  width: 280px;
+  height: 280px;
+  margin-top: -68px;
+  background: url('../../assets/illustrations/rainbow.png') left top/contain no-repeat;
+}
+.tcs-intro .body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--pad-gutters);
+  row-gap: var(--pad-slice-title-gap);
+  align-items: start;
+}
+.tcs-intro .body .h {
+  grid-column: span 2;
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h2, 64px);
+  font-weight: var(--weight-bold);
+  line-height: 1.05;
+  margin: 0;
+  color: var(--type-heading);
+  letter-spacing: -0.012em;
+}
+.tcs-intro .body .col p {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-body, 20px);
+  line-height: 1.5;
+  color: var(--type-body);
+  margin: 0;
+}
+.tcs-intro .body .cta {
+  grid-column: span 2;
+}
+
+
+/* =========================== TEASER GRID (3-up) ===================== */
+/* Figma 3643:993 TeaserSlice · padding 120/100 · title at top:120 ·
+   3 cards in a 1080-wide row at 48px gap · each 328 wide */
+
+.tcs-teaser-slice {
+  padding: var(--pad-vertical-margin) var(--pad-outer-margin);
+  display: flex;
+  flex-direction: column;
+  gap: var(--pad-slice-title-gap);
+  background: var(--primary-bg);
+}
+.tcs-teaser-slice h2 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h2, 64px);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  margin: 0;
+  color: var(--type-heading);
+  letter-spacing: -0.012em;
+}
+.tcs-teaser-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--pad-gutters);
+}
+.tcs-teaser-grid.two-up {
+  grid-template-columns: repeat(2, 1fr);
+}
+.tcs-teaser {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.tcs-teaser .img {
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: center;
+  transition: transform 240ms ease-out;
+}
+.tcs-teaser:hover .img { transform: scale(1.015); }
+.tcs-teaser .eyebrow {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-tags, 14px);
+  font-weight: var(--weight-medium, 500);
+  line-height: 1.2;
+  letter-spacing: -0.011em;
+  color: var(--type-body);
+  margin-top: var(--spacing-scale-m, 16px);
+}
+.tcs-teaser h3 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h5, 30px);   /* Text/Headings/H5 per spec */
+  font-weight: var(--weight-bold);
+  color: var(--type-heading);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  margin: var(--spacing-scale-sm, 12px) 0 0;
+}
+
+
+/* =========================== STORIES (HomeStorySlice) ============== */
+/* Figma 3772:937 · padding 120/100 · left col-6 text + button ·
+   right col-6 grid of 2x2 StoryCard (258x300 each) ·
+   Yellow Brush2 decoration overhanging bottom-left of the grid. */
+
+.tcs-stories-slice {
+  padding: var(--pad-vertical-margin) var(--pad-outer-margin);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--pad-gutters);
+  align-items: center;
+  background: var(--primary-bg);
+}
+.tcs-stories-slice .text h2 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h2, 64px);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  margin: 0 0 var(--space-2xl);
+  color: var(--type-heading);
+  letter-spacing: -0.012em;
+  max-width: 360px;
+}
+.tcs-stories-slice .text p {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-body, 20px);
+  line-height: 1.5;
+  margin: 0 0 var(--space-lg);
+  color: var(--type-body);
+  max-width: 360px;
+}
+.tcs-stories-slice .text .btn { margin-top: var(--space-m); }
+.tcs-stories-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.tcs-stories-grid::after {
+  /* Figma 3772:937 · Brush2 · yellow decorative stroke overhanging
+     bottom-left of grid, BEHIND the cards — only the portion outside
+     the card boundaries is visible. */
+  content: "";
+  position: absolute;
+  left: -90px;
+  bottom: -50px;
+  width: 220px;
+  height: 240px;
+  background: url('../../assets/decoration/brush-stroke-left.png') center/contain no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+.tcs-story-card {
+  position: relative;
+  z-index: 1;   /* sit above the brush::after decoration */
+  aspect-ratio: 258 / 300;
+  overflow: hidden;
+  cursor: pointer;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--spacing-scale-xl, 28px);
+  box-sizing: border-box;
+}
+.tcs-story-card::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 50%);
+  z-index: 1;
+}
+.tcs-story-card .nm {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  font-weight: var(--weight-bold);
+  font-size: var(--text-headings-h6, 20px);   /* Text/Headings/H6 per spec */
+  font-family: var(--font-brand);
+  line-height: 1.1;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-scale-m, 16px);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  pointer-events: none;
+  letter-spacing: -0.011em;
+  white-space: nowrap;
+}
+/* Story-card chevron stays yellow even inside the card's transparent context */
+.tcs-story-card .nm .tcs-icon { width: var(--icon-sm); height: var(--icon-sm); background-color: #FFEB00; }
+.tcs-story-card .arr { display: none; }   /* arrow inline w/ name, not bottom-right */
+
+
+/* =========================== LARGE PROMO ============================ */
+/* Figma 3763:57934 LargePromoSlice · alignment=False|video=False variant.
+   Spec §7 · padding 120/100 inside content area · left:100 text col-6 (516w).
+   Full-bleed background (photo + scrim) is provided by the pseudo-elements
+   in the FULL-BLEED PATTERN section near the bottom of this file. */
+
+.tcs-large-promo {
+  position: relative;
+  width: 100%;
+  min-height: 731px;
+}
+.tcs-large-promo .text {
+  position: relative;
+  z-index: 2;
+  padding: calc(var(--pad-vertical-margin) + 20px) 0 var(--pad-vertical-margin);
+  max-width: var(--columns-6-1280, 516px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  color: #fff;
+  margin-left: 0;
+  margin-right: auto;
+}
+.tcs-large-promo .eyebrow {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-tags, 14px);
+  font-weight: var(--weight-medium, 500);
+  line-height: 1.2;
+  letter-spacing: -0.011em;
+  color: #fff;
+}
+.tcs-large-promo h2 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h2, 64px);   /* Text/Headings/H2 per spec */
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  margin: 0;
+  color: #fff;
+}
+.tcs-large-promo p {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-body, 20px);
+  line-height: 1.55;
+  margin: 0;
+  color: #fff;
+  max-width: 516px;
+}
+.tcs-large-promo .cta-row { margin-top: var(--space-m); }
+
+
+/* =========================== HOW YOU CAN HELP (4-up) ================ */
+
+/* =========================== HOW YOU CAN HELP (4-up) ================ */
+/* At 1280 the page lays out the cards in a single row of 4 */
+
+.tcs-howhelp-slice {
+  padding: var(--pad-vertical-margin) var(--pad-outer-margin);
+  display: flex;
+  flex-direction: column;
+  gap: var(--pad-slice-title-gap);
+  background: var(--primary-bg);
+}
+.tcs-howhelp-slice h2 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h2, 64px);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  margin: 0;
+  color: var(--type-heading);
+  letter-spacing: -0.012em;
+}
+.tcs-help-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: var(--pad-gutters);
+}
+.tcs-help {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  cursor: pointer;
+  min-width: 0;
+}
+.tcs-help .ill {
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-position: left top;
+  background-repeat: no-repeat;
+}
+.tcs-help h3 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h5, 30px);   /* Figma HelpCard.jsx h5 token */
+  font-weight: var(--weight-bold);
+  color: var(--type-heading);
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+}
+.tcs-help p {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-body, 20px);   /* Figma HelpCard.jsx body token */
+  line-height: 1.55;
+  color: var(--type-body);
+  margin: 0;
+}
+
+
+/* =========================== STATS ================================= */
+
+.tcs-stat-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--pad-gutters);
+  padding: 0 var(--pad-outer-margin);
+}
+.tcs-stat .n {
+  font-size: var(--fs-9xl);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: #000;
+  letter-spacing: -0.02em;
+}
+.tcs-stat .u {
+  display: inline-block;
+  height: 4px;
+  width: 64px;
+  background: #F28500;
+  margin: var(--space-lg) 0;
+}
+.tcs-stat .l {
+  font-size: var(--fs-xs);
+  line-height: 1.45;
+  color: #000;
+  max-width: 260px;
+}
+
+
+/* =========================== NEWSLETTER ============================ */
+/* Yellow flood · padding 120/100 · left col-6 (text+body) ·
+   right col-6 (3 fields + privacy + 516-wide Primary button) */
+
+.tcs-newsletter {
+  position: relative;
+  background: #FFEB00;
+  padding: var(--pad-vertical-margin) var(--pad-outer-margin);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--pad-gutters);
+  align-items: start;
+}
+.tcs-newsletter > div:first-of-type,
+.tcs-newsletter > form {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.tcs-newsletter h2 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h2, 64px);   /* Text/Headings/H2 per spec */
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  margin: 0 0 var(--space-lg);
+  color: var(--type-heading);
+  letter-spacing: -0.015em;
+}
+.tcs-newsletter p {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-body, 20px);
+  line-height: 1.5;
+  color: var(--type-body);
+  margin: 0;
+  max-width: 460px;
+}
+.tcs-newsletter .form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.tcs-newsletter input {
+  background: transparent;
+  border: 2px solid #000;
+  padding: 0 var(--space-m);
+  height: var(--pad-button-height);
+  font-family: var(--font-brand);
+  font-size: var(--fs-md);
+  color: #000;
+  box-sizing: border-box;
+}
+.tcs-newsletter input::placeholder { color: var(--type-muted); }
+.tcs-newsletter .privacy {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-label, 15px);
+  color: var(--type-body);
+  margin: var(--space-xs) 0;
+  line-height: 1.5;
+}
+.tcs-newsletter .form .btn {
+  align-self: stretch;
+  width: 100%;
+  justify-content: space-between;
+}
+
+
+/* =========================== FOOTER ================================ */
+/* Figma 2615:17607 · 1280x625 · light-grey bg.
+   Left side 852w: 2-col text (Get in touch + Quick links + Connect-with-us
+   underneath). Right side 428w with photo bg + 20% black scrim +
+   centred "I feel like I belong" 80px TCS Beta + Primary button below. */
+
+.tcs-footer {
+  display: grid;
+  grid-template-columns: 852px 1fr;
+  background: var(--secondary-bg);
+  min-height: 625px;
+  margin: 0;
+  padding: 0;
+}
+.tcs-footer-left {
+  padding: var(--space-4xl) var(--pad-gutters) var(--space-2xl) var(--pad-outer-margin);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+.tcs-footer-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--pad-gutters);
+  align-items: stretch;
+}
+.tcs-footer-cols > div {
+  display: flex;
+  flex-direction: column;
+}
+.tcs-footer h6 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h5, 30px);
+  font-weight: var(--weight-bold);
+  color: var(--type-heading);
+  margin: 0 0 var(--space-lg);
+  line-height: 1.2;
+}
+.tcs-footer p, .tcs-footer li {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-cta, 18px);   /* Text/Headings/CTA per spec */
+  line-height: 1.6;
+  color: var(--type-body);
+}
+.tcs-footer p { margin: 0; }
+.tcs-footer ul { list-style: none; padding: 0; margin: 0; }
+.tcs-footer-fr {
+  display: inline-flex; align-items: center; gap: var(--space-m);
+  padding: 0;
+  background: transparent;
+  font-size: var(--text-headings-tags, 14px);
+  color: var(--type-body);
+  line-height: 1.2;
+  border: none;
+  margin-top: auto;
+  padding-top: var(--space-4xl);
+  width: max-content;
+}
+.tcs-footer-fr .ic {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: transparent;
+  border: 2px solid #000;
+  font-weight: 700; font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+.tcs-footer-connect { margin-top: auto; padding-top: var(--space-4xl); }
+.tcs-footer-connect h6 { margin-bottom: var(--space-m); }
+.tcs-footer-socials {
+  display: flex; gap: var(--space-lg);
+  color: var(--type-body);
+  align-items: center;
+}
+.tcs-footer-socials .tcs-icon { width: var(--icon-social); height: var(--icon-social); cursor: pointer; }
+.tcs-footer-meta {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-cta, 18px);
+  font-weight: var(--weight-regular, 400);
+  color: var(--type-body);
+  margin-top: var(--space-3xl);
+  line-height: 1.5;
+}
+
+/* Right panel — photo bg + scrim + handwritten signature + back-to-top */
+.tcs-footer-right {
+  position: relative;
+  background: #2c2618 url('../../assets/photos/footer-basketball.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--pad-vertical-margin) var(--pad-gutters) calc(var(--pad-button-height) + var(--space-2xl));
+  gap: var(--space-2xl);
+}
+.tcs-footer-backtop {
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 0 !important;
+  right: auto !important;
+  top: auto !important;
+  transform: translateX(-50%) !important;
+  z-index: 10 !important;
+  background: #000 !important;
+  color: #fff !important;
+  border: 2px solid #000 !important;
+  height: var(--pad-button-height, 60px) !important;
+  padding: 0 var(--space-m, 16px) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: var(--space-sm, 12px) !important;
+  font-family: var(--font-brand) !important;
+  font-weight: var(--weight-medium) !important;
+  font-size: var(--text-headings-cta, 18px) !important;
+  cursor: pointer !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+  width: auto !important;
+}
+.tcs-footer-backtop .tcs-icon {
+  width: var(--icon-lg, 28px);
+  height: var(--icon-lg, 28px);
+  background-color: #FFEB00 !important;
+}
+.tcs-footer-right::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25));
+}
+.tcs-footer-sig {
+  position: relative;
+  font-family: var(--font-handwritten);
+  font-size: var(--text-headings-h3, 48px);   /* Text/Headings/H3 per spec */
+  line-height: 1.1;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.4);
+  z-index: 1;
+  letter-spacing: -0.01em;
+}
+.tcs-footer-right .btn {
+  position: relative;
+  z-index: 1;
+  width: 170px;
+  justify-content: space-between;
+}
+
+
+/* =========================== DONATE SLICE ========================= */
+/* Full-bleed photo as the slice background, yellow widget overlaid on top
+   pinned to the left within the 1280 page container. */
+
+.tcs-donate-slice {
+  position: relative;
+  background-image: url('../../assets/photos/headshot-girl.jpg') !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: var(--space-4xl, 80px) 160px;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+}
+.tcs-donate-slice .tcs-donate-widget {
+  width: 440px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================== DONATE WIDGET ========================= */
+/* Yellow card with title, subtitle, tabs, 4-up amount row, impact line,
+   black submit, payment-logo strip. */
+
+.tcs-donate-widget {
+  background: #FFEB00;
+  padding: var(--space-l, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l, 20px);
+  width: 100%;
+  color: #000;
+  box-sizing: border-box;
+}
+.tcs-donate-widget-title {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h5, 30px);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  margin: 0;
+  color: #000;
+}
+.tcs-donate-widget-subtitle {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-label, 15px);
+  line-height: 1.4;
+  margin: -12px 0 0;
+  color: #000;
+}
+
+.tcs-donate-widget-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 4px;
+  border: 2px solid #000;
+  min-height: 60px;
+  height: 60px;
+  box-sizing: border-box;
+  margin-top: -8px;
+}
+.tcs-donate-widget-tabs button {
+  background: transparent;
+  border: none !important;
+  outline: none;
+  margin: 0 !important;
+  padding: 0 16px;
+  height: 100%;
+  font-family: var(--font-brand);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-headings-cta, 18px);
+  cursor: pointer;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tcs-donate-widget-tabs button.active {
+  background: #000;
+  color: #fff;
+}
+
+.tcs-donate-widget-amounts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  padding: 4px;
+  border: 2px solid #000;
+  min-height: 60px;
+  height: 60px;
+  box-sizing: border-box;
+}
+.tcs-donate-widget-amounts button + button { border-left: none; }
+.tcs-donate-widget-amounts button + button { margin-left: 0; }
+.tcs-donate-widget-amounts button {
+  background: transparent;
+  border: none !important;
+  outline: none;
+  margin: 0 !important;
+  padding: 0 4px;
+  height: 100%;
+  font-family: var(--font-brand);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-headings-cta, 18px);
+  cursor: pointer;
+  color: #000;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tcs-donate-widget-amounts button.active {
+  background: #000;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l, 20px);
+  width: 100%;
+  color: #000;
+  box-sizing: border-box;
+}
+.tcs-donate-widget-title {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h3, 48px);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  margin: 0;
+  color: #000;
+}
+.tcs-donate-widget-subtitle {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-cta, 18px);
+  line-height: 1.4;
+  margin: 0 0 var(--space-m, 16px);
+  color: #000;
+}
+
+
+.tcs-donate-widget-other-input {
+  display: flex;
+  align-items: stretch;
+  background: #fff;
+  border: 2px solid #000;
+}
+.tcs-donate-widget-other-input .prefix {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 12px 0 16px;
+  font-family: var(--font-brand);
+  font-weight: var(--weight-bold);
+  font-size: 22px;
+  color: #000;
+}
+.tcs-donate-widget-other-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 16px 16px 16px 0;
+  font-family: var(--font-brand);
+  font-size: 18px;
+  color: #000;
+  background: transparent;
+  width: 100%;
+}
+.tcs-donate-widget-other-input input::placeholder {
+  color: #000;
+  opacity: 0.55;
+}
+
+.tcs-donate-widget-impact {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-tags, 14px);
+  line-height: 1.4;
+  margin: 0;
+  color: #000;
+  text-wrap: wrap !important;
+  text-wrap-style: auto !important;
+  max-width: none;
+  width: 100%;
+  display: block;
+}
+
+.tcs-donate-widget-submit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 0 var(--space-l, 20px);
+  height: 60px;
+  font-family: var(--font-brand);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-headings-cta, 18px);
+  cursor: pointer;
+}
+.tcs-donate-widget-submit .secure {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-headings-tags, 14px);
+  font-weight: var(--weight-regular);
+  opacity: 0.9;
+}
+.tcs-donate-widget-submit .secure .tcs-icon {
+  background-color: #fff;
+  width: 14px;
+  height: 14px;
+}
+
+.tcs-donate-widget-payments {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0;
+  margin-top: 0;
+  flex-wrap: wrap;
+}
+.tcs-donate-widget-payments .pay {
+  font-family: var(--font-brand);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+  color: #000;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 18px;
+  line-height: 1;
+}
+.tcs-donate-widget-payments .pay .glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  font-weight: var(--weight-bold);
+}
+.tcs-donate-widget-payments .pay-apple .glyph {
+  font-size: 18px;
+}
+.tcs-donate-widget-payments .pay-google .glyph {
+  background: linear-gradient(135deg, #4285F4 0% 25%, #EA4335 25% 50%, #FBBC05 50% 75%, #34A853 75% 100%);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 12px;
+  width: 18px; height: 18px;
+}
+.tcs-donate-widget-payments .pay-visa {
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: #1a1f71;
+  font-size: 18px;
+}
+.tcs-donate-widget-payments .pay-mc {
+  position: relative;
+  width: 36px;
+  height: 22px;
+  display: inline-block;
+}
+.tcs-donate-widget-payments .pay-mc .mc-r,
+.tcs-donate-widget-payments .pay-mc .mc-y {
+  position: absolute;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+.tcs-donate-widget-payments .pay-mc .mc-r {
+  left: 0;
+  background: #EB001B;
+}
+.tcs-donate-widget-payments .pay-mc .mc-y {
+  right: 0;
+  background: #F79E1B;
+  mix-blend-mode: multiply;
+}
+.tcs-donate-widget-payments .pay-paypal {
+  font-style: italic;
+  font-weight: 900;
+  color: #003087;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+/* =========================== DONATE ARTICLE HEADER ================ */
+/* Social icons column left + body (breadcrumb + H1 + paragraph) right. */
+
+.tcs-donate-article {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  column-gap: 128px;
+  padding: var(--pad-vertical-margin, 120px) var(--pad-outer-margin, 100px);
+  background: var(--primary-bg, #fff);
+}
+.tcs-donate-article-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l, 20px);
+  padding-top: var(--space-l, 20px);
+}
+.tcs-donate-article-side .tcs-icon {
+  background-color: #000;
+  width: 24px;
+  height: 24px;
+}
+.tcs-donate-article-body {
+  max-width: var(--pad-body-width, 704px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl, 40px);
+}
+.tcs-donate-article-body .meta {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-cta, 18px);
+  font-weight: var(--weight-regular);
+  color: #000;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.tcs-donate-article-body .meta a,
+.tcs-donate-article-body .meta .crumb {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.tcs-donate-article-body .meta .tcs-icon {
+  background-color: #000;
+  width: 14px;
+  height: 14px;
+}
+.tcs-donate-article-body h1 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h2, 64px);
+  font-weight: var(--weight-bold);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin: 0;
+  color: var(--type-heading);
+}
+.tcs-donate-article-body p {
+  font-family: var(--font-brand);
+  font-size: var(--fs-xl, 26px);
+  line-height: 1.45;
+  color: var(--type-body);
+  margin: 0;
+}
+
+/* =========================== MAKING A DIFFERENCE ================== */
+/* Text on the left (H2 + 2-col body), media on the right with a
+   pause-button overlay and a yellow brush decoration overhang. */
+
+.tcs-donate-difference {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--pad-gutters, 48px);
+  padding: var(--pad-vertical-margin, 120px) var(--pad-outer-margin, 100px);
+  background: var(--primary-bg, #fff);
+  align-items: center;
+}
+.tcs-donate-difference .text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl, 40px);
+  max-width: 460px;
+}
+.tcs-donate-difference h2 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h2, 64px);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: -0.012em;
+  margin: 0;
+  color: var(--type-heading);
+}
+.tcs-donate-difference .body-cols {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l, 20px);
+}
+.tcs-donate-difference .body-cols p {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-body, 20px);
+  line-height: 1.5;
+  color: var(--type-body);
+  margin: 0;
+}
+.tcs-donate-difference-media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background-size: cover;
+  background-position: center;
+}
+.tcs-donate-difference-media .pause-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.tcs-donate-difference-media .pause-overlay .ring {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.tcs-donate-difference-media .pause-overlay .dot {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+.tcs-donate-difference-media .pause-overlay .dot .tcs-icon {
+  background-color: #FFEB00;
+  width: 24px;
+  height: 24px;
+}
+.tcs-donate-difference-media::before,
+.tcs-donate-difference-media::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+.tcs-donate-difference-media::before {
+  /* yellow brush peeking out on the LEFT side, behind the photo */
+  left: -56px;
+  top: 38%;
+  width: 160px;
+  height: 180px;
+  background: url('../../assets/decoration/brush-stroke-left.png') center/contain no-repeat;
+  z-index: -1;
+}
+.tcs-donate-difference-media::after {
+  /* yellow brush hanging off the BOTTOM-RIGHT */
+  right: -32px;
+  bottom: -64px;
+  width: 260px;
+  height: 110px;
+  background: url('../../assets/decoration/brush-stroke-right.png') center/contain no-repeat;
+  z-index: 1;
+}
+
+/* =========================== IMPACT BLOCK ========================= */
+/* Body column left-aligned, indented 188px from the slice's left padding
+   so the text lines up with the donate-article body above. */
+
+.tcs-donate-impact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l, 20px);
+  padding: var(--pad-vertical-margin, 120px) var(--pad-outer-margin, 100px);
+  background: var(--primary-bg, #fff);
+}
+.tcs-donate-impact > h2,
+.tcs-donate-impact > p {
+  max-width: var(--pad-body-width, 704px);
+  margin-left: 188px;
+  margin-right: 0;
+  text-align: left;
+}
+.tcs-donate-impact h2 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h2, 64px);
+  font-weight: var(--weight-bold);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: var(--type-heading);
+}
+.tcs-donate-impact > p {
+  font-family: var(--font-brand);
+  font-size: var(--fs-lg, 20px);
+  line-height: 1.5;
+  color: var(--type-body);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.tcs-donate-impact .impact-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--pad-gutters, 48px);
+  width: 100%;
+  margin-top: var(--space-3xl, 60px);
+  text-align: left;
+}
+.tcs-donate-impact .impact-stats .stat .n {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h1, 80px);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+.tcs-donate-impact .impact-stats .stat .u {
+  display: block;
+  height: 6px;
+  width: 200px;
+  background: #F28500;
+  margin: var(--space-sm, 12px) 0 var(--space-l, 20px);
+}
+.tcs-donate-impact .impact-stats .stat .l {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-body, 20px);
+  line-height: 1.5;
+  color: var(--type-body);
+  max-width: 280px;
+}
+
+/* =========================== STEP 2 · DETAILS / STEP 3 · PAYMENT FORM ============== */
+/* Photo-backed slice with a tall white form panel pinned to the right. */
+
+.tcs-form-slice {
+  position: relative;
+  isolation: isolate;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+.tcs-form-slice::before {
+  content: "";
+  display: block;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-image: var(--form-bg, url('../../assets/photos/portrait-2.jpg'));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  margin-bottom: -56.25%;   /* pulls next siblings up to overlay the bg */
+}
+.tcs-form-slice.img-portrait-2::before { background-image: url('../../assets/photos/form-hero.jpg'); }
+.tcs-form-slice .tcs-form-panel {
+  position: relative;
+  z-index: 1;
+  margin: 250px auto 200px;
+}
+.tcs-form-panel {
+  background: #fff;
+  padding: 56px;
+  width: 680px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l, 20px);
+  box-sizing: border-box;
+}
+.tcs-form-context {
+  font-family: var(--font-brand);
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+  margin: 0;
+}
+.tcs-form-context strong { font-weight: var(--weight-bold); }
+.tcs-form-heading {
+  font-family: var(--font-brand);
+  font-size: 48px;
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  margin: 0;
+  color: #000;
+}
+
+.tcs-form-steps { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+.tcs-form-step { display: flex; flex-direction: column; align-items: center; gap: 6px; flex-shrink: 0; }
+.tcs-form-step .dot {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: #fff; border: 2px solid #000;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-brand); font-weight: var(--weight-bold); font-size: 14px; color: #000;
+}
+.tcs-form-step.done .dot { background: #000; color: #FFEB00; }
+.tcs-form-step.active .dot { background: #FFEB00; color: #000; }
+.tcs-form-step .label { font-family: var(--font-brand); font-size: 12px; font-weight: var(--weight-medium); color: #000; }
+.tcs-form-step-line { flex: 1; height: 2px; background: #000; margin-bottom: 22px; }
+
+.tcs-form-section { display: flex; flex-direction: column; gap: 12px; padding-top: 32px; border-top: none; }
+.tcs-form-section:first-of-type { padding-top: 0; }
+.tcs-form-section-heading { font-family: var(--font-brand); font-size: 22px; font-weight: var(--weight-bold); line-height: 1.2; margin: 0; color: #000; }
+.tcs-form-section-body { font-family: var(--font-brand); font-size: 14px; line-height: 1.5; color: #000; margin: 0; }
+
+.tcs-form-field { display: flex; flex-direction: column; gap: 4px; }
+.tcs-form-label { font-family: var(--font-brand); font-size: 15px; font-weight: var(--weight-bold); color: #000; }
+.tcs-form-label .required { font-weight: var(--weight-regular); color: #5D5D5D; }
+.tcs-form-hint { font-family: var(--font-brand); font-size: 13px; color: #5D5D5D; margin: 0 0 4px; }
+.tcs-form-input { border: 2px solid #000; padding: 12px 16px; font-family: var(--font-brand); font-size: 16px; color: #000; background: #fff; box-sizing: border-box; width: 100%; }
+.tcs-form-input:focus { outline: 3px solid #FFEB00; outline-offset: -3px; }
+
+.tcs-form-check { display: flex; align-items: center; gap: 12px; cursor: pointer; position: relative; }
+.tcs-form-check input { position: absolute; opacity: 0; width: 0; height: 0; }
+.tcs-form-check-box {
+  width: 24px; height: 24px; border: 2px solid #000; background: #fff;
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.tcs-form-check input:checked + .tcs-form-check-box { background: #FFEB00; }
+.tcs-form-check input:checked + .tcs-form-check-box::after {
+  content: ""; width: 10px; height: 5px;
+  border-left: 3px solid #000; border-bottom: 3px solid #000;
+  transform: rotate(-45deg) translateY(-1px);
+}
+.tcs-form-check-label { font-family: var(--font-brand); font-size: 16px; color: #000; }
+
+.tcs-form-link { font-family: var(--font-brand); font-size: 14px; color: #000; text-decoration: underline; text-underline-offset: 3px; align-self: flex-start; }
+.tcs-form-privacy { font-family: var(--font-brand); font-size: 13px; line-height: 1.5; color: #5D5D5D; margin: 0; }
+.tcs-form-privacy a { color: #000; text-decoration: underline; text-underline-offset: 2px; }
+
+.tcs-form-submit {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #000; color: #fff; border: 2px solid #000;
+  padding: 0 20px; height: 60px;
+  font-family: var(--font-brand); font-weight: var(--weight-medium); font-size: 18px; cursor: pointer;
+}
+.tcs-form-submit .tcs-icon { background-color: #FFEB00; width: 16px; height: 16px; }
+.tcs-form-submit:hover { background: #fff; color: #000; }
+.tcs-form-submit:hover .tcs-icon { background-color: #000; }
+
+.tcs-form-trust { display: flex; flex-direction: column; gap: 12px; padding-top: 16px; border-top: 1px solid var(--white-200, #DCDCDC); }
+.tcs-form-trust .trust-secure { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-brand); font-size: 13px; color: #5D5D5D; font-weight: var(--weight-medium); }
+.tcs-form-trust .trust-secure .tcs-icon { background-color: #5D5D5D; width: 14px; height: 14px; }
+.tcs-form-trust .trust-logos { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.tcs-form-trust .pay { font-family: var(--font-brand); font-weight: var(--weight-bold); letter-spacing: -0.01em; color: #000; display: inline-flex; align-items: center; gap: 4px; font-size: 14px; line-height: 1; }
+.tcs-form-trust .pay .glyph { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; font-weight: var(--weight-bold); }
+.tcs-form-trust .pay-google .glyph { background: linear-gradient(135deg, #4285F4 0% 25%, #EA4335 25% 50%, #FBBC05 50% 75%, #34A853 75% 100%); color: #fff; border-radius: 50%; font-size: 10px; width: 14px; height: 14px; }
+.tcs-form-trust .pay-visa { font-style: italic; font-weight: 900; letter-spacing: -0.04em; color: #1a1f71; font-size: 14px; }
+.tcs-form-trust .pay-mc { position: relative; width: 28px; height: 18px; display: inline-block; }
+.tcs-form-trust .pay-mc .mc-r,
+.tcs-form-trust .pay-mc .mc-y { position: absolute; top: 0; width: 18px; height: 18px; border-radius: 50%; }
+.tcs-form-trust .pay-mc .mc-r { left: 0; background: #EB001B; }
+.tcs-form-trust .pay-mc .mc-y { right: 0; background: #F79E1B; mix-blend-mode: multiply; }
+.tcs-form-trust .pay-paypal { font-style: italic; font-weight: 900; color: #003087; font-size: 14px; letter-spacing: -0.02em; }
+
+/* Step 3 · payment specifics */
+.tcs-form-day-picker { display: flex; gap: 8px; }
+.tcs-form-day-picker .day-pill { flex: 1; background: #fff; border: 2px solid #000; padding: 14px; font-family: var(--font-brand); font-weight: var(--weight-bold); font-size: 18px; cursor: pointer; color: #000; }
+.tcs-form-day-picker .day-pill.active { background: #000; color: #fff; border-color: #000; }
+.tcs-form-sort-code { display: flex; align-items: center; gap: 8px; }
+.tcs-form-sort-code .tcs-form-input { width: 64px; text-align: center; font-size: 18px; padding: 12px 8px; }
+.tcs-form-sort-code span { font-weight: var(--weight-bold); color: #5D5D5D; }
+.tcs-form-dd-logo { display: inline-block; font-family: var(--font-brand); font-weight: 900; font-size: 13px; color: #000; background: #fff; border: 1.5px solid #000; padding: 4px 8px; align-self: flex-start; letter-spacing: 0.02em; }
+.tcs-form-giftaid { background: #FFFCE0; padding: 20px; border: 2px solid #FFEB00; }
+.tcs-form-mandate-note { font-family: var(--font-brand); font-size: 13px; line-height: 1.5; color: #5D5D5D; margin: 4px 0 0 36px; }
+.tcs-form-paypal { background: #FFC439; color: #003087; border-color: #FFC439; }
+.tcs-form-paypal .paypal-mark { font-style: italic; font-weight: 900; color: #003087; }
+.tcs-form-paypal:hover { background: #FFD66B; color: #003087; }
+.tcs-form-paypal:hover .paypal-mark { color: #003087; }
+.tcs-form-mode-toggle { font-family: var(--font-brand); font-size: 14px; color: #5D5D5D; margin: 0; text-align: center; }
+.tcs-form-mode-toggle a { color: #000; text-decoration: underline; }
+
+/* =========================== STEP 4 · CONFIRMATION ============= */
+
+.tcs-thanks-slice {
+  position: relative;
+  isolation: isolate;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+.tcs-thanks-slice::before {
+  content: "";
+  display: block;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-image: url('../../assets/photos/group-laughing.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  margin-bottom: -56.25%;
+}
+/* Numbered section (Oxfam-style single-page form) */
+.tcs-form-hero-title {
+  position: absolute;
+  top: 100px;
+  left: 200px;
+  font-family: var(--font-brand);
+  font-size: 64px;
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: #fff;
+  z-index: 5;
+  margin: 0;
+  max-width: 600px;
+  text-transform: none;
+}
+.tcs-form-link-inline {
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.tcs-form-section-numbered {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 48px;
+  border-top: none;
+}
+.tcs-form-section-numbered:first-of-type {
+  padding-top: 8px;
+}
+.tcs-form-section-numbered-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-brand);
+  font-size: 24px;
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: 0;
+  color: #000;
+}
+.tcs-form-section-numbered-title .num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: var(--weight-bold);
+  flex-shrink: 0;
+}
+.tcs-form-section-numbered-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-left: 46px;   /* aligns content under the title text, not the number */
+}
+
+.tcs-form-panel-heading {
+  font-family: var(--font-brand);
+  font-size: 48px;
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+  margin: 0 0 8px;
+  color: #000;
+}
+
+.tcs-payment-tiles {
+  display: flex;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+.tcs-payment-tiles .payment-tile {
+  flex: 1;
+  min-width: 0;
+}
+.tcs-payment-tiles .payment-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 8px;
+  border: 2px solid #000;
+  background: #fff;
+  min-width: 0;
+  min-height: 56px;
+  font-family: var(--font-brand);
+  cursor: pointer;
+}
+.tcs-payment-tiles .payment-tile:hover { background: #f5f5f0; }
+.tcs-payment-tiles .payment-tile.selected { background: #000; color: #fff; border-color: #000; }
+.tcs-payment-tiles .payment-tile.selected .payment-tile-logo { color: #fff; }
+.tcs-payment-tiles .payment-tile-logo {
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+.tcs-payment-tiles .payment-tile-logo.pay-paypal {
+  font-style: italic;
+  color: #003087;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.tcs-payment-tiles .pay-tile-applepay { background: #000; }
+.tcs-payment-tiles .pay-tile-applepay .payment-tile-logo {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.tcs-payment-tiles .pay-tile-applepay .payment-tile-logo .glyph {
+  font-size: 18px;
+}
+.tcs-payment-tiles .pay-tile-applepay:hover { background: #222; }
+
+.tcs-payment-tiles .pay-tile-googlepay { background: #fff; }
+.tcs-payment-tiles .pay-tile-googlepay .payment-tile-logo {
+  color: #5F6368;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.tcs-payment-tiles .pay-tile-googlepay .payment-tile-logo .glyph {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #4285F4 0% 25%, #EA4335 25% 50%, #FBBC05 50% 75%, #34A853 75% 100%);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tcs-payment-method {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+.tcs-payment-method .payment-tile {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 22px;
+  border: 2px solid #000;
+  background: #fff;
+  min-width: 200px;
+  font-family: var(--font-brand);
+}
+.tcs-payment-method .payment-tile.selected { background: #FFEB00; }
+.tcs-payment-method .payment-tile-logo {
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.tcs-form-commit {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 8px;
+}
+.tcs-form-commit-heading {
+  font-family: var(--font-brand);
+  font-size: 22px;
+  font-weight: var(--weight-bold);
+  margin: 0;
+  color: #000;
+  letter-spacing: -0.01em;
+}
+.tcs-form-commit .tcs-form-submit {
+  background: #FFEB00;
+  color: #000;
+  border-color: #000;
+}
+.tcs-form-commit .tcs-form-submit .tcs-icon { background-color: #000; }
+.tcs-form-commit .tcs-form-submit:hover { background: #fff; color: #000; }
+
+.tcs-form-tribute {
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--white-200, #DCDCDC);
+}
+.tcs-form-tribute-fields {
+  margin-top: 16px;
+  padding: 20px;
+  background: rgba(255, 235, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tcs-donate-widget-philanthropy {
+  font-family: var(--font-brand);
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+  color: #000;
+}
+.tcs-donate-widget-philanthropy a {
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: var(--weight-bold);
+}
+
+/* Logo overlay on form / thanks slices */
+.tcs-form-logo {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  z-index: 10;
+  cursor: pointer;
+  display: block;
+  margin-bottom: -120px;
+  align-self: flex-start;
+}
+.tcs-form-logo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+.tcs-thanks-slice .tcs-thanks-card {
+  position: relative;
+  z-index: 1;
+  margin: 250px auto 200px;
+}
+.tcs-thanks-card {
+  background: #fff;
+  padding: 56px;
+  width: 680px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  box-sizing: border-box;
+}
+.tcs-thanks-eyebrow {
+  font-family: var(--font-brand);
+  font-size: 14px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5D5D5D;
+}
+.tcs-thanks-heading {
+  font-family: var(--font-brand);
+  font-size: 48px;
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  margin: 0;
+  color: #000;
+}
+.tcs-thanks-lead {
+  font-family: var(--font-brand);
+  font-size: 22px;
+  line-height: 1.4;
+  color: #000;
+  margin: 0;
+}
+.tcs-thanks-lead strong { font-weight: var(--weight-bold); }
+.tcs-thanks-summary {
+  background: #FFEB00;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
+.tcs-thanks-summary .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  padding: 12px 0;
+}
+.tcs-thanks-summary .row:first-child { padding-top: 0; }
+.tcs-thanks-summary .row:last-child { border-bottom: none; padding-bottom: 0; }
+.tcs-thanks-summary .lbl { font-family: var(--font-brand); font-size: 14px; font-weight: var(--weight-medium); color: #000; }
+.tcs-thanks-summary .val { font-family: var(--font-brand); font-size: 18px; font-weight: var(--weight-bold); color: #000; text-align: right; }
+
+.tcs-thanks-next h2,
+.tcs-thanks-share h2 {
+  font-family: var(--font-brand);
+  font-size: 24px;
+  font-weight: var(--weight-bold);
+  line-height: 1.2;
+  margin: 0 0 14px;
+  color: #000;
+  letter-spacing: -0.01em;
+}
+.tcs-thanks-next ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.tcs-thanks-next li {
+  font-family: var(--font-brand);
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+  padding-left: 0;
+  position: relative;
+}
+.tcs-thanks-next li::before {
+  content: none;
+}
+.tcs-thanks-next li strong { font-weight: var(--weight-bold); }
+
+.tcs-thanks-share p {
+  font-family: var(--font-brand);
+  font-size: 15px;
+  line-height: 1.5;
+  color: #000;
+  margin: 0 0 14px;
+}
+.tcs-thanks-share .buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.tcs-thanks-share .share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white-100, #EFEFEF);
+  color: #000;
+  border: none;
+  padding: 12px 18px;
+  font-family: var(--font-brand);
+  font-weight: var(--weight-medium);
+  font-size: 15px;
+  cursor: pointer;
+}
+.tcs-thanks-share .share-btn:hover { background: var(--white-200, #DCDCDC); }
+.tcs-thanks-share .share-btn .tcs-icon { background-color: #000; width: 14px; height: 14px; }
+
+.tcs-thanks-mode-toggle {
+  font-family: var(--font-brand);
+  font-size: 13px;
+  color: #5D5D5D;
+  margin: 0;
+  text-align: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--white-200, #DCDCDC);
+}
+.tcs-thanks-mode-toggle a { color: #000; text-decoration: underline; }
+
+/* =========================== OTHER WAYS TO GIVE ============= */
+
+.tcs-other-ways {
+  padding: var(--space-4xl, 80px) var(--pad-outer-margin, 100px);
+  background: var(--primary-bg, #fff);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl, 40px);
+}
+.tcs-other-ways h2 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h2, 64px);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  margin: 0;
+  color: var(--type-heading);
+}
+.tcs-other-ways-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--pad-gutters, 48px);
+}
+.tcs-other-ways-card {
+  border: 2px solid #000;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 240px;
+}
+.tcs-other-ways-card h3 {
+  font-family: var(--font-brand);
+  font-size: var(--fs-2xl, 30px);
+  font-weight: var(--weight-bold);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: #000;
+}
+.tcs-other-ways-card p {
+  font-family: var(--font-brand);
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+  margin: 0;
+  flex: 1;
+}
+.tcs-other-ways-card .card-link {
+  font-family: var(--font-brand);
+  font-size: 15px;
+  font-weight: var(--weight-bold);
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+.tcs-other-ways-card .card-link .tcs-icon {
+  background-color: #000;
+  width: 14px;
+  height: 14px;
+  text-decoration: none;
+}
+
+/* =========================== ACCORDION SECTION ===================== */
+
+.tcs-accordion-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xl, 60px);
+  padding: var(--pad-vertical-margin, 120px) var(--pad-outer-margin, 100px);
+  background: var(--primary-bg, #fff);
+}
+.tcs-accordion-section h2 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h2, 64px);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  margin: 0 0 0 188px;
+  color: var(--type-heading);
+  max-width: 900px;
+}
+.tcs-accordion-section .accordion-list {
+  width: 100%;
+  max-width: var(--pad-body-width, 704px);
+  margin-left: 188px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l, 20px);
+}
+.tcs-accordion-section .tcs-faq-item {
+  border: none !important;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tcs-accordion-section .tcs-faq-item .ti {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-cta, 18px);
+  font-weight: var(--weight-bold);
+  color: var(--type-heading);
+}
+.tcs-accordion-section .tcs-faq-item .ic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #000;
+  color: #FFEB00;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.tcs-accordion-section .tcs-faq-item.open .ic { background: #FFEB00; color: #000; }
+.tcs-accordion-section .tcs-faq-panel {
+  border: none !important;
+  padding: 0 0 var(--space-m, 16px);
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-body, 20px);
+  line-height: 1.5;
+  color: var(--type-body);
+  max-width: var(--pad-body-width, 704px);
+}
+
+/* =========================== SHARE BLOCK ========================= */
+
+.tcs-share-block {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-l, 20px);
+  align-items: center;
+  padding: var(--space-3xl, 60px) var(--pad-outer-margin, 100px);
+  background: var(--primary-bg, #fff);
+}
+.tcs-share-block h2 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h3, 48px);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: -0.012em;
+  margin: 0;
+  color: var(--type-heading);
+}
+.tcs-share-block .share-buttons {
+  display: flex;
+  gap: var(--space-xs, 8px);
+}
+.tcs-share-block .share-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm, 12px);
+  background: var(--white-100, #EFEFEF);
+  color: #000;
+  border: none;
+  padding: 0 var(--space-m, 16px);
+  height: 48px;
+  font-family: var(--font-brand);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-headings-cta, 18px);
+  cursor: pointer;
+}
+.tcs-share-block .share-button .tcs-icon { background-color: #000; }
+.tcs-share-block .share-button:hover { background: var(--white-200, #DCDCDC); }
+
+/* =========================== RELATED BLOCK ========================= */
+
+.tcs-related-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pad-slice-title-gap, 40px);
+  padding: var(--pad-vertical-margin, 120px) var(--pad-outer-margin, 100px);
+  background: var(--primary-bg, #fff);
+}
+.tcs-related-block h2 {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h2, 64px);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: -0.012em;
+  margin: 0;
+  color: var(--type-heading);
+}
+.tcs-related-block .related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--pad-gutters, 48px);
+}
+
+
+/* =========================== ARTICLE / STORY ======================= */
+
+.tcs-article {
+  display: grid; grid-template-columns: 60px 1fr;
+  padding: var(--pad-vertical-margin) var(--pad-outer-margin) 0;
+  column-gap: var(--space-l);
+}
+.tcs-article-side {
+  display: flex; flex-direction: column;
+  gap: var(--space-lg);
+  color: #000;
+}
+.tcs-article-body { max-width: var(--pad-body-width); }
+.tcs-article-body h1 {
+  font-size: var(--text-h2);
+  font-weight: var(--weight-bold);
+  line-height: 1.05;
+  margin: 0 0 var(--rhythm-h1-below);
+  letter-spacing: -0.015em;
+  color: #000;
+}
+.tcs-article-body p.lead {
+  font-size: 19px;
+  line-height: 1.55;
+  color: #000;
+  margin: 0 0 var(--rhythm-h2-below);
+}
+.tcs-article-body p {
+  font-size: var(--text-cta);
+  line-height: 1.6;
+  color: #000;
+  margin: 0 0 var(--rhythm-between-paragraphs);
+}
+.tcs-article-body .meta {
+  font-size: var(--fs-xxs);
+  color: #000;
+  display: inline-flex; align-items: center; gap: 8px;
+  margin: 6px 0 var(--space-xl);
+}
+.tcs-article-pullquote {
+  font-family: var(--font-handwritten);
+  font-size: var(--fs-4xl);
+  line-height: 1.1;
+  color: #000;
+  padding: 12px 0;
+  margin: 8px 0 var(--space-xl);
+  max-width: 520px;
+}
+
+.tcs-topic-hero {
+  padding: var(--pad-vertical-margin) var(--pad-outer-margin) 0;
+}
+.tcs-topic-hero .crumb {
+  font-size: var(--fs-xxs);
+  color: #000;
+  margin-bottom: var(--space-sm);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.tcs-topic-hero h1 {
+  font-size: var(--text-h2);
+  font-weight: var(--weight-bold);
+  line-height: 1.05;
+  margin: 0;
+  color: #000;
+  letter-spacing: -0.015em;
+  max-width: 720px;
+}
+
+/* Share row */
+.tcs-share {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-l);
+  align-items: center;
+  padding: 0 var(--pad-outer-margin);
+}
+.tcs-share h3 {
+  font-size: var(--text-h4);
+  font-weight: var(--weight-bold);
+  margin: 0;
+  color: #000;
+}
+.tcs-share .btns { display: flex; gap: 8px; }
+.tcs-share .btns button {
+  background: #DCDCDC; border: 2px solid #000;
+  padding: 8px 14px; font-family: var(--font-brand); font-weight: 500;
+  font-size: var(--fs-xxs); color: #000; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+
+/* FAQ accordion */
+.tcs-faq {
+  padding: 0 var(--pad-outer-margin);
+  max-width: 1080px;
+  box-sizing: border-box;
+}
+.tcs-faq h2 {
+  font-size: var(--text-h4);
+  font-weight: var(--weight-bold);
+  margin: 0 0 var(--rhythm-h2-below);
+  color: #000;
+}
+.tcs-faq-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: var(--space-xl) 0;
+  border-bottom: 1px solid #BDBDBD;
+  cursor: pointer;
+}
+.tcs-faq-item:first-of-type { border-top: 1px solid #BDBDBD; }
+.tcs-faq-item .ti {
+  font-size: var(--text-cta);
+  font-weight: 700;
+  color: #000;
+}
+.tcs-faq-item .ic {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: #000; color: #FFEB00;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+}
+.tcs-faq-item.open .ic { background: #FFEB00; color: #000; }
+.tcs-faq-panel {
+  padding: 0 0 var(--space-lg);
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: #000;
+  border-bottom: 1px solid #BDBDBD;
+}
+
+
+/* =========================== IMAGE STAND-INS ======================= */
+
+.img-park           { background: #2c2618 url('../../assets/photos/hero-headphones.jpg') center/cover no-repeat; }
+.img-hero-looking-up{ background: #2c2618 url('../../assets/photos/hero-looking-up.jpg') center/cover no-repeat; }
+.img-paint          { background: #6E5642 url('../../assets/photos/girl-red-coat.jpg') center/cover no-repeat; }
+.img-shoes          { background: #80604A url('../../assets/photos/yellow-sneaker.jpg') center/cover no-repeat; }
+.img-promo-garden   { background: #2c3a20 url('../../assets/photos/rhs-garden.jpg') center/cover no-repeat; }
+.img-young-girl     { background: #80604A url('../../assets/photos/portrait-1.jpg') center/cover no-repeat; }
+.img-young-boy      { background: #4D3A2A url('../../assets/photos/portrait-4.jpg') center/cover no-repeat; }
+.img-portrait-1     { background: #A37A60 url('../../assets/photos/portrait-1.jpg') center/cover no-repeat; }
+.img-portrait-2     { background: #2C2C2C url('../../assets/photos/portrait-2.jpg') center/cover no-repeat; }
+.img-portrait-3     { background: #6A4A36 url('../../assets/photos/portrait-3.jpg') center/cover no-repeat; }
+.img-portrait-4     { background: #8B6B45 url('../../assets/photos/portrait-4.jpg') center/cover no-repeat; }
+.img-group          { background: #5D4030 url('../../assets/photos/group-laughing.jpg') center/cover no-repeat; }
+.img-three-girls    { background: #5D4030 url('../../assets/photos/three-girls.jpg') center/cover no-repeat; }
+.img-flower         { background: #6E8A50 url('../../assets/photos/three-girls.jpg') center/cover no-repeat; }
+.img-christingle    { background: #2C1610 url('../../assets/photos/scene-3.jpg') center/cover no-repeat; }
+.img-laughter       { background: #5D4030 url('../../assets/photos/group-laughing.jpg') center/cover no-repeat; }
+.img-cafe           { background: #C9A488 url('../../assets/photos/group-3.jpg') center/cover no-repeat; }
+
+/* Help-card illustrations */
+.ill-placard        { background-image: url('../../assets/illustrations/campaign.png'); }
+.ill-heart-hand     { background-image: url('../../assets/illustrations/donate.png'); }
+.ill-two-hearts     { background-image: url('../../assets/illustrations/fundraising.png'); }
+.ill-volunteer-hand { background-image: url('../../assets/illustrations/volunteer.png'); }
+.ill-running        { background-image: url('../../assets/illustrations/heart.png'); }
+.ill-rainbow-svg    { background-image: url('../../assets/illustrations/rainbow.png'); }
+
+/* Spacer between final content section and the Newsletter band.
+   The Newsletter has its own --pad-vertical-margin so we just need a
+   small extra breath here; the divider above usually provides the rest. */
+.tcs-before-newsletter { height: var(--pad-vertical-margin); }
+/* Misc */
+.lucide { stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; width: 24px; height: 24px; }
+.tcs-page-content { animation: fadeIn 220ms ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+/* =========================== PROTOTYPE SHELL ====================== */
+/* Wraps the whole kit in a grey backdrop with the prototype nav on top
+   and the actual website rendered inside a Chrome browser frame below. */
+
+.tcs-prototype-shell {
+  min-height: 100vh;
+  background: #DCDCDC;
+  display: flex;
+  flex-direction: column;
+}
+.tcs-prototype-frame {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.tcs-prototype-window {
+  width: 100%;
+  max-width: var(--pad-page-width, 1280px);
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  overflow-y: auto;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.08);
+}
+/* Reset full-bleed breakouts inside the framed page — without this,
+   .tcs-header / .tcs-footer with `width: 100vw; margin: -50vw` would
+   spill out past the browser window. */
+.tcs-prototype-frame .tcs-header,
+.tcs-prototype-frame .tcs-footer {
+  width: 100%;
+  left: auto;
+  right: auto;
+  margin-left: 0;
+  margin-right: 0;
+}
+/* Same for the slice pseudos that extend to viewport edges. */
+.tcs-prototype-frame .tcs-hero::before,
+.tcs-prototype-frame .tcs-hero .scrim,
+.tcs-prototype-frame .tcs-hero .brush,
+.tcs-prototype-frame .tcs-large-promo::before,
+.tcs-prototype-frame .tcs-large-promo::after,
+.tcs-prototype-frame .tcs-large-promo .scrim,
+.tcs-prototype-frame .tcs-newsletter::before,
+.tcs-prototype-frame .tcs-footer::before {
+  left: 0;
+  width: 100%;
+}
+.tcs-prototype-frame .tcs-hero .corner-arrow {
+  right: var(--pad-outer-margin, 100px);
+}
+
+/* =========================== PROTOTYPE NAV ======================= */
+/* Small floating bar at the top of the kit that lets you flip between
+   Home / Donate / Story without using the real site nav. Not part of
+   the production design — purely a prototype affordance. */
+
+.tcs-prototype-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.tcs-prototype-group-label {
+  font-family: var(--font-brand);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(0,0,0,0.5);
+}
+.tcs-prototype-divider {
+  display: inline-block;
+  width: 1px;
+  height: 24px;
+  background: rgba(0,0,0,0.18);
+}
+
+.tcs-prototype-nav {
+  position: relative;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 10px 16px;
+  background: transparent;
+  color: #000;
+  font-family: var(--font-brand);
+  font-size: 13px;
+  font-weight: 600;
+  width: 100%;
+  margin-left: 0;
+}
+.tcs-prototype-nav-label {
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+}
+.tcs-prototype-nav-link {
+  color: #000;
+  background: transparent;
+  border: none;
+  font-weight: 500;
+  padding: 6px 12px;
+  font-family: var(--font-brand);
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: background 150ms ease-out, color 150ms ease-out;
+}
+.tcs-prototype-nav-link:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #000;
+}
+.tcs-prototype-nav-link.active {
+  background: #FFEB00;
+  color: #000;
+  border-color: #000;
+  font-weight: 700;
+}
+
+.tcs-prototype-mode {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.tcs-prototype-mode-label {
+  font-family: var(--font-brand);
+  font-size: 11px;
+  font-weight: 500;
+  color: #000;
+  letter-spacing: 0.04em;
+}
+.tcs-prototype-mode-btn {
+  background: transparent;
+  color: #000;
+  border: 1.5px solid #000;
+  padding: 5px 10px;
+  font-family: var(--font-brand);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 999px;
+}
+.tcs-prototype-mode-btn.active {
+  background: #FFEB00;
+  color: #000;
+  font-weight: 700;
+}
+/* =========================== PAGE WRAPPER ========================= */
+/* Constrain page content to 1280, but let full-bleed slices break out
+   to viewport edges. The hero, RHS Chelsea promo, newsletter and
+   footer all want their photo / yellow / grey to reach the screen edge. */
+
+html, body { overflow-x: hidden; }
+body { margin: 0; }
+
+.tcs-page { max-width: var(--pad-page-width, 1280px); margin: 0 auto; background: #fff; position: relative; }
+
+/* =========================== FULL-BLEED PATTERN ====================
+   Header structurally breaks out to viewport.
+   Hero / RHS / Newsletter / Footer sit inside the 1280 page container
+   for layout — their CONTENT aligns to the same 100 px outer-margin grid
+   as every contained slice. Each adds a ::before pseudo-element which
+   reaches the viewport edges and carries the slice background. */
+
+.tcs-header,
+.tcs-footer {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.tcs-hero,
+.tcs-large-promo,
+.tcs-newsletter {
+  position: relative;
+  width: auto;
+  left: auto;
+  right: auto;
+  margin-left: 0;
+  margin-right: 0;
+}
+.tcs-hero,
+.tcs-large-promo,
+.tcs-newsletter {
+  padding-left: var(--pad-outer-margin, 100px) !important;
+  padding-right: var(--pad-outer-margin, 100px) !important;
+}
+
+/* Hero: photo + scrim + brush all extend to viewport edges via pseudo
+   elements that float behind / above the contained content. */
+.tcs-hero { background: none !important; overflow: visible; }
+.tcs-hero::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  background-color: #2c2618;
+  background-image: url('../../assets/photos/hero-headphones.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+.tcs-hero .scrim {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+  z-index: 1;
+}
+.tcs-hero .brush {
+  position: absolute;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  height: 20px;
+  bottom: -1px;
+  background: url('../../assets/decoration/brush-bottom.png') bottom center/100% 100% no-repeat;
+  z-index: 3;
+}
+.tcs-hero .content {
+  position: absolute;
+  left: var(--pad-outer-margin, 100px) !important;
+  bottom: var(--spacing-padding-vertical-margin, 120px);
+  width: var(--spacing-column-layouts-12-6-6-6, 516px);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-scale-2xl, 40px);
+}
+.tcs-hero .corner-arrow {
+  position: absolute;
+  right: var(--pad-outer-margin, 100px);
+  bottom: -70px;
+  width: 61px;
+  height: 140px;
+  background: url('../../assets/dividers/arrow-centred.png') center/contain no-repeat;
+  background-size: 1280px auto;
+  z-index: 4;
+}
+
+.tcs-large-promo::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  background-color: #2c2c2c;
+  background-image:
+    url('../../assets/decoration/brush-bottom.png'),
+    linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 60%),
+    url('../../assets/photos/rhs-garden.jpg');
+  background-size:
+    100% 20px,
+    100% 100%,
+    cover;
+  background-position:
+    bottom center,
+    top center,
+    center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  z-index: 0;
+}
+
+/* White brush along the top of the RHS slice (uses the scrim element) */
+.tcs-large-promo .scrim {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  height: 20px;
+  background: #fff;
+  -webkit-mask-image: url('../../assets/decoration/brush-top.png');
+  mask-image: url('../../assets/decoration/brush-top.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: top center;
+  mask-position: top center;
+  z-index: 3;
+}
+.tcs-large-promo::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+  z-index: 1;
+}
+.tcs-large-promo > *:not(.scrim) { position: relative; z-index: 2; }
+.tcs-large-promo > .scrim { position: relative; z-index: 3; }
+
+/* Newsletter: yellow flood extends full-bleed. */
+.tcs-newsletter { background: transparent !important; }
+.tcs-newsletter::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  background: #FFEB00;
+  z-index: 0;
+}
+.tcs-newsletter > * { position: relative; z-index: 1; }
+
+/* Footer: light grey extends full-bleed left; photo column extends full
+   to viewport right. */
+.tcs-footer {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background: transparent !important;
+  overflow: visible;
+}
+.tcs-footer::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  background: var(--secondary-bg, #EFEFEF);
+  z-index: 0;
+}
+.tcs-footer > * { position: relative; z-index: 1; }
+.tcs-footer-right { position: relative; overflow: visible; }
+.tcs-footer-right::after { display: none; }
+.tcs-footer-right::before {
+  /* keep the 25% black scrim over the photo */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25));
+  z-index: 1;
+}
+.tcs-footer-right > * { position: relative; z-index: 2; }
+
+/* Inside a viewport-wide footer, re-centre the left side to align with
+   the 1280 content above; the photo stretches to fill the right.
+   Removed — footer is contained at 1280, no need to recompute columns. */

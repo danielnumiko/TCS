@@ -1,0 +1,52 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="_card.css" />
+<style>
+  .footer { background: #EFEFEF; padding: 28px 32px 16px; }
+  .grid { display: grid; grid-template-columns: 1.2fr 1.2fr 1fr; gap: 24px; }
+  .footer h6 { font-size: 17px; font-weight: 700; color: #000; margin: 0 0 10px; }
+  .footer p, .footer li { font-size: 13px; line-height: 1.5; color: #000; }
+  .footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+  .fr { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border: 1.5px solid rgba(0,0,0,0.2); margin-top: 14px; font-size: 10px; line-height: 1.2; color: #000; }
+  .fr .ic { width: 22px; height: 22px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; }
+  .right { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; min-height: 200px; gap: 14px; }
+  .sig { font-family: var(--font-handwritten); font-size: 36px; line-height: 1.0; color: #fff; text-align: right;
+    text-shadow: 0 2px 8px rgba(255,255,255,0.5), -1px -1px 0 rgba(0,0,0,0.05); }
+  .back-top { display: inline-flex; align-items: center; gap: 16px; padding: 10px 14px; background: #000; color: #fff; font-family: var(--font-brand); font-weight: 700; font-size: 13px; cursor: pointer; border: none; }
+  .back-top .chev { color: #FFEB00; font-weight: 700; }
+  .meta { font-size: 11px; color: #000; margin-top: 14px; padding-top: 10px; }
+  .socials { display: flex; gap: 10px; color: #000; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="footer">
+  <div class="grid">
+    <div>
+      <h6>Get in touch</h6>
+      <p>The Children's Society<br/>Whitecross Studios<br/>50 Banner Street<br/>London EC1Y 8ST</p>
+      <p style="margin-top: 10px;">Supporter Care: 0300 303 7000</p>
+      <div class="fr"><div class="ic">FR</div><div>Registered with<br/><strong>FUNDRAISING REGULATOR</strong></div></div>
+    </div>
+    <div>
+      <h6>Quick links</h6>
+      <ul>
+        <li>Media team</li><li>Email updates</li><li>Organisational policies and statements</li><li>Safeguarding statement</li><li>Privacy policy</li><li>Cookie policy</li><li>Accessibility</li><li>Terms and conditions</li>
+      </ul>
+      <div style="margin-top: 14px;">
+        <h6 style="margin-bottom: 6px;">Connect with us</h6>
+        <div class="socials" style="font-size: 16px;">f · 𝕏 · ▶ · ⓘ · in</div>
+      </div>
+    </div>
+    <div class="right">
+      <span class="sig">I feel like I<br/>belong</span>
+      <button class="back-top"><span>Back to top</span><span class="chev">^</span></button>
+    </div>
+  </div>
+  <div class="meta">© The Children's Society 2026 &nbsp;&nbsp; All rights reserved &nbsp;&nbsp; Charity Registration No. 221124</div>
+</div>
+</body>
+</html>

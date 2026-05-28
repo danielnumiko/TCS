@@ -1,0 +1,47 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="_card.css" />
+<style>
+  .btn {
+    display: inline-flex; align-items: center; justify-content: space-between; gap: 28px;
+    padding: 16px 20px 16px 24px; background: #FFEB00; color: #000;
+    border: 2px solid #FFEB00; font-family: var(--font-brand); font-weight: 700; font-size: 16px;
+    cursor: pointer; letter-spacing: -0.005em; line-height: 1;
+  }
+  .btn svg { width: 14px; height: 14px; color: #000; }
+  .btn.hover { background: #fff; border-color: #FFEB00; }
+  .btn.active { background: #000; color: #fff; border-color: #000; }
+  .btn.active svg { color: #fff; }
+  .btn.disabled { background: #FFEB00; color: #BDBDBD; cursor: not-allowed; }
+  .btn.disabled svg { color: #BDBDBD; }
+  .lab { font-size: 11px; color: #6D6D6D; font-family: ui-monospace, monospace; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="eyebrow">Secondary · brand-yellow fill · black chevron</div>
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px 36px; margin-top: 18px;">
+    <div>
+      <button class="btn"><span>Secondary</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="4,2 10,7 4,12"/></svg></button>
+      <div class="lab">default</div>
+    </div>
+    <div>
+      <button class="btn hover"><span>Hover</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="4,2 10,7 4,12"/></svg></button>
+      <div class="lab">hover · neutral</div>
+    </div>
+    <div>
+      <button class="btn active"><span>Active</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="4,2 10,7 4,12"/></svg></button>
+      <div class="lab">active · inverted</div>
+    </div>
+    <div>
+      <button class="btn disabled" disabled><span>Disabled</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="4,2 10,7 4,12"/></svg></button>
+      <div class="lab">disabled</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

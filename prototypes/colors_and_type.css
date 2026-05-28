@@ -1,0 +1,581 @@
+/* =================================================================
+   The Children's Society — Sitekit
+   colors_and_type.css
+
+   The single source of truth for design tokens. Pulls from Figma
+   variables and TCS docs/colours.md, docs/typography.md, docs/spacing.md.
+
+   USAGE
+   <html data-mode="1280-xl" data-theme="light">
+   - data-mode  : "320-sm" | "768-md" | "1280-xl" | "1600-xxl"  (default 1280)
+   - data-theme : "light" | "dark" | "yellow"
+                  "resources-light" | "resources-dark"          (default light)
+
+   The fluid scale and brand accent flip based on these attributes,
+   matching the Figma Breakpoints + Colours collections.
+   ================================================================= */
+
+
+/* ---- 1. FONTS ---------------------------------------------------- */
+/* BentonSans · TCS production brand sans · 8 weights × roman + italic. */
+
+@font-face { font-family: "BentonSans"; src: url("fonts/BentonSans-Thin.otf") format("opentype");          font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: "BentonSans"; src: url("fonts/BentonSans-ThinItalic.otf") format("opentype");    font-weight: 100; font-style: italic; font-display: swap; }
+@font-face { font-family: "BentonSans"; src: url("fonts/BentonSans-ExtraLight.otf") format("opentype");    font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: "BentonSans"; src: url("fonts/BentonSans-ExtraLightIta.otf") format("opentype"); font-weight: 200; font-style: italic; font-display: swap; }
+@font-face { font-family: "BentonSans"; src: url("fonts/BentonSans-Light.otf") format("opentype");         font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "BentonSans"; src: url("fonts/BentonSans-LightItalic.otf") format("opentype");   font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: "BentonSans"; src: url("fonts/BentonSans-Regular.otf") format("opentype");       font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "BentonSans"; src: url("fonts/BentonSans-RegularItalic.otf") format("opentype"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "BentonSans"; src: url("fonts/BentonSans-Medium.otf") format("opentype");        font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "BentonSans"; src: url("fonts/BentonSans-MediumItalic.otf") format("opentype");  font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: "BentonSans"; src: url("fonts/BentonSans-Bold.otf") format("opentype");          font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "BentonSans"; src: url("fonts/BentonSans-BoldItalic.otf") format("opentype");    font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "BentonSans"; src: url("fonts/BentonSans-Black.otf") format("opentype");         font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "BentonSans"; src: url("fonts/BentonSans-BlackItalic.otf") format("opentype");   font-weight: 900; font-style: italic; font-display: swap; }
+
+/* TCS Beta · handwritten brush · pull-quotes only. */
+@font-face { font-family: "TCS Beta"; src: url("fonts/TCSBeta-Regular.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+
+
+/* ---- 2. PRIMITIVE COLOUR PALETTE -------------------------------- */
+/* Tailwind-style primitives. Never bind components to these directly
+   — always go through a semantic token. The exception is `--brand-accent`
+   itself, which IS the alias of Broom 500 / Breaker bay 600 per mode. */
+
+:root {
+  /* Greyscale */
+  --black-950: #000000;
+  --black-900: #3D3D3D;
+  --black-800: #454545;
+  --black-700: #4F4F4F;
+  --black-600: #5D5D5D;
+  --black-500: #6D6D6D;
+  --white-500: #7C7C7C;
+  --white-400: #989898;
+  --white-300: #BDBDBD;
+  --white-200: #DCDCDC;
+  --white-100: #EFEFEF;
+  --white-50:  #FFFFFF;
+
+  /* Brand — Broom yellow (primary brand colour) */
+  --broom-400: #FFF90D;
+  --broom-500: #FFEB00;   /* primary brand yellow */
+  --broom-600: #D1AE00;
+
+  /* Brand — Breaker bay teal (Resources sub-brand) */
+  --breaker-bay-400: #B3E5E4;
+  --breaker-bay-500: #4DC2C0;
+  --breaker-bay-600: #029E9C;   /* resources brand teal */
+  --breaker-bay-700: #077E7E;
+
+  /* Supporting accents (illustration / chart) */
+  --tangerine-500: #FFA40A;
+  --tangerine-600: #F28500;     /* warm orange — illustrations */
+  --tangerine-700: #CC6702;
+  --lightening-yellow-400: #FFD20D;
+  --lightening-yellow-500: #F0B700;
+  --lightening-yellow-600: #D18D00;
+  --pixton-blue-500: #36A7E9;
+  --pixton-blue-600: #1076B9;
+  --wild-watermelon-400: #FF5177;
+  --cosmos-pink-400: #F578B5;
+  --navy-600: #134493;
+
+  /* System */
+  --system-red-500: #FF3931;
+  --system-success-green: var(--breaker-bay-600);
+  --system-focus-blue:    var(--pixton-blue-500);
+}
+
+
+/* ---- 3. SEMANTIC COLOURS — DEFAULT (LIGHT) ---------------------- */
+
+:root,
+:root[data-theme="light"],
+.light {
+  --brand-accent: var(--broom-500);
+
+  --primary-bg:       var(--white-50);
+  --secondary-bg:     var(--white-100);
+  --primary-border:   var(--white-100);
+  --secondary-border: var(--white-200);
+
+  --foreground:    var(--black-950);
+  --type-heading: var(--black-950);
+  --type-body:    var(--black-950);
+  --type-muted:   var(--black-500);
+
+  --image-overlay: rgba(0,0,0,0.5);
+  --focus-outline: var(--pixton-blue-600);
+
+  /* Always-white card surface (the "Button/Text input/Default/BG" trick).
+     White in every mode except Dark. */
+  --surface-card: var(--white-50);
+
+  /* Button: Primary (filled black button) */
+  --btn-primary-bg:     var(--black-950);
+  --btn-primary-border: var(--black-950);
+  --btn-primary-text:   var(--white-50);
+  --btn-primary-icon:   var(--brand-accent);
+  --btn-primary-hover-bg:     var(--white-50);
+  --btn-primary-hover-text:   var(--black-950);
+  --btn-primary-hover-icon:   var(--black-950);
+  --btn-primary-active-bg:    var(--white-50);
+  --btn-primary-disabled-bg:  var(--white-300);
+  --btn-primary-disabled-text: var(--white-200);
+
+  /* Button: Secondary (outline / brand-accent fill) */
+  --btn-secondary-bg:     var(--brand-accent);
+  --btn-secondary-border: var(--brand-accent);
+  --btn-secondary-text:   var(--black-950);
+  --btn-secondary-hover-bg:    var(--white-100);
+  --btn-secondary-hover-border: var(--brand-accent);
+  --btn-secondary-active-bg:   var(--black-950);
+  --btn-secondary-active-text: var(--white-50);
+
+  /* Tag */
+  --tag-bg:     var(--white-50);
+  --tag-border: var(--black-950);
+  --tag-text:   var(--black-950);
+}
+
+
+/* ---- 4. SEMANTIC COLOURS — DARK --------------------------------- */
+
+:root[data-theme="dark"],
+.dark {
+  --brand-accent: var(--broom-500);
+
+  --primary-bg:       var(--black-950);
+  --secondary-bg:     var(--black-900);
+  --primary-border:   var(--black-900);
+  --secondary-border: var(--black-800);
+
+  --foreground:    var(--white-50);
+  --type-heading: var(--white-50);
+  --type-body:    var(--white-100);
+  --type-muted:   var(--white-300);
+
+  --image-overlay: rgba(0,0,0,0.5);
+  --focus-outline: var(--pixton-blue-500);
+
+  --surface-card: var(--black-950);
+
+  --btn-primary-bg:     var(--white-50);
+  --btn-primary-border: var(--white-50);
+  --btn-primary-text:   var(--black-950);
+  --btn-primary-icon:   var(--black-950);
+  --btn-primary-hover-bg:     var(--black-950);
+  --btn-primary-hover-text:   var(--white-50);
+  --btn-primary-hover-icon:   var(--white-50);
+  --btn-primary-active-bg:    var(--black-950);
+  --btn-primary-disabled-bg:  var(--black-700);
+  --btn-primary-disabled-text: var(--black-600);
+
+  --btn-secondary-bg:     var(--brand-accent);
+  --btn-secondary-border: var(--brand-accent);
+  --btn-secondary-text:   var(--black-950);
+  --btn-secondary-hover-bg:    var(--black-900);
+  --btn-secondary-hover-border: var(--brand-accent);
+
+  --tag-bg:     var(--black-950);
+  --tag-border: var(--white-50);
+  --tag-text:   var(--white-50);
+}
+
+
+/* ---- 5. SEMANTIC COLOURS — YELLOW ------------------------------- */
+/* Whole surfaces flooded with Broom 500 — used for Appeals + the
+   newsletter "Keep in touch" pop. Text stays black; borders go to broom-600. */
+
+:root[data-theme="yellow"],
+.yellow {
+  --brand-accent: var(--broom-500);
+
+  --primary-bg:       var(--brand-accent);
+  --secondary-bg:     var(--white-100);
+  --primary-border:   var(--broom-600);
+  --secondary-border: var(--white-200);
+
+  --foreground:   var(--black-950);
+  --type-heading: var(--black-950);
+  --type-body:    var(--black-950);
+  --type-muted:   var(--black-500);
+
+  --surface-card: var(--white-50);
+
+  --btn-primary-bg:     var(--black-950);
+  --btn-primary-border: var(--black-950);
+  --btn-primary-text:   var(--white-50);
+  --btn-primary-icon:   var(--brand-accent);
+  --btn-primary-hover-bg:     var(--brand-accent);
+  --btn-primary-hover-text:   var(--black-950);
+
+  --btn-secondary-bg:     var(--white-50);
+  --btn-secondary-border: var(--white-50);
+  --btn-secondary-text:   var(--black-950);
+
+  --tag-bg:     var(--brand-accent);
+  --tag-border: var(--black-950);
+  --tag-text:   var(--black-950);
+}
+
+
+/* ---- 6. SEMANTIC COLOURS — RESOURCES LIGHT / DARK --------------- */
+/* Resources content (longform articles / reports) swaps the brand pivot
+   from Broom yellow to Breaker bay teal. */
+
+:root[data-theme="resources-light"],
+.resources-light {
+  --brand-accent: var(--breaker-bay-600);
+  --primary-bg:       var(--white-50);
+  --secondary-bg:     var(--white-100);
+  --primary-border:   var(--white-100);
+  --secondary-border: var(--white-200);
+  --foreground:       var(--black-950);
+  --type-heading:     var(--black-950);
+  --type-body:        var(--black-950);
+  --type-muted:       var(--black-500);
+  --surface-card:     var(--white-50);
+  --btn-primary-bg:   var(--black-950);
+  --btn-primary-text: var(--white-50);
+  --btn-primary-icon: var(--brand-accent);
+  --btn-secondary-bg: var(--brand-accent);
+  --btn-secondary-border: var(--brand-accent);
+  --btn-secondary-text: var(--black-950);
+  --tag-bg: var(--white-50);
+  --tag-border: var(--black-950);
+  --tag-text: var(--black-950);
+}
+
+:root[data-theme="resources-dark"],
+.resources-dark {
+  --brand-accent: var(--breaker-bay-600);
+  --primary-bg:       var(--brand-accent);
+  --secondary-bg:     var(--white-100);
+  --primary-border:   var(--breaker-bay-700);
+  --secondary-border: var(--white-200);
+  --foreground:       var(--white-50);
+  --type-heading:     var(--black-950);
+  --type-body:        var(--black-950);
+  --type-muted:       var(--black-500);
+  --surface-card:     var(--white-50);
+  --btn-primary-bg:   var(--black-950);
+  --btn-primary-text: var(--white-50);
+  --btn-primary-icon: var(--white-50);
+  --btn-secondary-bg: var(--white-50);
+  --btn-secondary-border: var(--white-50);
+  --btn-secondary-text: var(--black-950);
+  --tag-bg: var(--white-50);
+  --tag-border: var(--black-950);
+  --tag-text: var(--black-950);
+}
+
+
+/* ---- 7. TYPOGRAPHY VARIABLES ----------------------------------- */
+
+:root {
+  --font-brand: "BentonSans", "Helvetica Neue", Arial, sans-serif;
+  --font-handwritten: "TCS Beta", "Caveat", "Patrick Hand", cursive;
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+
+  /* Primitive font scale (constants, never change) */
+  --fs-xxs: 13px;
+  --fs-xs:  14px;
+  --fs-sm:  15px;
+  --fs-base:16px;
+  --fs-md:  18px;
+  --fs-lg:  20px;
+  --fs-xl:  26px;
+  --fs-2xl: 30px;
+  --fs-3xl: 32px;
+  --fs-4xl: 36px;
+  --fs-5xl: 40px;
+  --fs-6xl: 42px;
+  --fs-7xl: 48px;
+  --fs-8xl: 60px;
+  --fs-9xl: 64px;
+  --fs-10xl: 80px;
+  --fs-11xl: 100px;
+  --fs-12xl: 120px;
+
+  /* Default (1280) heading sizes — see § 9 for per-breakpoint flips */
+  --text-h1: var(--fs-10xl);
+  --text-h2: var(--fs-9xl);
+  --text-h3: var(--fs-7xl);
+  --text-h4: var(--fs-6xl);
+  --text-h4-pro: var(--fs-2xl);
+  --text-h5: var(--fs-2xl);
+  --text-h6: var(--fs-lg);
+  --text-body: var(--fs-lg);
+  --text-cta:  var(--fs-md);
+  --text-cta-sm: var(--fs-base);
+  --text-label: var(--fs-sm);
+  --text-tags:  var(--fs-xs);
+}
+
+
+/* ---- 8. SPACING SCALE + GRID ------------------------------------ */
+
+:root {
+  /* Raw px constants */
+  --sz-3xs: 4px;
+  --sz-2xs: 8px;
+  --sz-xs:  12px;
+  --sz-s:   16px;
+  --sz-m:   20px;
+  --sz-l:   24px;
+  --sz-xl:  28px;
+  --sz-2xl: 32px;
+  --sz-3xl: 36px;
+  --sz-4xl: 40px;
+  --sz-5xl: 44px;
+  --sz-6xl: 48px;
+  --sz-7xl: 56px;
+  --sz-8xl: 60px;
+  --sz-9xl: 64px;
+  --sz-10xl: 68px;
+  --sz-11xl: 72px;
+  --sz-12xl: 80px;
+  --sz-13xl: 100px;
+  --sz-14xl: 120px;
+  --sz-15xl: 140px;
+  --sz-16xl: 160px;
+  --sz-17xl: 200px;
+  --sz-18xl: 240px;
+  --sz-19xl: 300px;
+  --sz-20xl: 400px;
+  --sz-21xl: 500px;
+  --sz-22xl: 700px;
+  --sz-23xl: 800px;
+  --sz-24xl: 900px;
+
+  /* Fluid spacing — defaults to 1280 values, see § 9 for per-bp */
+  --space-xxs: var(--sz-3xs);
+  --space-xs:  var(--sz-2xs);
+  --space-sm:  var(--sz-xs);
+  --space-m:   var(--sz-s);
+  --space-lg:  var(--sz-m);
+  --space-xl:  var(--sz-xl);
+  --space-2xl: var(--sz-4xl);
+  --space-3xl: var(--sz-8xl);
+  --space-4xl: var(--sz-12xl);
+  --space-5xl: var(--sz-13xl);
+  --space-6xl: var(--sz-15xl);
+  --space-7xl: var(--sz-17xl);
+
+  /* Purpose-named padding tokens (1280 default) */
+  --pad-outer-margin: 100px;       /* page-edge horizontal padding */
+  --pad-gutters: 48px;              /* column gutters */
+  --pad-vertical-margin: 120px;     /* between major sections */
+  --pad-between-slices: 120px;      /* sitewide rhythm */
+  --pad-slice-title-gap: 40px;      /* slice title → content gap */
+  --pad-body-width: 704px;          /* article body max width */
+  --pad-button-height: 60px;
+  --pad-button-weight: 2px;         /* button border width */
+  --pad-divider-line: 5px;          /* divider rule thickness */
+  --pad-line-weight: 8px;           /* heavy decorative lines */
+  --pad-hero-height: 800px;
+  --pad-logo-width: 120px;
+  --pad-dropshadow: 20px;
+  --pad-page-width: 1280px;
+
+  /* Icon sizes — match Figma Icon2 component (3893:34624) */
+  --icon-lg: 28px;   /* default — buttons, dropdowns, free-standing */
+  --icon-sm: 16px;   /* compact — nav items, story chevron, inline meta */
+  --icon-social: 24px; /* footer / share socials */
+
+  /* Header rhythm */
+  --rhythm-h1-below: var(--space-2xl);
+  --rhythm-h2-below: var(--space-xl);
+  --rhythm-h3-below: var(--space-lg);
+  --rhythm-h4-below: var(--space-m);
+  --rhythm-h5-below: var(--space-m);
+  --rhythm-new-paragraph: var(--space-2xl);
+  --rhythm-between-paragraphs: var(--space-m);
+}
+
+
+/* ---- 9. BREAKPOINT MODES ---------------------------------------- */
+/* Override scale + headings per breakpoint. Set on <html data-mode="...">. */
+
+:root[data-mode="320-sm"] {
+  --text-h1: var(--fs-7xl);
+  --text-h2: var(--fs-5xl);
+  --text-h3: var(--fs-3xl);
+  --text-h4: var(--fs-xl);
+  --text-h4-pro: var(--fs-lg);
+  --text-h5: var(--fs-lg);
+  --text-h6: var(--fs-base);
+  --text-body: var(--fs-base);
+  --text-cta: var(--fs-base);
+  --text-cta-sm: var(--fs-xs);
+  --text-label: var(--fs-xs);
+
+  --space-xxs: var(--sz-3xs);
+  --space-xs:  var(--sz-3xs);
+  --space-sm:  var(--sz-2xs);
+  --space-m:   var(--sz-xs);
+  --space-lg:  var(--sz-s);
+  --space-xl:  var(--sz-m);
+  --space-2xl: var(--sz-l);
+  --space-3xl: var(--sz-2xl);
+  --space-4xl: var(--sz-6xl);
+  --space-5xl: var(--sz-7xl);
+  --space-6xl: var(--sz-12xl);
+  --space-7xl: var(--sz-14xl);
+
+  --pad-outer-margin: 20px;
+  --pad-gutters: 8px;
+  --pad-vertical-margin: 60px;
+  --pad-between-slices: 60px;
+  --pad-slice-title-gap: 20px;
+  --pad-body-width: 280px;
+  --pad-logo-width: 80px;
+  --pad-divider-line: 3px;
+  --pad-line-weight: 6px;
+  --pad-page-width: 320px;
+  --pad-hero-height: 600px;
+}
+
+:root[data-mode="768-md"] {
+  --text-h1: var(--fs-8xl);
+  --text-h2: var(--fs-5xl);
+  --text-h3: var(--fs-4xl);
+  --text-h4: var(--fs-3xl);
+  --text-h4-pro: var(--fs-xl);
+  --text-h5: var(--fs-lg);
+  --text-h6: var(--fs-md);
+  --text-body: var(--fs-md);
+  --text-cta: var(--fs-base);
+  --text-cta-sm: var(--fs-xs);
+
+  --space-m:   var(--sz-xs);
+  --space-lg:  var(--sz-s);
+  --space-xl:  var(--sz-m);
+  --space-2xl: var(--sz-xl);
+  --space-3xl: var(--sz-4xl);
+  --space-4xl: var(--sz-8xl);
+  --space-5xl: var(--sz-10xl);
+  --space-6xl: var(--sz-13xl);
+  --space-7xl: var(--sz-16xl);
+
+  --pad-outer-margin: 20px;
+  --pad-gutters: 40px;
+  --pad-vertical-margin: 80px;
+  --pad-between-slices: 80px;
+  --pad-slice-title-gap: 32px;
+  --pad-body-width: 472px;
+  --pad-logo-width: 80px;
+  --pad-divider-line: 4px;
+  --pad-line-weight: 8px;
+  --pad-page-width: 768px;
+  --pad-hero-height: 500px;
+}
+
+:root[data-mode="1600-xxl"] {
+  --text-h1: var(--fs-12xl);
+  --text-h2: var(--fs-10xl);
+  --text-h3: var(--fs-9xl);
+  --text-h4: var(--fs-6xl);
+  --text-h5: var(--fs-2xl);
+
+  --space-m:   var(--sz-m);
+  --space-lg:  var(--sz-xl);
+  --space-xl:  var(--sz-3xl);
+  --space-2xl: var(--sz-6xl);
+  --space-3xl: var(--sz-10xl);
+  --space-4xl: var(--sz-13xl);
+  --space-5xl: var(--sz-14xl);
+  --space-6xl: var(--sz-16xl);
+  --space-7xl: var(--sz-18xl);
+
+  --pad-outer-margin: 100px;
+  --pad-gutters: 56px;
+  --pad-vertical-margin: 140px;
+  --pad-between-slices: 140px;
+  --pad-body-width: 672px;
+  --pad-page-width: 1600px;
+  --pad-hero-height: 800px;
+}
+
+
+/* ---- 10. ELEMENT-LEVEL SEMANTIC STYLES -------------------------- */
+/* Bare-element styles. Drop colors_and_type.css into any document
+   and headings, paragraphs and links pick up the brand voice. */
+
+html, body {
+  font-family: var(--font-brand);
+  font-weight: var(--weight-regular);
+  color: var(--type-body);
+  background: var(--primary-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-brand);
+  font-weight: var(--weight-bold);
+  color: var(--type-heading);
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--text-h1); margin-bottom: var(--rhythm-h1-below); }
+h2 { font-size: var(--text-h2); margin-bottom: var(--rhythm-h2-below); line-height: 1.08; }
+h3 { font-size: var(--text-h3); margin-bottom: var(--rhythm-h3-below); line-height: 1.1; }
+h4 { font-size: var(--text-h4); margin-bottom: var(--rhythm-h4-below); line-height: 1.15; }
+h5 { font-size: var(--text-h5); margin-bottom: var(--rhythm-h5-below); line-height: 1.2; }
+h6 { font-size: var(--text-h6); margin-bottom: var(--rhythm-h5-below); line-height: 1.25; }
+
+p {
+  font-size: var(--text-body);
+  line-height: 1.45;
+  margin: 0 0 var(--rhythm-between-paragraphs) 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+a:hover { text-decoration-thickness: 3px; }
+
+::selection { background: var(--brand-accent); color: var(--black-950); }
+
+/* Handwritten quote — use only for emotional pull-quotes.
+   Never for UI / body text. */
+.tcs-quote {
+  font-family: var(--font-handwritten);
+  font-weight: var(--weight-regular);
+  font-size: var(--fs-5xl);
+  line-height: 1.15;
+  color: var(--type-heading);
+}
+
+/* Label / caption */
+.tcs-label {
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.01em;
+}
+.tcs-tag {
+  font-size: var(--text-tags);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.02em;
+}
+
+/* Focus ring — keyboard a11y */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--focus-outline);
+  outline-offset: 2px;
+}

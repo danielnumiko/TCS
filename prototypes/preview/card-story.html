@@ -1,0 +1,45 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="_card.css" />
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 4px; }
+  .story {
+    position: relative; aspect-ratio: 3/4; overflow: hidden;
+    background-size: cover; background-position: center;
+    cursor: pointer; transition: transform 200ms ease-out;
+  }
+  .story:hover { transform: scale(1.02); }
+  .story::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.0) 55%);
+  }
+  .story .nm {
+    position: absolute; left: 14px; right: 36px; bottom: 14px; z-index: 2;
+    color: #fff; font-weight: 700; font-size: 18px; letter-spacing: -0.005em;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  }
+  .story .arr {
+    position: absolute; right: 12px; bottom: 12px; z-index: 2;
+    width: 22px; height: 22px; border-radius: 50%; background: #FFEB00;
+    display: flex; align-items: center; justify-content: center; color: #000; font-size: 14px; font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="eyebrow">Story card · portrait photo · name overlay · brand-yellow arrow</div>
+  <div class="grid">
+    <div class="story" style="background-image: url('../assets/photos/portrait-1.jpg');"><div class="nm">Louise's story</div><div class="arr">›</div></div>
+    <div class="story" style="background-image: url('../assets/photos/portrait-2.jpg');"><div class="nm">Andrew's story</div><div class="arr">›</div></div>
+    <div class="story" style="background-image: url('../assets/photos/portrait-3.jpg');"><div class="nm">Isla's story</div><div class="arr">›</div></div>
+  </div>
+  <div style="font-size: 12px; color: #5D5D5D; line-height: 1.5; margin-top: 14px;">
+    3:4 portrait crop, dark protection scrim at bottom, name overlaid in bold. Hover lifts 2%. Yellow arrow circle bottom-right.
+  </div>
+</div>
+</body>
+</html>

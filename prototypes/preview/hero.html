@@ -1,0 +1,45 @@
+<!-- @dsCard group="Components" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="_card.css" />
+<style>
+  body { background: #000; }
+  .hero {
+    position: relative; width: 700px; height: 360px; overflow: hidden;
+    background: #2c2618 url('../assets/photos/hero-headphones.jpg') center/cover no-repeat;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.0) 50%, rgba(0,0,0,0.3) 100%);
+  }
+  .hero-content {
+    position: absolute; left: 36px; bottom: 80px; right: 36px; color: #fff; z-index: 2;
+  }
+  .hero-quote {
+    font-family: var(--font-handwritten); font-size: 56px; line-height: 1.05; max-width: 460px;
+  }
+  .donate {
+    position: absolute; left: 50px; bottom: 32px; z-index: 3;
+    display: inline-flex; align-items: center; padding: 14px 22px 14px 38px;
+    background: #FFEB00; color: #000; font-weight: 700; font-size: 16px; border: 2px solid #FFEB00;
+    font-family: var(--font-brand);
+  }
+  .donate::before { content: ""; position: absolute; left: -12px; width: 36px; height: 36px; border-radius: 50%; background: #fff; border: 2px solid #000; top: 50%; transform: translateY(-50%); }
+  .donate::after { content: "♡"; position: absolute; left: 0px; width: 32px; height: 32px; font-size: 16px; color: #000; display: flex; align-items: center; justify-content: center; top: 50%; transform: translateY(-50%); }
+  .brush-bottom { position: absolute; left: 0; right: 0; bottom: -1px; height: 18px; background: url('../assets/decoration/brush-bottom.png') bottom center/cover no-repeat; z-index: 3; }
+  .arrow { position: absolute; right: 24px; bottom: -36px; width: 56px; height: 80px; background: url('../assets/dividers/arrow-centred.png') center/contain no-repeat; z-index: 4; transform: translateX(120px); }
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-quote">"It helped me become more confident."</div>
+  </div>
+  <button class="donate">Make a donation</button>
+  <div class="brush-bottom"></div>
+</div>
+</body>
+</html>

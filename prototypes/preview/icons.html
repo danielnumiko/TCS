@@ -1,0 +1,43 @@
+<!-- @dsCard group="Brand" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../colors_and_type.css" />
+<link rel="stylesheet" href="_card.css" />
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<style>
+  .grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 14px 10px; margin-top: 4px; }
+  .ic { display: flex; flex-direction: column; align-items: center; gap: 5px; color: #000; }
+  .ic svg, .ic [data-lucide] { width: 24px; height: 24px; stroke-width: 2; stroke-linecap: square; stroke-linejoin: miter; }
+  .lab { font-size: 10px; color: #5D5D5D; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="eyebrow">Icons · 24 px · square caps · 2 px stroke · Lucide substitutes</div>
+  <div class="grid">
+    <div class="ic"><i data-lucide="search"></i><div class="lab">Search</div></div>
+    <div class="ic"><i data-lucide="menu"></i><div class="lab">Hamburger</div></div>
+    <div class="ic"><i data-lucide="heart"></i><div class="lab">Donate</div></div>
+    <div class="ic"><i data-lucide="calendar"></i><div class="lab">Date</div></div>
+    <div class="ic"><i data-lucide="clock"></i><div class="lab">Time</div></div>
+    <div class="ic"><i data-lucide="map-pin"></i><div class="lab">Pin</div></div>
+    <div class="ic"><i data-lucide="user"></i><div class="lab">Author</div></div>
+    <div class="ic"><i data-lucide="pound-sterling"></i><div class="lab">Cost</div></div>
+    <div class="ic"><i data-lucide="tag"></i><div class="lab">Tag</div></div>
+    <div class="ic"><i data-lucide="file-text"></i><div class="lab">Pages</div></div>
+    <div class="ic"><i data-lucide="download"></i><div class="lab">Download</div></div>
+    <div class="ic"><i data-lucide="lock"></i><div class="lab">Padlock</div></div>
+    <div class="ic"><i data-lucide="chevron-right"></i><div class="lab">Chev right</div></div>
+    <div class="ic"><i data-lucide="chevron-down"></i><div class="lab">Chev down</div></div>
+    <div class="ic"><i data-lucide="facebook"></i><div class="lab">Facebook</div></div>
+    <div class="ic"><i data-lucide="linkedin"></i><div class="lab">LinkedIn</div></div>
+  </div>
+  <div style="font-size: 11px; color: #5D5D5D; margin-top: 14px; line-height: 1.5;">
+    Loaded from <code style="font-family: ui-monospace, monospace;">unpkg.com/lucide</code>. See <code style="font-family: ui-monospace, monospace;">assets/README.md</code> for the full Figma → Lucide mapping. <span style="color: #F28500;">⚠ substitutes — not pixel-identical to the Figma icon set.</span>
+  </div>
+</div>
+<script>lucide.createIcons();</script>
+</body>
+</html>
