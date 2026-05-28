@@ -98,11 +98,11 @@ function DonatePage({ navigate, mode, setMode }) {
   const [localTab, setLocalTab] = useStatePages("oneoff");
   const tab = mode || localTab;
   const baseSetTab = setMode || setLocalTab;
-  const [amount, setAmount] = useStatePages(tab === "oneoff" ? "26" : "25");
+  const [amount, setAmount] = useStatePages(tab === "oneoff" ? "26" : "10");
   // Reset amount to the "most popular" default for the new tab on switch
   const setTab = (newTab) => {
     baseSetTab(newTab);
-    setAmount(newTab === "oneoff" ? "26" : "25");
+    setAmount(newTab === "oneoff" ? "26" : "10");
   };
 
   return (
@@ -223,7 +223,7 @@ function DonateWidget({ navigate, tab, setTab, amount, setAmount }) {
       </div>
 
       <div className="tcs-donate-widget-amounts">
-        {(tab === "monthly" ? ["5", "25", "50", "Other"] : ["10", "26", "50", "Other"]).map((a) => (
+        {(tab === "monthly" ? ["5", "10", "20", "Other"] : ["10", "26", "50", "Other"]).map((a) => (
           <button key={a} className={amount === a ? "active" : ""} onClick={() => setAmount(a)}>
             {a === "Other" ? "Other" : `£${a}`}
           </button>
@@ -232,9 +232,9 @@ function DonateWidget({ navigate, tab, setTab, amount, setAmount }) {
 
       <p className="tcs-donate-widget-impact">
         {tab === "monthly" ? (
-          amount === "5"      ? "£5 a month could pay for a hot meal, shower and living essentials for a young runaway."
-          : amount === "25"   ? <><strong>Our most popular gift —</strong> £25 a month could fund a one-to-one mental health support session for a young person in crisis.</>
-          : amount === "50"   ? "£50 a month could provide a week of safe accommodation for a young person facing homelessness."
+          amount === "5"      ? "£5 a month could help one of our project workers reach a struggling teenager and prevent a crisis."
+          : amount === "10"   ? <><strong>Our most popular gift —</strong> £10 a month could give a teenager awaiting mental health support a chance to talk with a specialist.</>
+          : amount === "20"   ? "£20 a month could fund a drop-in service, giving young people a space to go when things get tough."
           : "Whether it's a little or a lot, give as much as you can and make a huge difference to a young person."
         ) : (
           amount === "10"     ? "£10 could allow a teenager to travel to one of our services, so they can begin to move forward."
@@ -488,7 +488,7 @@ function DetailsPage({ navigate, mode = "monthly", setMode }) {
   const [paymentMethod, setPaymentMethod] = useStatePages(null);
   const [inMemory, setInMemory] = useStatePages(false);
 
-  const amount = mode === "monthly" ? "5" : "10";
+  const amount = mode === "monthly" ? "10" : "26";
 
   function handlePayPal() {
     setPaymentMethod("paypal");
@@ -822,7 +822,7 @@ function PaymentPage({ navigate, mode = "monthly", setMode }) {
   const [ddDay, setDdDay] = useStatePages("3rd");
   const [giftAid, setGiftAid] = useStatePages(false);
   const [mandate, setMandate] = useStatePages(false);
-  const amount = mode === "monthly" ? "5" : "10";
+  const amount = mode === "monthly" ? "10" : "26";
 
   return (
     <div className="tcs-page-content" data-screen-label="04 Payment">
@@ -931,7 +931,7 @@ function PaymentPage({ navigate, mode = "monthly", setMode }) {
    - Payment-method marks carried through via the trust strip. */
 
 function ThanksPage({ navigate, mode = "monthly", setMode }) {
-  const amount = mode === "monthly" ? "5" : "10";
+  const amount = mode === "monthly" ? "10" : "26";
   const name = "Sarah";
   const email = "sarah@example.com";
   const reference = "TCS-2026-04823";
