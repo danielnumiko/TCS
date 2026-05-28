@@ -238,7 +238,7 @@ function DonateWidget({ navigate, tab, setTab, amount, setAmount }) {
           : "Whether it's a little or a lot, give as much as you can and make a huge difference to a young person."
         ) : (
           amount === "10"     ? "£10 could allow a teenager to travel to one of our services, so they can begin to move forward."
-          : amount === "26"   ? "£26 could fund a 30-minute support session between a young person and a trained professional."
+          : amount === "26"   ? <><strong>Our most popular gift —</strong> £26 could fund a 30-minute support session between a young person and a trained professional.</>
           : amount === "50"   ? "£50 could help provide a group session for teenagers who are struggling with their wellbeing."
           : "Whether a little or a lot, whatever you can give will make a huge difference to a young person."
         )}
