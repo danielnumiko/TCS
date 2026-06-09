@@ -149,6 +149,17 @@ body {
   color: var(--btn-primary-disabled-text, var(--button-primary-disabled-text, #dcdcdc));
   border-color: var(--button-primary-disabled-border, var(--btn-primary-disabled-bg, #bdbdbd));
 }
+/* Live rollover on the Default cell */
+.btn--primary.state-default:hover:not(:disabled) {
+  background: var(--btn-primary-hover-bg, var(--button-primary-hover-bg, #fff));
+  color: var(--btn-primary-hover-text, var(--button-primary-hover-text, #000));
+  border-color: var(--button-primary-hover-border, #000);
+}
+.btn--primary.state-default:active:not(:disabled) {
+  background: var(--btn-primary-active-bg, var(--button-primary-active-bg, #fff));
+  color: var(--button-primary-active-text, var(--btn-primary-text, #000));
+  border-color: var(--button-primary-active-border, var(--btn-primary-border, #000));
+}
 
 /* Secondary */
 .btn--secondary {
@@ -532,4 +543,147 @@ body {
   background: var(--button-tags-disabled-bg, var(--button-tags-default-bg, #fff));
   color: var(--button-tags-disabled-text, #bdbdbd);
   border-color: var(--button-tags-disabled-border, #bdbdbd);
+}
+
+/* =========================================================================
+   LIVE ROLLOVER on .state-default cells
+   The Default cell of each atom responds to real :hover / :active / :focus.
+   The Hover / Active / Disabled cells stay as forced static reference views.
+   `:not(.state-hover):not(.state-active):not(.state-disabled)` would also
+   work for forcing scope, but the .state-default class is the simplest
+   selector to scope rollover to just the Default cell.
+   ========================================================================= */
+
+/* Secondary button */
+.btn--secondary.state-default:hover:not(:disabled) {
+  background: var(--btn-secondary-hover-bg, var(--button-secondary-hover-bg, #efefef));
+  color: var(--btn-secondary-text, var(--button-secondary-hover-text, #000));
+  border-color: var(--btn-secondary-hover-border, var(--button-secondary-hover-border, #000));
+}
+.btn--secondary.state-default:active:not(:disabled) {
+  background: var(--btn-secondary-active-bg, var(--button-secondary-active-bg, #000));
+  color: var(--btn-secondary-active-text, var(--button-secondary-active-text, #fff));
+}
+
+/* Icon button */
+.btn--icon.state-default:hover:not(:disabled) {
+  background: var(--btn-primary-hover-bg, var(--button-primary-hover-bg, #fff));
+  color: var(--btn-primary-hover-icon, var(--button-primary-hover-icon, #000));
+}
+
+/* Social button */
+.btn--social.state-default:hover:not(:disabled) {
+  background: var(--button-social-hover-bg, #efefef);
+  color: var(--button-social-hover-text, #000);
+}
+
+/* List button */
+.btn--list.state-default:hover:not(:disabled) {
+  background: var(--button-list-hover-bg, #efefef);
+  color: var(--button-list-hover-text, #000);
+  border-color: var(--button-list-hover-border, #000);
+}
+
+/* Dropdown */
+.btn--dropdown.state-default:hover:not(:disabled) {
+  background: var(--button-list-hover-bg, #efefef);
+  border-color: var(--button-list-hover-border, #000);
+}
+
+/* Accordion (clicking the head toggles the body) */
+.accordion.state-default .accordion__head:hover:not(:disabled) {
+  color: var(--type-heading, #000);
+  opacity: 0.85;
+}
+
+/* Hyperlink */
+.hyperlink.state-default:hover {
+  color: var(--button-text-link-primary-hover-text, #000);
+  text-decoration-color: var(--button-text-link-primary-hover-underline-or-icon, currentColor);
+}
+
+/* Nav item */
+.nav-item.state-default:hover { color: var(--button-text-link-primary-hover-text, #000); }
+.nav-item.state-default:hover .chevron { color: var(--button-text-link-primary-hover-underline-or-icon, currentColor); }
+
+/* Menu link */
+.menu-link--primary.state-default:hover { color: var(--button-text-link-primary-hover-text, #000); }
+.menu-link--secondary.state-default:hover { color: var(--button-text-link-secondary-hover-text, #333); }
+
+/* Tabs — hovering an inactive cell shows the hover bg */
+.tabs.state-default .tabs__cell:not(.is-active):hover:not(:disabled) {
+  background: var(--button-tab-hover-bg, #efefef);
+  color: var(--button-tab-hover-text, #000);
+}
+
+/* Amounts / Tabs */
+.amt.state-default:hover:not(:disabled) {
+  background: var(--button-tab-hover-bg, #efefef);
+}
+
+/* Text field (focus instead of hover for inputs) */
+.input.state-default:focus:not(:disabled) {
+  background: var(--button-text-input-hover-bg, #efefef);
+  border-color: var(--button-text-input-hover-border, #000);
+  color: var(--button-text-input-hover-text, #000);
+  outline: 2px solid var(--focus-outline, #1076b9);
+  outline-offset: 2px;
+}
+.input.state-default:hover:not(:disabled) {
+  border-color: var(--button-text-input-hover-border, #000);
+}
+
+/* Input with heading (focus child input + change label colour) */
+.input-group.state-default:focus-within .input-group__label {
+  color: var(--button-text-input-hover-text, #000);
+}
+
+/* Select */
+.select.state-default:hover {
+  background: var(--secondary-bg, #efefef);
+  border-color: var(--type-heading, #000);
+}
+
+/* Text box */
+.textbox.state-default:focus:not(:disabled) {
+  outline: 2px solid var(--focus-outline, #1076b9);
+  outline-offset: 2px;
+  border-color: var(--button-text-input-hover-border, #000);
+}
+.textbox.state-default:hover:not(:disabled) {
+  border-color: var(--button-text-input-hover-border, #000);
+}
+
+/* Checkbox + Radio — interactive via JS toggle (see index.html script) */
+.checkbox.state-default,
+.radio.state-default {
+  cursor: pointer;
+  transition: background-color 80ms, border-color 80ms;
+}
+.checkbox.state-default:hover {
+  background: var(--button-binary-inputs-hover-bg, #efefef);
+  border-color: var(--button-binary-inputs-hover-border, #000);
+}
+.radio.state-default:hover {
+  background: var(--button-binary-inputs-hover-bg, #efefef);
+  border-color: var(--button-binary-inputs-hover-border, #000);
+}
+
+/* Tag */
+.tag.state-default {
+  cursor: default;
+}
+.tag.state-default:hover {
+  background: var(--button-tags-hover-bg, var(--button-tags-default-bg, #fff));
+  color: var(--button-tags-hover-text, #555);
+  border-color: var(--button-tags-hover-border, #555);
+}
+
+/* Make the Default cell visibly inviting */
+.state-default {
+  position: relative;
+}
+.state-cell .state-default,
+.state-cell .state-cell__label + .state-default {
+  /* visual marker only on Default cell */
 }

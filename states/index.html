@@ -398,6 +398,67 @@
       document.documentElement.setAttribute('data-theme', e.target.value);
     });
   });
+
+  // Default-cell checkboxes toggle on click
+  document.querySelectorAll('.checkbox.state-default').forEach(box => {
+    box.addEventListener('click', () => {
+      const checked = box.dataset.checked === 'true';
+      box.dataset.checked = (!checked).toString();
+      box.textContent = checked ? '' : '✓';
+    });
+  });
+
+  // Default-cell radios toggle on click
+  document.querySelectorAll('.radio.state-default').forEach(r => {
+    r.addEventListener('click', () => {
+      const checked = r.dataset.checked === 'true';
+      r.dataset.checked = (!checked).toString();
+      if (checked) {
+        r.innerHTML = '';
+      } else {
+        r.innerHTML = '<span class="dot"></span>';
+      }
+    });
+  });
+
+  // Default-cell accordion toggles body on click
+  document.querySelectorAll('.accordion.state-default .accordion__head').forEach(head => {
+    head.addEventListener('click', () => {
+      const parent = head.closest('.accordion');
+      const body = parent.querySelector('.accordion__body');
+      const chevron = head.querySelector('.chevron');
+      if (body) {
+        body.remove();
+        if (chevron) chevron.textContent = '▾';
+      } else {
+        const newBody = document.createElement('div');
+        newBody.className = 'accordion__body';
+        newBody.textContent = "£26 funds a 30-minute support session between a young person and a trained professional. We're transparent about every penny.";
+        parent.appendChild(newBody);
+        if (chevron) chevron.textContent = '▴';
+      }
+    });
+  });
+
+  // Default-cell tabs are clickable to switch active
+  document.querySelectorAll('.tabs.state-default').forEach(group => {
+    group.querySelectorAll('.tabs__cell').forEach(cell => {
+      cell.addEventListener('click', () => {
+        if (cell.disabled) return;
+        group.querySelectorAll('.tabs__cell').forEach(c => c.classList.remove('is-active'));
+        cell.classList.add('is-active');
+      });
+    });
+  });
+
+  // Default-cell Amounts toggle selected on click (within sibling set)
+  // For the standalone amts in the prototype, just toggle selected on the clicked one
+  document.querySelectorAll('.amt.state-default').forEach(amt => {
+    amt.addEventListener('click', () => {
+      if (amt.disabled) return;
+      amt.classList.toggle('state-selected');
+    });
+  });
 </script>
 
 </body>
