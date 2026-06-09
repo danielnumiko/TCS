@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en-GB" data-theme="light" data-mode="1280-xl">
+<head>
+  <meta charset="utf-8" />
+  <title>TCS — Interactive states prototype</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Shared design-system tokens (reused from /donate/) -->
+  <link rel="stylesheet" href="../donate/colors_and_type.css" />
+  <link rel="stylesheet" href="../donate/figma-tokens.css" />
+  <link rel="stylesheet" href="states.css" />
+</head>
+<body>
+
+<header class="state-header">
+  <div class="state-header__inner">
+    <div>
+      <h1>TCS interactive states</h1>
+      <p class="subtle">Every interactive atom, every state — wired to the live semantic colour tokens. Switch the theme to verify states reflow across themes.</p>
+    </div>
+    <fieldset class="theme-switcher" aria-label="Theme">
+      <legend>Theme</legend>
+      <label><input type="radio" name="theme" value="light" checked> Light</label>
+      <label><input type="radio" name="theme" value="dark"> Dark</label>
+      <label><input type="radio" name="theme" value="yellow"> Brand orange</label>
+      <label><input type="radio" name="theme" value="resources-light"> Res Light</label>
+      <label><input type="radio" name="theme" value="resources-dark"> Res Dark</label>
+    </fieldset>
+  </div>
+</header>
+
+<main class="state-main">
+
+  <!-- ============= PRIMARY BUTTON ============= -->
+  <section class="atom-section">
+    <h2>Primary button</h2>
+    <div class="state-grid">
+      <div class="state-cell"><span class="state-cell__label">Default</span>
+        <button class="btn btn--primary state-default">Donate now</button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span>
+        <button class="btn btn--primary state-hover">Donate now</button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Active</span>
+        <button class="btn btn--primary state-active">Donate now</button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <button class="btn btn--primary state-disabled" disabled>Donate now</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= SECONDARY BUTTON ============= -->
+  <section class="atom-section">
+    <h2>Secondary button</h2>
+    <div class="state-grid">
+      <div class="state-cell"><span class="state-cell__label">Default</span>
+        <button class="btn btn--secondary state-default">Find out more</button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span>
+        <button class="btn btn--secondary state-hover">Find out more</button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Active</span>
+        <button class="btn btn--secondary state-active">Find out more</button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <button class="btn btn--secondary state-disabled" disabled>Find out more</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= ICON BUTTON ============= -->
+  <section class="atom-section">
+    <h2>Icon button</h2>
+    <div class="state-grid">
+      <div class="state-cell"><span class="state-cell__label">Default</span>
+        <button class="btn btn--icon state-default" aria-label="Action">›</button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span>
+        <button class="btn btn--icon state-hover" aria-label="Action">›</button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <button class="btn btn--icon state-disabled" disabled aria-label="Action">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= SOCIAL BUTTON ============= -->
+  <section class="atom-section">
+    <h2>Social button</h2>
+    <div class="state-grid">
+      <div class="state-cell"><span class="state-cell__label">Default</span>
+        <button class="btn btn--social state-default"><span>Twitter</span><span class="icon">𝕏</span></button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span>
+        <button class="btn btn--social state-hover"><span>Facebook</span><span class="icon">f</span></button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <button class="btn btn--social state-disabled" disabled><span>LinkedIn</span><span class="icon">in</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= LIST BUTTON ============= -->
+  <section class="atom-section">
+    <h2>List button</h2>
+    <div class="state-grid">
+      <div class="state-cell"><span class="state-cell__label">Default</span>
+        <button class="btn btn--list state-default"><span>Sort by date</span><span class="chevron">▼</span></button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span>
+        <button class="btn btn--list state-hover"><span>Sort by date</span><span class="chevron">▼</span></button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <button class="btn btn--list state-disabled" disabled><span>Sort by date</span><span class="chevron">▼</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= DROPDOWN ============= -->
+  <section class="atom-section">
+    <h2>Dropdown</h2>
+    <div class="state-grid">
+      <div class="state-cell"><span class="state-cell__label">Default</span>
+        <button class="btn btn--dropdown state-default"><span>Filter</span><span class="chevron">▼</span></button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span>
+        <button class="btn btn--dropdown state-hover"><span>Filter</span><span class="chevron">▼</span></button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <button class="btn btn--dropdown state-disabled" disabled><span>Filter</span><span class="chevron">▼</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= ACCORDION ============= -->
+  <section class="atom-section">
+    <h2>Accordion</h2>
+    <div class="state-grid state-grid--stack">
+      <div class="state-cell"><span class="state-cell__label">Default (closed)</span>
+        <div class="accordion state-default">
+          <button class="accordion__head"><span>Where does my donation go?</span><span class="chevron">▾</span></button>
+        </div>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span>
+        <div class="accordion state-hover">
+          <button class="accordion__head"><span>Where does my donation go?</span><span class="chevron">▾</span></button>
+        </div>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Active (open)</span>
+        <div class="accordion state-active">
+          <button class="accordion__head"><span>Where does my donation go?</span><span class="chevron">▴</span></button>
+          <div class="accordion__body">£26 funds a 30-minute support session between a young person and a trained professional. We're transparent about every penny.</div>
+        </div>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <div class="accordion state-disabled">
+          <button class="accordion__head" disabled><span>Where does my donation go?</span><span class="chevron">▾</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= HYPERLINK / TEXT LINK ============= -->
+  <section class="atom-section">
+    <h2>Hyperlink</h2>
+    <div class="state-grid">
+      <div class="state-cell"><span class="state-cell__label">Default</span>
+        <a href="#" class="hyperlink state-default" onclick="return false">Read Steve's story</a>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span>
+        <a href="#" class="hyperlink state-hover" onclick="return false">Read Steve's story</a>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <a href="#" class="hyperlink state-disabled" onclick="return false" aria-disabled="true">Read Steve's story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= NAV ITEM ============= -->
+  <section class="atom-section">
+    <h2>Nav item</h2>
+    <div class="state-grid">
+      <div class="state-cell"><span class="state-cell__label">Default</span>
+        <a href="#" class="nav-item state-default" onclick="return false"><span>What we do</span><span class="chevron">›</span></a>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span>
+        <a href="#" class="nav-item state-hover" onclick="return false"><span>What we do</span><span class="chevron">›</span></a>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <a href="#" class="nav-item state-disabled" onclick="return false" aria-disabled="true"><span>What we do</span><span class="chevron">›</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= MENU LINK ============= -->
+  <section class="atom-section">
+    <h2>Menu link</h2>
+    <div class="state-grid state-grid--cols-2">
+      <div>
+        <h3 class="sub-title">Primary = True</h3>
+        <div class="state-grid">
+          <div class="state-cell"><span class="state-cell__label">Default</span><a href="#" class="menu-link menu-link--primary state-default" onclick="return false">Donate</a></div>
+          <div class="state-cell"><span class="state-cell__label">Hover</span><a href="#" class="menu-link menu-link--primary state-hover" onclick="return false">Donate</a></div>
+          <div class="state-cell"><span class="state-cell__label">Disabled</span><a href="#" class="menu-link menu-link--primary state-disabled" onclick="return false" aria-disabled="true">Donate</a></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="sub-title">Primary = False</h3>
+        <div class="state-grid">
+          <div class="state-cell"><span class="state-cell__label">Default</span><a href="#" class="menu-link menu-link--secondary state-default" onclick="return false">Read more</a></div>
+          <div class="state-cell"><span class="state-cell__label">Hover</span><a href="#" class="menu-link menu-link--secondary state-hover" onclick="return false">Read more</a></div>
+          <div class="state-cell"><span class="state-cell__label">Disabled</span><a href="#" class="menu-link menu-link--secondary state-disabled" onclick="return false" aria-disabled="true">Read more</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= TABS ============= -->
+  <section class="atom-section">
+    <h2>Tabs</h2>
+    <div class="state-grid state-grid--stack">
+      <div class="state-cell"><span class="state-cell__label">Default — Monthly active</span>
+        <div class="tabs state-default">
+          <button class="tabs__cell is-active">Monthly</button>
+          <button class="tabs__cell">One-off</button>
+        </div>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover (One-off cell)</span>
+        <div class="tabs state-default">
+          <button class="tabs__cell is-active">Monthly</button>
+          <button class="tabs__cell state-hover">One-off</button>
+        </div>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <div class="tabs state-disabled">
+          <button class="tabs__cell is-active" disabled>Monthly</button>
+          <button class="tabs__cell" disabled>One-off</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= AMOUNTS / TABS ============= -->
+  <section class="atom-section">
+    <h2>Amounts / Tabs</h2>
+    <div class="state-grid">
+      <div class="state-cell"><span class="state-cell__label">Default</span>
+        <button class="amt state-default">£10</button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Selected</span>
+        <button class="amt state-selected">£26</button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span>
+        <button class="amt state-hover">£10</button>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <button class="amt state-disabled" disabled>£10</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= TEXT FIELD ============= -->
+  <section class="atom-section">
+    <h2>Text field</h2>
+    <div class="state-grid">
+      <div class="state-cell"><span class="state-cell__label">Default</span>
+        <input class="input state-default" type="text" placeholder="Email address" />
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span>
+        <input class="input state-hover" type="text" value="hello@example.com" />
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <input class="input state-disabled" type="text" placeholder="Email address" disabled />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= TEXT FIELD WITH HEADING ============= -->
+  <section class="atom-section">
+    <h2>Text field with heading</h2>
+    <div class="state-grid">
+      <div class="state-cell"><span class="state-cell__label">Default</span>
+        <div class="input-group state-default">
+          <label class="input-group__label">Email address</label>
+          <input class="input" type="text" placeholder="hello@example.com" />
+        </div>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span>
+        <div class="input-group state-hover">
+          <label class="input-group__label">Email address</label>
+          <input class="input state-hover" type="text" value="hello@example.com" />
+        </div>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <div class="input-group state-disabled">
+          <label class="input-group__label">Email address</label>
+          <input class="input state-disabled" type="text" placeholder="hello@example.com" disabled />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= SELECT ============= -->
+  <section class="atom-section">
+    <h2>Select</h2>
+    <div class="state-grid">
+      <div class="state-cell"><span class="state-cell__label">Default</span>
+        <div class="select state-default"><span>Choose a topic</span><span class="chevron">▾</span></div>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span>
+        <div class="select state-hover"><span>Choose a topic</span><span class="chevron">▾</span></div>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <div class="select state-disabled"><span>Choose a topic</span><span class="chevron">▾</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= TEXT BOX ============= -->
+  <section class="atom-section">
+    <h2>Text box (multi-line)</h2>
+    <div class="state-grid">
+      <div class="state-cell"><span class="state-cell__label">Default</span>
+        <textarea class="textbox state-default" rows="3" placeholder="Tell us more..."></textarea>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span>
+        <textarea class="textbox state-hover" rows="3">A young person told me they felt seen for the first time after one of our sessions.</textarea>
+      </div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span>
+        <textarea class="textbox state-disabled" rows="3" disabled placeholder="Tell us more..."></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= CHECKBOX ============= -->
+  <section class="atom-section">
+    <h2>Check box</h2>
+    <div class="state-grid state-grid--cols-2">
+      <div>
+        <h3 class="sub-title">Unselected</h3>
+        <div class="state-grid">
+          <div class="state-cell"><span class="state-cell__label">Default</span><span class="checkbox state-default" data-checked="false"></span></div>
+          <div class="state-cell"><span class="state-cell__label">Hover</span><span class="checkbox state-hover" data-checked="false"></span></div>
+          <div class="state-cell"><span class="state-cell__label">Disabled</span><span class="checkbox state-disabled" data-checked="false"></span></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="sub-title">Selected</h3>
+        <div class="state-grid">
+          <div class="state-cell"><span class="state-cell__label">Default</span><span class="checkbox state-default" data-checked="true">✓</span></div>
+          <div class="state-cell"><span class="state-cell__label">Hover</span><span class="checkbox state-hover" data-checked="true">✓</span></div>
+          <div class="state-cell"><span class="state-cell__label">Disabled</span><span class="checkbox state-disabled" data-checked="true">✓</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= RADIO ============= -->
+  <section class="atom-section">
+    <h2>Radio button</h2>
+    <div class="state-grid state-grid--cols-2">
+      <div>
+        <h3 class="sub-title">Unselected</h3>
+        <div class="state-grid">
+          <div class="state-cell"><span class="state-cell__label">Default</span><span class="radio state-default" data-checked="false"></span></div>
+          <div class="state-cell"><span class="state-cell__label">Hover</span><span class="radio state-hover" data-checked="false"></span></div>
+          <div class="state-cell"><span class="state-cell__label">Disabled</span><span class="radio state-disabled" data-checked="false"></span></div>
+        </div>
+      </div>
+      <div>
+        <h3 class="sub-title">Selected</h3>
+        <div class="state-grid">
+          <div class="state-cell"><span class="state-cell__label">Default</span><span class="radio state-default" data-checked="true"><span class="dot"></span></span></div>
+          <div class="state-cell"><span class="state-cell__label">Hover</span><span class="radio state-hover" data-checked="true"><span class="dot"></span></span></div>
+          <div class="state-cell"><span class="state-cell__label">Disabled</span><span class="radio state-disabled" data-checked="true"><span class="dot"></span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= TAG ============= -->
+  <section class="atom-section">
+    <h2>Tag</h2>
+    <div class="state-grid">
+      <div class="state-cell"><span class="state-cell__label">Default</span><span class="tag state-default">Publication</span></div>
+      <div class="state-cell"><span class="state-cell__label">Hover</span><span class="tag state-hover">Publication</span></div>
+      <div class="state-cell"><span class="state-cell__label">Disabled</span><span class="tag state-disabled">Publication</span></div>
+    </div>
+  </section>
+
+  <p class="footer-note">All swatches bound to live semantic CSS tokens. Switch the theme up top to verify states reflow across themes.</p>
+</main>
+
+<script>
+  // Theme switcher → set data-theme on <html>
+  document.querySelectorAll('input[name="theme"]').forEach(radio => {
+    radio.addEventListener('change', e => {
+      document.documentElement.setAttribute('data-theme', e.target.value);
+    });
+  });
+</script>
+
+</body>
+</html>
