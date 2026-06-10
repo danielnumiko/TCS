@@ -8,8 +8,7 @@
    USAGE
    <html data-mode="1280-xl" data-theme="light">
    - data-mode  : "320-sm" | "768-md" | "1280-xl" | "1600-xxl"  (default 1280)
-   - data-theme : "light" | "dark" | "yellow"
-                  "resources-light" | "resources-dark"          (default light)
+   - data-theme : "light" | "dark" | "yellow"                   (default light)
 
    The fluid scale and brand accent flip based on these attributes,
    matching the Figma Breakpoints + Colours collections.
@@ -219,57 +218,6 @@
   --tag-bg:     var(--brand-accent);
   --tag-border: var(--black-950);
   --tag-text:   var(--black-950);
-}
-
-
-/* ---- 6. SEMANTIC COLOURS — RESOURCES LIGHT / DARK --------------- */
-/* Resources content (longform articles / reports) swaps the brand pivot
-   from Broom yellow to Breaker bay teal. */
-
-:root[data-theme="resources-light"],
-.resources-light {
-  --brand-accent: var(--breaker-bay-600);
-  --primary-bg:       var(--white-50);
-  --secondary-bg:     var(--white-100);
-  --primary-border:   var(--white-100);
-  --secondary-border: var(--white-200);
-  --foreground:       var(--black-950);
-  --type-heading:     var(--black-950);
-  --type-body:        var(--black-950);
-  --type-muted:       var(--black-500);
-  --surface-card:     var(--white-50);
-  --btn-primary-bg:   var(--black-950);
-  --btn-primary-text: var(--white-50);
-  --btn-primary-icon: var(--brand-accent);
-  --btn-secondary-bg: var(--brand-accent);
-  --btn-secondary-border: var(--brand-accent);
-  --btn-secondary-text: var(--black-950);
-  --tag-bg: var(--white-50);
-  --tag-border: var(--black-950);
-  --tag-text: var(--black-950);
-}
-
-:root[data-theme="resources-dark"],
-.resources-dark {
-  --brand-accent: var(--breaker-bay-600);
-  --primary-bg:       var(--brand-accent);
-  --secondary-bg:     var(--white-100);
-  --primary-border:   var(--breaker-bay-700);
-  --secondary-border: var(--white-200);
-  --foreground:       var(--white-50);
-  --type-heading:     var(--black-950);
-  --type-body:        var(--black-950);
-  --type-muted:       var(--black-500);
-  --surface-card:     var(--white-50);
-  --btn-primary-bg:   var(--black-950);
-  --btn-primary-text: var(--white-50);
-  --btn-primary-icon: var(--white-50);
-  --btn-secondary-bg: var(--white-50);
-  --btn-secondary-border: var(--white-50);
-  --btn-secondary-text: var(--black-950);
-  --tag-bg: var(--white-50);
-  --tag-border: var(--black-950);
-  --tag-text: var(--black-950);
 }
 
 
