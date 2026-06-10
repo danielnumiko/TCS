@@ -4,7 +4,10 @@ const { useState: useStateApp } = React;
 
 function App() {
   const [route, setRoute] = useStateApp("home");
-  const [donateMode, setDonateMode] = useStateApp("monthly");
+  const [donateMode, setDonateModeRaw] = useStateApp("monthly");
+  const [donateAmount, setDonateAmount] = useStateApp(null);
+
+  function setDonateMode(m) { setDonateModeRaw(m); setDonateAmount(null); }
 
   function navigate(to) {
     setRoute(to);
@@ -18,9 +21,9 @@ function App() {
   let url = "childrenssociety.org.uk";
   if (route === "home")   { page = <HomePage navigate={navigate} />;   url = "childrenssociety.org.uk"; }
   else if (route === "donate")  { page = <DonatePage navigate={navigate} mode={donateMode} setMode={setDonateMode} />;  url = "childrenssociety.org.uk/donate"; }
-  else if (route === "details") { page = <DetailsPage navigate={navigate} mode={donateMode} setMode={setDonateMode} />; url = "childrenssociety.org.uk/donate/details"; }
+  else if (route === "details") { page = <DetailsPage navigate={navigate} mode={donateMode} setMode={setDonateMode} amount={donateAmount} setAmount={setDonateAmount} />; url = "childrenssociety.org.uk/donate/details"; }
   else if (route === "payment") { page = <PaymentPage navigate={navigate} mode={donateMode} setMode={setDonateMode} />; url = "childrenssociety.org.uk/donate/payment"; }
-  else if (route === "thanks")  { page = <ThanksPage navigate={navigate} mode={donateMode} setMode={setDonateMode} />;  url = "childrenssociety.org.uk/donate/thanks"; }
+  else if (route === "thanks")  { page = <ThanksPage navigate={navigate} mode={donateMode} setMode={setDonateMode} amount={donateAmount} />;  url = "childrenssociety.org.uk/donate/thanks"; }
   else page = <HomePage navigate={navigate} />;
 
   const pages = [

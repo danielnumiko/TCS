@@ -6,9 +6,9 @@ const { useState } = React;
 // ---- Atoms ----
 
 function TCSButton({ children, kind = "primary", glyph = "chevron", onClick, href, size = "md" }) {
-  const kindCls = kind === "yellow" ? "btn-yellow" : kind === "donate" ? "btn-yellow" : "";
+  const kindCls = kind === "yellow" ? "btn-yellow" : kind === "donate" ? "btn-yellow" : kind === "white" ? "btn-white" : "";
   const cls = `btn ${kindCls} ${size === "sm" ? "btn-sm" : ""}`.trim();
-  const Glyph = glyph === "heart" ? Heart : glyph === "chevron-up" ? ChevronUp : Chevron;
+  const Glyph = glyph === "heart" ? Heart : glyph === "chevron-up" ? ChevronUp : glyph === "play" ? Play : Chevron;
   const inner = (
     <>
       <span>{children}</span>
@@ -22,6 +22,7 @@ function TCSButton({ children, kind = "primary", glyph = "chevron", onClick, hre
 function Chevron() { return <Icon name="chevron-right" />; }
 function ChevronUp() { return <Icon name="chevron-up" />; }
 function Heart() { return <Icon name="donate" />; }
+function Play() { return <Icon name="play" />; }
 
 // Icon · thin wrapper around the CSS-mask-based TCS icon set.
 // Default size is --icon-lg (28px). Pass size="sm" for --icon-sm (16px)
@@ -71,14 +72,15 @@ function Header({ route, navigate }) {
 
 // ---- Hero ----
 
-function Hero({ quote, ctaLabel, onCtaClick, image = "img-park" }) {
+function Hero({ ctaLabel, onCtaClick, image = "img-park" }) {
   return (
     <div className={`tcs-hero ${image}`}>
       <div className="scrim"></div>
       <div className="content">
-        <div className="quote">{quote}</div>
+        <img className="hero-badge" src="./assets/illustrations/save-teenhood-sticker.png" alt="Save Teenhood" />
+        <h1 className="hero-heading">We're raising the alarm for teenhood. And we need you support.</h1>
         {ctaLabel ? (
-          <div><TCSButton kind="yellow" glyph="heart" onClick={onCtaClick}>{ctaLabel}</TCSButton></div>
+          <div className="hero-cta"><TCSButton kind="white" glyph="play" onClick={onCtaClick}>{ctaLabel}</TCSButton></div>
         ) : null}
       </div>
       <div className="brush"></div>
@@ -98,11 +100,9 @@ function TopicHero({ crumb, title }) {
 
 // ---- Section divider ----
 
-function Divider() {
+function Divider({ variant = "centred" }) {
   return (
-    <div className="tcs-divider" aria-hidden="true">
-      <div className="arrow"></div>
-    </div>
+    <div className={"tcs-divider tcs-divider-" + variant} aria-hidden="true"></div>
   );
 }
 
@@ -112,7 +112,7 @@ function TeaserCard({ eyebrow, title, image }) {
   return (
     <div className="tcs-teaser">
       <div className={`img ${image}`}></div>
-      <span className="eyebrow">{eyebrow}</span>
+      {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
       <h3>{title}</h3>
     </div>
   );
@@ -160,7 +160,7 @@ function LargePromo({ eyebrow, title, body, image, ctaLabel, onCtaClick }) {
     <div className={`tcs-large-promo ${image}`}>
       <div className="scrim"></div>
       <div className="text">
-        <span className="eyebrow">{eyebrow}</span>
+        {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
         <h2>{title}</h2>
         <p>{body}</p>
         {ctaLabel ? <div className="cta-row"><TCSButton onClick={onCtaClick}>{ctaLabel}</TCSButton></div> : null}
@@ -183,6 +183,40 @@ function TwoUp({ items }) {
   );
 }
 
+// ---- Video modal ----
+
+function VideoModal({ videoId, open, onClose }) {
+  React.useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
+  if (!open) return null;
+  return (
+    <div className="tcs-video-modal" onClick={onClose}>
+      <div className="tcs-video-modal-inner" onClick={(e) => e.stopPropagation()}>
+        <button className="tcs-video-modal-close" onClick={onClose} aria-label="Close video">
+          <Icon name="close" />
+        </button>
+        <div className="tcs-video-modal-frame">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&playsinline=1`}
+            title="The Children's Society — Save Teenhood appeal"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+          <a className="tcs-video-fallback" href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noopener noreferrer">
+            Trouble viewing? Watch on YouTube ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ---- Newsletter ----
 
 function Newsletter() {
@@ -195,16 +229,28 @@ function Newsletter() {
       </div>
       <form className="form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
         {submitted ? (
-          <div style={{ background: "#000", color: "#FFEB00", padding: "22px", fontFamily: "var(--font-brand)", fontWeight: 700 }}>
+          <div style={{ background: "#000", color: "#fff", padding: "22px", fontFamily: "var(--font-brand)", fontWeight: 700 }}>
             Thanks. You're on the list.
           </div>
         ) : (
           <>
-            <input placeholder="First name" />
-            <input placeholder="Last name" />
-            <input placeholder="Email address" type="email" />
-            <div className="privacy">Please see our Privacy Policy for details of how we will use your personal information.</div>
-            <TCSButton onClick={(e) => { e.preventDefault?.(); setSubmitted(true); }}>Primary</TCSButton>
+            <label className="nl-field">
+              <span className="nl-label">First name<span className="req">*</span></span>
+              <input type="text" />
+            </label>
+            <label className="nl-field">
+              <span className="nl-label">Last name<span className="req">*</span></span>
+              <input type="text" />
+            </label>
+            <label className="nl-field">
+              <span className="nl-label">Email address<span className="req">*</span></span>
+              <input type="email" />
+            </label>
+            <div className="privacy">Please see our <a href="#" onClick={(e) => e.preventDefault()}>Privacy Policy</a> for details of how we will use your personal information.</div>
+            <button className="nl-submit" onClick={(e) => { e.preventDefault(); setSubmitted(true); }}>
+              <span>Register now</span>
+              <Icon name="chevron-right" size="sm" />
+            </button>
           </>
         )}
       </form>
@@ -255,7 +301,7 @@ function Footer() {
         <div className="tcs-footer-meta">© The Children's Society 2026 &nbsp;&nbsp; All rights reserved &nbsp;&nbsp; Charity Registration No. 221124</div>
       </div>
       <div className="tcs-footer-right">
-        <div className="tcs-footer-sig">I feel like I<br/>belong</div>
+        <div className="tcs-footer-sig"><img src="./assets/brand-quote-footer.png" alt="I feel like I belong" /></div>
         <button className="btn tcs-footer-backtop" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <span>Back to top</span>
           <ChevronUp />
@@ -269,5 +315,5 @@ Object.assign(window, {
   TCSButton, Chevron, ChevronUp, Heart, Icon,
   Header, Hero, TopicHero, Divider,
   TeaserCard, StoryCard, HelpCard, StatRow, LargePromo, TwoUp,
-  Newsletter, Footer,
+  Newsletter, Footer, VideoModal,
 });
