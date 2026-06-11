@@ -41,10 +41,10 @@ function HomePage({ navigate }) {
           <TCSButton onClick={() => navigate("story")}>Read their stories</TCSButton>
         </div>
         <div className="tcs-stories-grid">
-          <StoryCard name="Louise's story" image="img-portrait-1" onClick={() => navigate("story")} />
-          <StoryCard name="Willow's story" image="img-portrait-2" onClick={() => navigate("story")} />
-          <StoryCard name="Andrew's story" image="img-portrait-3" onClick={() => navigate("story")} />
-          <StoryCard name="Isla's story" image="img-portrait-4" onClick={() => navigate("story")} />
+          <StoryCard name="Louise" image="img-portrait-1" onClick={() => navigate("story")} />
+          <StoryCard name="Willow" image="img-portrait-2" onClick={() => navigate("story")} />
+          <StoryCard name="Andrew" image="img-portrait-3" onClick={() => navigate("story")} />
+          <StoryCard name="Isla" image="img-portrait-4" onClick={() => navigate("story")} />
         </div>
       </div>
 
@@ -120,7 +120,7 @@ function DonatePage({ navigate, mode, setMode }) {
     <div className="tcs-page-content" data-screen-label="02 Donate">
       <DonateSlice
         navigate={navigate}
-        image="img-portrait-2"
+        image="img-portrait-2 is-hero"
         tab={tab} setTab={setTab}
         amount={amount} setAmount={setAmount}
       />
@@ -211,7 +211,7 @@ function OtherWaysToGive() {
 
 function DonateSlice({ navigate, image, tab, setTab, amount, setAmount }) {
   return (
-    <section className={`tcs-donate-slice ${image}`}>
+    <section className={`tcs-donate-slice ${image}`} data-parallax="0.08">
       <DonateWidget
         navigate={navigate}
         tab={tab} setTab={setTab}
@@ -407,7 +407,10 @@ function RelatedBlock({ title, items }) {
       <div className="related-grid">
         {items.map((it, i) => (
           <div className="tcs-related-card" key={i}>
-            <div className={`img ${it.image}`}></div>
+            <div className="rc-media">
+              <div className={`img ${it.image}`}></div>
+              <img className="teaser-sticker" src="./assets/illustrations/explore-sticker.png" alt="" aria-hidden="true" />
+            </div>
             <a href="#" className="related-heading" onClick={(e) => e.preventDefault()}>{it.heading}</a>
             <p>{it.body}</p>
           </div>

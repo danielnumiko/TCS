@@ -75,6 +75,11 @@ function Header({ route, navigate }) {
 function Hero({ ctaLabel, onCtaClick, image = "img-park" }) {
   return (
     <div className={`tcs-hero ${image}`}>
+      <div className="hero-media">
+        <video className="hero-video" data-parallax="0.08" autoPlay muted loop playsInline poster="">
+          <source src="./assets/video/hero-ambient.mp4" type="video/mp4" />
+        </video>
+      </div>
       <div className="scrim"></div>
       <div className="content">
         <img className="hero-badge" src="./assets/illustrations/save-teenhood-sticker.png" alt="Save Teenhood" />
@@ -112,6 +117,7 @@ function TeaserCard({ eyebrow, title, image }) {
   return (
     <div className="tcs-teaser">
       <div className={`img ${image}`}></div>
+      <img className="teaser-sticker" src="./assets/illustrations/explore-sticker.png" alt="" aria-hidden="true" />
       {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
       <h3>{title}</h3>
     </div>
@@ -121,6 +127,8 @@ function TeaserCard({ eyebrow, title, image }) {
 function StoryCard({ name, image, onClick }) {
   return (
     <div className={`tcs-story-card ${image}`} onClick={onClick}>
+      <div className="story-media"></div>
+      <img className="story-sticker" src="./assets/illustrations/read-sticker.png" alt="" aria-hidden="true" />
       <div className="nm">
         {name}
         <Icon name="chevron-right" size="sm" />
@@ -157,7 +165,7 @@ function StatRow({ stats }) {
 
 function LargePromo({ eyebrow, title, body, image, ctaLabel, onCtaClick }) {
   return (
-    <div className={`tcs-large-promo ${image}`}>
+    <div className={`tcs-large-promo ${image}`} data-parallax="0.08">
       <div className="scrim"></div>
       <div className="text">
         {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
@@ -185,7 +193,7 @@ function TwoUp({ items }) {
 
 // ---- Video modal ----
 
-function VideoModal({ videoId, open, onClose }) {
+function VideoModal({ videoId, src, open, onClose }) {
   React.useEffect(() => {
     if (!open) return;
     const onKey = (e) => { if (e.key === "Escape") onClose(); };
@@ -201,16 +209,13 @@ function VideoModal({ videoId, open, onClose }) {
           <Icon name="close" />
         </button>
         <div className="tcs-video-modal-frame">
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&playsinline=1`}
+          <video
+            src={src || "./assets/video/hero-ambient.mp4"}
+            controls
+            autoPlay
+            playsInline
             title="The Children's Society — Save Teenhood appeal"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          ></iframe>
-          <a className="tcs-video-fallback" href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noopener noreferrer">
-            Trouble viewing? Watch on YouTube ↗
-          </a>
+          ></video>
         </div>
       </div>
     </div>

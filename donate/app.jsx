@@ -1,11 +1,58 @@
 /* eslint-disable */
 
-const { useState: useStateApp } = React;
+const { useState: useStateApp, useEffect: useEffectApp, useLayoutEffect: useLayoutEffectApp } = React;
 
 function App() {
   const [route, setRoute] = useStateApp("home");
   const [donateMode, setDonateModeRaw] = useStateApp("monthly");
   const [donateAmount, setDonateAmount] = useStateApp(null);
+
+  // Arm the draw-on-scroll decorations only once JS is running; without this
+  // class every decoration shows fully (graceful fallback, never hidden).
+  useLayoutEffectApp(() => { document.body.classList.add("draw-ready"); }, []);
+
+  // Draw-on-scroll: reveal brushy/highlighter decorations as they enter view.
+  // Uses geometry on scroll (IntersectionObserver is unreliable in some embeds).
+  useEffectApp(() => {
+    const scrollRoot = document.querySelector(".tcs-prototype-window");
+    const sel = ".tcs-divider, .tcs-hero .corner-arrow, .tcs-stories-grid, .intro-stat-num, .tcs-stat, .tcs-donate-impact .impact-stats .stat, .tcs-help";
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const parallaxSel = "[data-parallax]";
+    function check() {
+      const rootRect = scrollRoot ? scrollRoot.getBoundingClientRect() : { top: 0, bottom: window.innerHeight, height: window.innerHeight };
+      const vTop = rootRect.top;
+      const vBottom = rootRect.bottom;
+      document.querySelectorAll(sel).forEach((e) => {
+        if (e.classList.contains("is-drawn")) return;
+        const r = e.getBoundingClientRect();
+        if (r.top < vBottom - 60 && r.bottom > vTop) e.classList.add("is-drawn");
+      });
+      // Parallax: shift each tagged image layer relative to its distance
+      // from the viewport centre, for a subtle depth effect.
+      if (!reduceMotion) {
+        const mid = (vTop + vBottom) / 2;
+        document.querySelectorAll(parallaxSel).forEach((e) => {
+          const r = e.getBoundingClientRect();
+          if (r.bottom < vTop - 200 || r.top > vBottom + 200) return;
+          const factor = parseFloat(e.getAttribute("data-parallax")) || 0.1;
+          const elCenter = r.top + r.height / 2;
+          const offset = (elCenter - mid) * factor;
+          e.style.setProperty("--py", offset.toFixed(1) + "px");
+        });
+      }
+    }
+    const target = scrollRoot || window;
+    target.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
+    const raf = requestAnimationFrame(check);
+    const t = setTimeout(check, 140);
+    return () => {
+      target.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+      cancelAnimationFrame(raf);
+      clearTimeout(t);
+    };
+  }, [route]);
 
   function setDonateMode(m) { setDonateModeRaw(m); setDonateAmount(null); }
 
