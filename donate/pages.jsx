@@ -80,7 +80,10 @@ function HomePage({ navigate }) {
       <Divider variant="right" />
 
       <div className="tcs-challenge-cta">
-        <h2>Take on a challenge today and raise vital funds to bring hope to young people.</h2>
+        <div className="cc-head">
+          <span className="eyebrow" aria-hidden="true"></span>
+          <h2>Take on a challenge today and raise vital funds to bring hope to young people.</h2>
+        </div>
         <div className="cta"><TCSButton onClick={() => navigate("donate")}>Find a challenge</TCSButton></div>
       </div>
 

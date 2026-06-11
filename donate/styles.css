@@ -438,9 +438,10 @@ body {
   border-color: #000 !important;
 }
 .tcs-hero .btn-white:hover .tcs-icon { background-color: #fff !important; }
-.tcs-hero .btn:hover .tcs-icon,
+.tcs-hero .btn:not(.btn-white):hover .tcs-icon,
 .tcs-hero .btn-yellow:hover .tcs-icon { background-color: #000 !important; }
-.tcs-hero .btn:hover svg,
+.tcs-hero .btn-white:hover svg { color: #fff !important; }
+.tcs-hero .btn:not(.btn-white):hover svg,
 .tcs-hero .btn-yellow:hover svg { color: #000 !important; }
 
 .btn-yellow:hover {
@@ -1047,6 +1048,31 @@ body {
   max-width: 20ch;
   text-wrap: balance;
 }
+.tcs-challenge-cta .cc-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tcs-challenge-cta .cc-head .eyebrow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  align-self: flex-start;
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-tags, 14px);
+  font-weight: var(--weight-bold, 700);
+  line-height: 1.2;
+  letter-spacing: -0.011em;
+  color: #000;
+}
+.tcs-challenge-cta .cc-head .eyebrow::before {
+  content: "";
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background: url('./assets/icons/tag-mark.png') center/contain no-repeat;
+}
 .tcs-challenge-cta .cta { justify-self: end; }
 
 
@@ -1402,7 +1428,7 @@ body {
   background: #000;
   color: #fff;
 }
-.tcs-donate-widget-tabs button:not(.active):hover { background: rgba(0,0,0,0.1); }
+.tcs-donate-widget-tabs button:not(.active):hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 
 .tcs-donate-widget-amounts {
   display: grid;
@@ -1442,7 +1468,7 @@ body {
   position: relative;
   z-index: 1;
 }
-.tcs-donate-widget-amounts button:not(.active):hover { background: rgba(0,0,0,0.1); }
+.tcs-donate-widget-amounts button:not(.active):hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
   display: flex;
   flex-direction: column;
   gap: var(--space-l, 20px);
