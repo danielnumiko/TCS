@@ -53,7 +53,7 @@ function Header({ route, navigate }) {
           <nav className="tcs-header-nav">
             <a className={route === "home" ? "active" : ""} onClick={() => navigate("home")}>What we do</a>
             <a onClick={() => navigate("story")}>How you can help</a>
-            <a>Information for…</a>
+            <a>Resources and research</a>
             <a>About us</a>
           </nav>
         </div>
