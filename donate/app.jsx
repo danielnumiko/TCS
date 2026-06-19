@@ -17,16 +17,27 @@ function App() {
   useEffectApp(() => {
     const scrollRoot = document.querySelector(".tcs-prototype-window");
     const sel = ".tcs-divider, .tcs-hero .corner-arrow, .tcs-stories-grid, .intro-stat-num, .tcs-stat, .tcs-donate-impact .impact-stats .stat, .tcs-help";
+    // Stickers pop only once they've scrolled well into view (not while still
+    // clipped at the very bottom edge), so the animation is actually seen.
+    const popSel = ".donate-article-sticker, .tcs-footer-sig img";
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const parallaxSel = "[data-parallax]";
     function check() {
       const rootRect = scrollRoot ? scrollRoot.getBoundingClientRect() : { top: 0, bottom: window.innerHeight, height: window.innerHeight };
       const vTop = rootRect.top;
       const vBottom = rootRect.bottom;
+      const vH = vBottom - vTop;
       document.querySelectorAll(sel).forEach((e) => {
         if (e.classList.contains("is-drawn")) return;
         const r = e.getBoundingClientRect();
         if (r.top < vBottom - 60 && r.bottom > vTop) e.classList.add("is-drawn");
+      });
+      // Stickers: require the element to be at least ~30% up from the bottom
+      // edge before triggering, so the pop happens in clear view.
+      document.querySelectorAll(popSel).forEach((e) => {
+        if (e.classList.contains("is-drawn")) return;
+        const r = e.getBoundingClientRect();
+        if (r.top < vBottom - vH * 0.3 && r.bottom > vTop + 40) e.classList.add("is-drawn");
       });
       // Parallax: shift each tagged image layer relative to its distance
       // from the viewport centre, for a subtle depth effect.

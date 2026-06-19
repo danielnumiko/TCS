@@ -48,10 +48,10 @@ function HomePage({ navigate }) {
         </div>
       </div>
 
-      <QuoteSlice image="img-quote-banner" />
+      <QuoteSlice image="img-quote-banner" navigate={navigate} />
 
       <div className="tcs-stats-slice">
-        <h2 className="tcs-stats-heading">The crisis in <span className="hl">numbers</span></h2>
+        <h2 className="tcs-stats-heading">The crisis in numbers</h2>
         <StatRow
           stats={[
             { n: "16,000", l: "Young people were being criminally exploited by gangs or sexual predators." },
@@ -129,7 +129,7 @@ function DonatePage({ navigate, mode, setMode }) {
 
       <DonateSlice
         navigate={navigate}
-        image="img-portrait-2"
+        image="img-portrait-3"
         tab={tab} setTab={setTab}
         amount={amount} setAmount={setAmount}
       />
@@ -157,7 +157,7 @@ function DonatePage({ navigate, mode, setMode }) {
         items={[
           { heading: "Leave a gift in your will", body: "Leaving a gift in your will is a great way to support young people who need a little hope. Your money makes a huge difference.", image: "img-portrait-1" },
           { heading: "Other ways to give", body: "Become a box coordinator or leave a gift in your will. Here are some other ways you can transform the hopes of young people.", image: "img-group" },
-          { heading: "Paying in your donations", body: "There are different ways you can pay in your donations and collections. Read our information and choose the most convenient way for you.", image: "img-three-girls" },
+          { heading: "Paying in your donations", body: "There are different ways you can pay in your donations and collections. Read our information and choose the most convenient way for you.", image: "img-fundraising-collections" },
         ]}
       />
 
@@ -170,8 +170,8 @@ function DonatePage({ navigate, mode, setMode }) {
 
 function OtherWaysToGive() {
   const items = [
-    { eyebrow: "Gifts in wills",   title: "Leave a gift in your will and pass on hope to the next generation of young people.", image: "img-shoes" },
-    { eyebrow: "Give in memory",   title: "Honour someone special with a tribute fund or a memorial donation in their name.",   image: "img-paint" },
+    { eyebrow: "Gifts in wills",   title: "Leave a gift in your will and pass on hope to the next generation of young people.", image: "img-park" },
+    { eyebrow: "Give in memory",   title: "Honour someone special with a tribute fund or a memorial donation in their name.",   image: "img-fundraising-arts" },
     { eyebrow: "Corporate giving", title: "Major gifts, foundation grants and employee fundraising — let's build something.",  image: "img-hero-looking-up" },
   ];
   return (
@@ -1447,11 +1447,16 @@ function WeekInFocus() {
   );
 }
 
-function QuoteSlice({ image }) {
+function QuoteSlice({ image, navigate }) {
   return (
     <section className={`tcs-quote-slice ${image}`}>
       <div className="scrim"></div>
-      <img className="quote-headline" src="./assets/illustrations/freefall-headline-white.png" alt="It's like I'm in free fall" />
+      <div className="quote-inner">
+        <img className="quote-headline" src="./assets/illustrations/freefall-headline-white.png" alt="It's like I'm in free fall" />
+        <button type="button" className="btn btn-white" onClick={() => navigate && navigate("story")}>
+          Read my story <Icon name="chevron-right" />
+        </button>
+      </div>
     </section>
   );
 }
