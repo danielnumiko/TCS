@@ -31,11 +31,11 @@ function HomePage({ navigate }) {
         </div>
       </div>
 
-      <Divider variant="left" />
+      <HomeDonateSlice navigate={navigate} />
 
       <div className="tcs-stories-slice">
         <div className="text">
-          <h2>In their own words</h2>
+          <h2>In their own <span className="hl">words</span></h2>
           <p>When young people want to tell their story, we listen. These young people still believe in a better tomorrow.</p>
           <p>Often their stories aren't easy to tell, but they tell them. Because they know sharing their story will help them and others like them.</p>
           <TCSButton onClick={() => navigate("story")}>Read their stories</TCSButton>
@@ -48,9 +48,10 @@ function HomePage({ navigate }) {
         </div>
       </div>
 
-      <Divider variant="left" />
+      <QuoteSlice image="img-quote-banner" />
 
       <div className="tcs-stats-slice">
+        <h2 className="tcs-stats-heading">The crisis in <span className="hl">numbers</span></h2>
         <StatRow
           stats={[
             { n: "16,000", l: "Young people were being criminally exploited by gangs or sexual predators." },
@@ -60,37 +61,12 @@ function HomePage({ navigate }) {
         />
       </div>
 
-      <LargePromo
-        title="1 in 5 teens struggle with mental health."
-        body="In every English classroom, young people face mental health difficulties. You do not have to struggle alone — find local services and helplines here to get support."
-        image="img-promo-garden"
-        ctaLabel="Find your local services"
-        onCtaClick={() => navigate("story")}
-      />
-
-      <div className="tcs-teaser-slice">
-        <h2>Fundraising stories</h2>
-        <div className="tcs-teaser-grid">
-          <TeaserCard eyebrow="Trek and Walk, in person" title={'"Every mile we walk together helps build a safer, brighter future for a young person."'} image="img-fundraising-trek" />
-          <TeaserCard eyebrow="Arts and crafts" title={'"Using creativity to connect, share stories, and support local youth wellbeing."'} image="img-fundraising-arts" />
-          <TeaserCard eyebrow="Collections and sales" title={'"Every spare coin and local purchase makes a massive difference to a young life."'} image="img-fundraising-collections" />
-        </div>
-      </div>
-
-      <Divider variant="right" />
-
-      <div className="tcs-challenge-cta">
-        <div className="cc-head">
-          <span className="eyebrow" aria-hidden="true"></span>
-          <h2>Take on a challenge today and raise vital funds to bring hope to young people.</h2>
-        </div>
-        <div className="cta"><TCSButton onClick={() => navigate("donate")}>Find a challenge</TCSButton></div>
-      </div>
+      <WeekInFocus />
 
       <Divider variant="left" />
 
       <div className="tcs-howhelp-slice">
-        <h2>How you can help</h2>
+        <h2>How you can <span className="hl">help</span></h2>
         <div className="tcs-help-grid">
           <HelpCard ill="ill-placard"        title="Campaign" body="Help us create a society that is built for all children. Together we will listen to young people, give them a voice, and campaign for the change they need." />
           <HelpCard ill="ill-heart-hand"     title="Donate"           body="Your gift will contribute to our vital work with children across the country, giving young people hope, and a reason to believe in a brighter future." />
@@ -112,11 +88,11 @@ function DonatePage({ navigate, mode, setMode }) {
   const [localTab, setLocalTab] = useStatePages("oneoff");
   const tab = mode || localTab;
   const baseSetTab = setMode || setLocalTab;
-  const [amount, setAmount] = useStatePages(tab === "oneoff" ? "26" : "10");
+  const [amount, setAmount] = useStatePages(tab === "oneoff" ? "25" : "10");
   // Reset amount to the "most popular" default for the new tab on switch
   const setTab = (newTab) => {
     baseSetTab(newTab);
-    setAmount(newTab === "oneoff" ? "26" : "10");
+    setAmount(newTab === "oneoff" ? "25" : "10");
   };
 
   return (
@@ -129,10 +105,6 @@ function DonatePage({ navigate, mode, setMode }) {
       />
 
       <DonateArticleHeader />
-
-      <Divider />
-
-      <OtherWaysToGive />
 
       <Divider />
 
@@ -161,6 +133,10 @@ function DonatePage({ navigate, mode, setMode }) {
         tab={tab} setTab={setTab}
         amount={amount} setAmount={setAmount}
       />
+
+      <Divider />
+
+      <OtherWaysToGive />
 
       <AccordionSection
         title="Other ways to donate"
@@ -237,7 +213,7 @@ function DonateWidget({ navigate, tab, setTab, amount, setAmount }) {
       </div>
 
       <div className="tcs-donate-widget-amounts">
-        {(tab === "monthly" ? ["5", "10", "20", "Other"] : ["10", "26", "50", "Other"]).map((a) => (
+        {(tab === "monthly" ? ["5", "10", "20", "Other"] : ["10", "25", "50", "Other"]).map((a) => (
           <button key={a} className={amount === a ? "active" : ""} onClick={() => setAmount(a)}>
             {a === "Other" ? "Other" : `£${a}`}
           </button>
@@ -252,7 +228,7 @@ function DonateWidget({ navigate, tab, setTab, amount, setAmount }) {
           : "Whether it's a little or a lot, give monthly and make a lasting difference to a young person."
         ) : (
           amount === "10"     ? "£10 could allow a teenager to travel to one of our services, so they can begin to move forward."
-          : amount === "26"   ? <><strong>Our most popular gift —</strong> £26 could fund a 30-minute support session between a young person and a trained professional.</>
+          : amount === "25"   ? <><strong>Our most popular gift —</strong> £25 could fund a 30-minute support session between a young person and a trained professional.</>
           : amount === "50"   ? "£50 could help provide a group session for teenagers who are struggling with their wellbeing."
           : "Whether a little or a lot, whatever you can give will make a huge difference to a young person."
         )}
@@ -271,10 +247,6 @@ function DonateWidget({ navigate, tab, setTab, amount, setAmount }) {
         </div>
       ) : null}
 
-      <p className="tcs-donate-widget-philanthropy">
-        Making a larger gift? <a href="#" onClick={(e) => e.preventDefault()}>Talk to our philanthropy team</a>
-      </p>
-
       <button className="tcs-donate-widget-submit" onClick={() => navigate && navigate("details")}>
         <span>Donate now</span>
         <span className="secure">
@@ -283,11 +255,11 @@ function DonateWidget({ navigate, tab, setTab, amount, setAmount }) {
         </span>
       </button>
 
+      <div className="tcs-donate-widget-foot">
       <div className="tcs-donate-widget-payments">
         {tab === "monthly" ? (
           <>
             <img className="pay pay-dd-img" src="./assets/logos/direct-debit-mark.png" alt="Direct Debit" />
-            <span className="pay pay-paypal">PayPal</span>
           </>
         ) : (
           <>
@@ -298,6 +270,12 @@ function DonateWidget({ navigate, tab, setTab, amount, setAmount }) {
             <span className="pay pay-paypal">PayPal</span>
           </>
         )}
+      </div>
+
+      <div className="tcs-donate-widget-fr">
+        <span className="fr-roundel">FR</span>
+        <span className="fr-text">Registered 2025/26<br/><strong>FUNDRAISING REGULATOR</strong></span>
+      </div>
       </div>
     </div>
   );
@@ -318,6 +296,7 @@ function DonateArticleHeader() {
         <h1>Donate today</h1>
         <p>Right now, there are children living through abuse, exploitation and neglect. For them, childhood is a daily battle, with nowhere to turn. You can change this.  By donating today, you enable our project workers to transform lives. You can help young people to break free and find hope for a brighter future.</p>
       </div>
+      <img className="donate-article-sticker" src="./assets/illustrations/save-teenhood-sticker.png" alt="Save Teenhood" />
     </section>
   );
 }
@@ -412,7 +391,6 @@ function RelatedBlock({ title, items }) {
           <div className="tcs-related-card" key={i}>
             <div className="rc-media">
               <div className={`img ${it.image}`}></div>
-              <img className="teaser-sticker" src="./assets/illustrations/explore-sticker.png" alt="" aria-hidden="true" />
             </div>
             <a href="#" className="related-heading" onClick={(e) => e.preventDefault()}>{it.heading}</a>
             <p>{it.body}</p>
@@ -509,16 +487,16 @@ function StoryPage({ navigate }) {
 */
 
 function DetailsPage({ navigate, mode = "monthly", setMode, amount: amountProp, setAmount: setAmountProp }) {
-  const [emailOK, setEmailOK] = useStatePages(true);
-  const [textOK, setTextOK] = useStatePages(false);
-  const [postOK, setPostOK] = useStatePages(false);
+  const [emailPref, setEmailPref] = useStatePages(null);
+  const [textPref, setTextPref] = useStatePages(null);
   const [ddDay, setDdDay] = useStatePages("3rd");
   const [giftAid, setGiftAid] = useStatePages(false);
+  const [ddAuth, setDdAuth] = useStatePages(false);
   const [confirmOneoff, setConfirmOneoff] = useStatePages(false);
   const [paymentMethod, setPaymentMethod] = useStatePages(null);
-  const [inMemory, setInMemory] = useStatePages(false);
+  const [walletReturn, setWalletReturn] = useStatePages(null);
 
-  const amount = amountProp != null ? amountProp : (mode === "monthly" ? "10" : "26");
+  const amount = amountProp != null ? amountProp : (mode === "monthly" ? "10" : "25");
   const setAmount = setAmountProp;
   // Upsell: suggest the next tier up, with impact context.
   const amt = parseFloat(amount);
@@ -536,29 +514,31 @@ function DetailsPage({ navigate, mode = "monthly", setMode, amount: amountProp, 
     window.scrollTo({ top: 0, behavior: "instant" });
   }
   function selectMethod(m) {
+    setWalletReturn(null);
     setPaymentMethod(m);
     scrollFormTop();
   }
 
   function handlePayPal() {
     setPaymentMethod("paypal");
-    // Simulate the PayPal round-trip. ~60% land back authorised → Thanks.
-    // Otherwise they return having cancelled → "paypal-cancelled" state.
+    // Simulate the PayPal round-trip. Most land back authorised → return to
+    // OUR site to capture the remaining supporter details. Some cancel.
     setTimeout(() => {
-      if (Math.random() < 0.6) {
-        navigate("thanks");
+      if (Math.random() < 0.75) {
+        setWalletReturn("paypal");
+        scrollFormTop();
       } else {
         setPaymentMethod("paypal-cancelled");
       }
-    }, 1400);
+    }, 1200);
   }
   function handleApplePay() {
     setPaymentMethod("applepay");
-    setTimeout(() => navigate("thanks"), 800);
+    setTimeout(() => { setWalletReturn("applepay"); scrollFormTop(); }, 900);
   }
   function handleGooglePay() {
     setPaymentMethod("googlepay");
-    setTimeout(() => navigate("thanks"), 800);
+    setTimeout(() => { setWalletReturn("googlepay"); scrollFormTop(); }, 900);
   }
 
   return (
@@ -569,14 +549,17 @@ function DetailsPage({ navigate, mode = "monthly", setMode, amount: amountProp, 
         </a>
         <div className="tcs-form-panel">
           <div className="tcs-form-amount-panel">
+            <h1 className="tcs-form-heading">You're about to do something special</h1>
             <p className="tcs-form-context">
-              You are making a <strong>{mode === "monthly" ? "monthly donation of " : "donation of "}£{amount}{mode === "monthly" ? " a month" : ""}</strong>.
+              {mode === "monthly"
+                ? <>You're giving a <strong>monthly donation of £{amount}</strong> by Direct Debit. Thank you, your gift will give a child a brighter future.</>
+                : <>You're giving a <strong>donation of £{amount}</strong>. Thank you, your gift will give a child a brighter future.</>}
             </p>
           </div>
 
-          <FormProgress step={expanded ? 2 : 1} onBack={expanded ? () => selectMethod(null) : null} onChangeAmount={!expanded ? () => navigate("donate") : null} />
+          <StepIndicator steps={["Amount", "Your gift", "Your details"]} current={expanded ? 2 : 1} onStepBack={(i) => { if (i === 0) navigate("donate"); else if (i === 1) selectMethod(null); }} />
 
-          {!expanded ? <GiftAidBand amount={amount} checked={giftAid} onChange={setGiftAid} /> : null}
+          {!expanded ? <GiftAidBand amount={amount} mode={mode} checked={giftAid} onChange={setGiftAid} /> : null}
 
           {mode === "monthly" ? (
             <>
@@ -594,15 +577,13 @@ function DetailsPage({ navigate, mode = "monthly", setMode, amount: amountProp, 
                           <span>Pay by Direct Debit</span>
                           <img className="pay-btn-dd" src="./assets/logos/direct-debit-mark.png" alt="" aria-hidden="true" />
                         </button>
-                        <button type="button" className="tcs-pay-btn pay-paypal" onClick={handlePayPal}>
-                          <span>Pay with <span className="pp">PayPal</span></span>
-                        </button>
                       </div>
                       <a href="#" className="tcs-paybtns-change" onClick={(e) => { e.preventDefault(); navigate("donate"); }}>Change your amount</a>
                     </>
                   )}
                 </div>
               ) : null}
+              {!expanded && !walletReturn ? <FormTrustBand showLogos={false} /> : null}
 
               {paymentMethod === "dd" ? (
                 <>
@@ -628,32 +609,46 @@ function DetailsPage({ navigate, mode = "monthly", setMode, amount: amountProp, 
                         ))}
                       </div>
                     </div>
+                    <div className="tcs-form-mandate">
+                      <h3 className="tcs-form-mandate-title">Direct Debit mandate</h3>
+                      <p className="tcs-form-hint">If you are not the only required signatory on your account, please call our friendly Supporter Care team on <a href="#" onClick={(e) => e.preventDefault()}>0300 303 7000</a> or email <a href="#" onClick={(e) => e.preventDefault()}>supportercare@childrenssociety.org.uk</a></p>
+                      <label className="tcs-form-check">
+                        <input type="checkbox" checked={ddAuth} onChange={(e) => setDdAuth(e.target.checked)} />
+                        <span className="tcs-form-check-box"></span>
+                        <span className="tcs-form-check-label">I am the account holder and I am the only person required to authorise debits from this account</span>
+                      </label>
+                      <div className="tcs-form-dd-guarantee">
+                        <img className="dd-logo" src="./assets/logos/direct-debit-mark.png" alt="Direct Debit" />
+                        <span className="dd-guarantee-text">The Direct Debit Guarantee</span>
+                      </div>
+                    </div>
                   </NumberedSection>
 
                   <NumberedSection number={2} title="Your Details">
                     <FormField label="First name" required />
                     <FormField label="Last name" required />
                     <FormField label="Email address" type="email" required hint="So we can email your donation receipt." />
-                    {textOK ? (
-                      <FormField label="Phone number" type="tel" required hint="So we can text you the occasional update." />
+                    {textPref === "yes" ? (
+                      <FormField label="Phone number" type="tel" hint="So we can text you the occasional update." />
                     ) : null}
                     <PostcodeLookup />
                   </NumberedSection>
 
                   <NumberedSection number={3} title="Keep in touch">
-                    <p className="tcs-form-section-body">Yes please, I'd like to hear how my support helps young people. Tick any that suit you — uncheck anything you'd rather not get.</p>
-                    <FormCheck label="Email updates" checked={emailOK} onChange={setEmailOK} />
-                    <FormCheck label="Text updates"  checked={textOK}  onChange={setTextOK} />
-                    <FormCheck label="Post updates"  checked={postOK}  onChange={setPostOK} />
+                    <p className="tcs-form-section-body">The Children's Society would like to contact you about how you can support children by campaigning, volunteering and providing financial support.</p>
+                    <ConsentChoice label="I'm happy to be contacted by email:" value={emailPref} onChange={setEmailPref} />
+                    <ConsentChoice label="I'm happy to be contacted by text:" value={textPref} onChange={setTextPref} />
+                    <p className="tcs-form-section-body tcs-form-consent-post">We may also contact you by post and, if you have provided your number, telephone. If you do not wish to hear from us, or have a preferred contact method, simply let our friendly Supporter Care team know by calling <a href="#" onClick={(e) => e.preventDefault()}>0300 303 7000</a> or emailing <a href="#" onClick={(e) => e.preventDefault()}>supportercare@childrenssociety.org.uk</a>.</p>
                   </NumberedSection>
 
                   <p className="tcs-form-privacy">
-                    You can update your preferences any time. See our <a href="#" onClick={(e) => e.preventDefault()}>Privacy Policy</a> for how we keep your information safe.
+                    Please see our <a href="#" onClick={(e) => e.preventDefault()}>Privacy Policy</a> for details of how we will use your personal information and keep it safe and secure.
                   </p>
 
                   <div className="tcs-form-commit">
+                    <p className="tcs-form-commit-confirm">You're about to donate <strong>£{amount} a month</strong>, with your first payment taken on the {ddDay} of next month. You can change or cancel anytime.</p>
                     <button className="tcs-form-submit" onClick={() => navigate("thanks")}>
-                      <span>Set up your £{amount} monthly gift</span>
+                      <span>Confirm your £{amount} monthly gift</span>
                     </button>
                     <div className="tcs-form-commit-box">
                       {!upsellTaken ? (
@@ -687,7 +682,18 @@ function DetailsPage({ navigate, mode = "monthly", setMode, amount: amountProp, 
             <>
               {!expanded ? (
                 <div className="tcs-form-section tcs-form-paymethod">
-                  {paymentMethod === "paypal" ? (
+                  {walletReturn ? (
+                    <WalletReturnCapture
+                      method={walletReturn}
+                      amount={amount}
+                      giftAid={giftAid}
+                      setGiftAid={setGiftAid}
+                      emailPref={emailPref}
+                      setEmailPref={setEmailPref}
+                      onComplete={() => navigate("thanks")}
+                      onBack={() => { setWalletReturn(null); setPaymentMethod(null); }}
+                    />
+                  ) : paymentMethod === "paypal" ? (
                     <p className="tcs-form-section-body"><strong>Redirecting to PayPal…</strong></p>
                   ) : paymentMethod === "applepay" ? (
                     <p className="tcs-form-section-body"><strong>Opening Apple Pay…</strong></p>
@@ -720,6 +726,7 @@ function DetailsPage({ navigate, mode = "monthly", setMode, amount: amountProp, 
                   )}
                 </div>
               ) : null}
+              {!expanded && !walletReturn ? <FormTrustBand showLogos={false} /> : null}
 
               {paymentMethod === "card" ? (
                 <>
@@ -741,29 +748,29 @@ function DetailsPage({ navigate, mode = "monthly", setMode, amount: amountProp, 
                     <FormField label="First name" required />
                     <FormField label="Last name" required />
                     <FormField label="Email address" type="email" required hint="So we can email your donation receipt." />
-                    {textOK ? (
-                      <FormField label="Phone number" type="tel" required hint="So we can text you the occasional update." />
+                    {textPref === "yes" ? (
+                      <FormField label="Phone number" type="tel" hint="So we can text you the occasional update." />
                     ) : null}
-                    {postOK ? (
-                      <>
-                        <FormField label="Postcode" required hint="We'll use this to look up your address." />
-                        <a href="#" className="tcs-form-link" onClick={(e) => e.preventDefault()}>Or enter address manually</a>
-                      </>
-                    ) : null}
+                    <PostcodeLookup hint="So we can keep your records up to date." />
                   </NumberedSection>
 
                   <NumberedSection number={3} title="Keep in touch">
-                    <p className="tcs-form-section-body">Yes please, I'd like to hear how my support helps young people. Tick any that suit you — uncheck anything you'd rather not get.</p>
-                    <FormCheck label="Email updates" checked={emailOK} onChange={setEmailOK} />
-                    <FormCheck label="Text updates"  checked={textOK}  onChange={setTextOK} />
-                    <FormCheck label="Post updates"  checked={postOK}  onChange={setPostOK} />
+                    <p className="tcs-form-section-body">The Children's Society would like to contact you about how you can support children by campaigning, volunteering and providing financial support.</p>
+                    <ConsentChoice label="I'm happy to be contacted by email:" value={emailPref} onChange={setEmailPref} />
+                    <ConsentChoice label="I'm happy to be contacted by text:" value={textPref} onChange={setTextPref} />
+                    <p className="tcs-form-section-body tcs-form-consent-post">We may also contact you by post and, if you have provided your number, telephone. If you do not wish to hear from us, or have a preferred contact method, simply let our friendly Supporter Care team know by calling <a href="#" onClick={(e) => e.preventDefault()}>0300 303 7000</a> or emailing <a href="#" onClick={(e) => e.preventDefault()}>supportercare@childrenssociety.org.uk</a>.</p>
                   </NumberedSection>
 
                   <p className="tcs-form-privacy">
-                    You can update your preferences any time. See our <a href="#" onClick={(e) => e.preventDefault()}>Privacy Policy</a> for how we keep your information safe.
+                    Please see our <a href="#" onClick={(e) => e.preventDefault()}>Privacy Policy</a> for details of how we will use your personal information and keep it safe and secure.
                   </p>
 
                   <div className="tcs-form-commit">
+                    <label className="tcs-form-check tcs-form-confirm-check">
+                      <input type="checkbox" checked={confirmOneoff} onChange={(e) => setConfirmOneoff(e.target.checked)} />
+                      <span className="tcs-form-check-box"></span>
+                      <span className="tcs-form-check-label">Please confirm that <strong>you are donating £{amount}</strong> to help keep hope alive for vulnerable young people.</span>
+                    </label>
                     <button className="tcs-form-submit" onClick={() => navigate("thanks")}>
                       <span>Donate £{amount} today</span>
                     </button>
@@ -814,32 +821,67 @@ function FormProgress({ step, onBack, onChangeAmount }) {
         ))}
       </div>
       <div className="tcs-form-progress-labels">
-        {stages.map((s, i) => (
-          <span key={i} className={"tcs-form-progress-label" + (i === step - 1 ? " current" : "")}>
-            {s}
-          </span>
-        ))}
+        {stages.map((s, i) => {
+          const canBack = i === 0 && step === 2 && !!onBack;
+          return (
+            <span
+              key={i}
+              className={"tcs-form-progress-label" + (i === step - 1 ? " current" : "") + (canBack ? " is-back" : "")}
+              onClick={canBack ? (e) => { e.preventDefault(); onBack(); } : undefined}
+              role={canBack ? "button" : undefined}
+              tabIndex={canBack ? 0 : undefined}
+            >
+              {s}{canBack ? <span className="back-tag">Back</span> : null}
+            </span>
+          );
+        })}
       </div>
     </div>
   );
 }
 
-function GiftAidBand({ amount, checked, onChange }) {
-  const boosted = (parseFloat(amount) * 0.25).toFixed(2);
+function WalletReturnCapture({ method, amount, giftAid, setGiftAid, emailPref, setEmailPref, onComplete, onBack }) {
+  const label = method === "paypal" ? "PayPal" : method === "applepay" ? "Apple Pay" : "Google Pay";
+  return (
+    <div className="tcs-wallet-return">
+      <span className="tcs-wallet-badge"><Icon name="padlock" size="sm" /> Payment authorised with {label}</span>
+      <h2 className="tcs-wallet-title">Confirm a few details</h2>
+      <p className="tcs-form-section-body">{label} has authorised your <strong>£{amount}</strong> gift. We just need a few details from you directly — {label} doesn't share these with us — so we can send your receipt and, if you choose, claim Gift Aid.</p>
+      <FormField label="First name" required />
+      <FormField label="Last name" required />
+      <FormField label="Email address" type="email" required hint="So we can email your donation receipt." />
+      <GiftAidBand amount={amount} mode="oneoff" checked={giftAid} onChange={setGiftAid} />
+      <div className="tcs-wallet-consent">
+        <p className="tcs-form-section-body">The Children's Society would like to contact you about how you can support children by campaigning, volunteering and providing financial support.</p>
+        <ConsentChoice label="I'm happy to be contacted by email:" value={emailPref} onChange={setEmailPref} />
+      </div>
+      <p className="tcs-form-privacy">Please see our <a href="#" onClick={(e) => e.preventDefault()}>Privacy Policy</a> for details of how we will use your personal information and keep it safe and secure.</p>
+      <button className="tcs-form-submit" onClick={onComplete}><span>Complete your £{amount} donation</span></button>
+      <a href="#" className="tcs-paybtns-change" onClick={(e) => { e.preventDefault(); onBack(); }}>Use a different payment method</a>
+      <FormTrustBand showLogos={false} />
+    </div>
+  );
+}
+
+function GiftAidBand({ amount, mode, checked, onChange }) {
+  const amt = (parseFloat(amount)).toFixed(2);
   const total = (parseFloat(amount) * 1.25).toFixed(2);
   return (
     <div className="tcs-form-giftaid-band">
       <div className="tcs-giftaid-inner">
-        <p className="tcs-giftaid-lead">
-          <strong>Boost your donation by £{boosted}</strong> at no extra cost with Gift Aid. All it takes is one click to make your donation go 25% further — worth <strong>£{total}</strong>.
-        </p>
+        <img className="tcs-giftaid-logo" src="./assets/logos/giftaid-it.png" alt="Gift Aid it" />
+        <p className="tcs-giftaid-lead">If you are a UK taxpayer, the value of your gift can be increased by 25% under the <strong>Gift Aid</strong> scheme at no extra cost to you.</p>
+        <p className="tcs-giftaid-lead">This means every time you donate <strong>£{amt}</strong> it's worth <strong>£{total}</strong> to us.</p>
+        {mode !== "monthly" ? (
+          <p className="tcs-giftaid-lead">Please note that we can only <strong>Gift Aid</strong> donations from individual donors — if you're paying in a donation from a collection/event or business please do not tick the box to <strong>Gift Aid</strong> this donation.</p>
+        ) : null}
+        <p className="tcs-giftaid-lead">If you pay less Income Tax and/or Capital Gains Tax than the amount of <strong>Gift Aid</strong> claimed on all of your donations in that tax year it is your responsibility to pay any difference.</p>
         <label className="tcs-giftaid-check">
           <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} />
           <span className="tcs-giftaid-box"></span>
-          <span className="tcs-giftaid-label"><strong>Yes</strong>, I'm a UK taxpayer and I'd like The Children's Society to claim Gift Aid on this donation, any future donations and any I've made in the past 4 years.*</span>
+          <span className="tcs-giftaid-label">Yes, I am a UK tax payer and I would like The Children's Society to treat all donations I have made for the four years prior to this tax year, today, and all donations I make from the date of this declaration as Gift Aid donations, until I notify you otherwise.</span>
         </label>
       </div>
-      <p className="tcs-giftaid-foot">* By ticking, I confirm I am a UK taxpayer and understand that if I pay less Income Tax and/or Capital Gains Tax than the amount of Gift Aid claimed on all my donations in that tax year, it is my responsibility to pay any difference. <a href="#" onClick={(e) => e.preventDefault()}>Read more</a></p>
     </div>
   );
 }
@@ -858,19 +900,27 @@ function NumberedSection({ number, title, children }) {
   );
 }
 
-function StepIndicator({ current }) {
-  const steps = ["Amount", "Details", "Payment"];
+function StepIndicator({ steps = ["Amount", "Details", "Payment"], current, onStepBack }) {
   return (
     <div className="tcs-form-steps">
-      {steps.map((s, i) => (
-        <React.Fragment key={i}>
-          <div className={"tcs-form-step " + (i < current ? "done" : i === current ? "active" : "")}>
-            <span className="dot">{i < current ? "✓" : (i + 1)}</span>
-            <span className="label">{s}</span>
-          </div>
-          {i < steps.length - 1 ? <div className="tcs-form-step-line"></div> : null}
-        </React.Fragment>
-      ))}
+      {steps.map((s, i) => {
+        const done = i < current;
+        const clickable = done && !!onStepBack;
+        return (
+          <React.Fragment key={i}>
+            <div
+              className={"tcs-form-step " + (done ? "done" : i === current ? "active" : "") + (clickable ? " is-back" : "")}
+              onClick={clickable ? () => onStepBack(i) : undefined}
+              role={clickable ? "button" : undefined}
+              tabIndex={clickable ? 0 : undefined}
+            >
+              <span className="dot">{done ? "✓" : (i + 1)}</span>
+              <span className="label">{s}</span>
+            </div>
+            {i < steps.length - 1 ? <div className="tcs-form-step-line"></div> : null}
+          </React.Fragment>
+        );
+      })}
     </div>
   );
 }
@@ -896,7 +946,25 @@ function FormCheck({ label, checked, onChange }) {
   );
 }
 
-function PostcodeLookup() {
+function ConsentChoice({ label, value, onChange }) {
+  return (
+    <div className="tcs-form-consent">
+      <p className="tcs-form-consent-q">{label} <span className="required">*</span></p>
+      <div className="tcs-form-consent-opts">
+        <label className={"tcs-consent-opt" + (value === "yes" ? " sel" : "")}>
+          <input type="radio" checked={value === "yes"} onChange={() => onChange("yes")} />
+          <span>Yes, please</span>
+        </label>
+        <label className={"tcs-consent-opt" + (value === "no" ? " sel" : "")}>
+          <input type="radio" checked={value === "no"} onChange={() => onChange("no")} />
+          <span>No, sorry!</span>
+        </label>
+      </div>
+    </div>
+  );
+}
+
+function PostcodeLookup({ hint = "Required for your Direct Debit instruction." }) {
   const [stage, setStage] = useStatePages("lookup"); // lookup → results → manual
   const [postcode, setPostcode] = useStatePages("");
   const [selected, setSelected] = useStatePages("");
@@ -912,7 +980,7 @@ function PostcodeLookup() {
   return (
     <div className="tcs-form-address">
       <label className="tcs-form-label">Home address <span className="required">*</span></label>
-      <p className="tcs-form-hint">Required for your Direct Debit instruction.</p>
+      <p className="tcs-form-hint">{hint}</p>
 
       {stage === "lookup" ? (
         <>
@@ -981,11 +1049,11 @@ function FormTrustBand({ showLogos = true }) {
       <div className="tcs-form-trust-assurance">
         <div className="fr-badge">
           <span className="fr-roundel">FR</span>
-          <span className="fr-text">Registered with<br/><strong>FUNDRAISING REGULATOR</strong></span>
+          <span className="fr-text">Registered 2025/26<br/><strong>FUNDRAISING REGULATOR</strong></span>
         </div>
         <div className="assurance-copy">
           <p className="charity-no">Registered charity no. 221124</p>
-          <p className="secure-note"><Icon name="padlock" size="sm" /> 100% secure — your data is protected</p>
+          <p className="secure-note"><Icon name="padlock" size="sm" /> Secure, encrypted donation</p>
         </div>
       </div>
     </div>
@@ -1001,7 +1069,7 @@ function PaymentPage({ navigate, mode = "monthly", setMode }) {
   const [ddDay, setDdDay] = useStatePages("3rd");
   const [giftAid, setGiftAid] = useStatePages(false);
   const [mandate, setMandate] = useStatePages(false);
-  const amount = mode === "monthly" ? "10" : "26";
+  const amount = mode === "monthly" ? "10" : "25";
 
   return (
     <div className="tcs-page-content" data-screen-label="04 Payment">
@@ -1109,8 +1177,8 @@ function PaymentPage({ navigate, mode = "monthly", setMode }) {
      has been REMOVED — it now goes into a follow-up email instead.
    - Payment-method marks carried through via the trust strip. */
 
-function ThanksPage({ navigate, mode = "monthly", setMode, amount: amountProp }) {
-  const amount = amountProp != null ? amountProp : (mode === "monthly" ? "10" : "26");
+function ThanksPage({ navigate, mode = "monthly", setMode, amount: amountProp, version = "ambitious" }) {
+  const amount = amountProp != null ? amountProp : (mode === "monthly" ? "10" : "25");
   const name = "Sarah";
   const email = "sarah@example.com";
   const reference = "TCS-2026-04823";
@@ -1123,16 +1191,31 @@ function ThanksPage({ navigate, mode = "monthly", setMode, amount: amountProp })
           <img src="./assets/logo-white.svg" alt="The Children's Society" />
         </a>
         <div className="tcs-thanks-card">
-          <span className="tcs-thanks-eyebrow">Donation confirmed</span>
-          <h1 className="tcs-thanks-heading">{mode === "monthly" ? "You're amazing, thank you!" : "You're great, thank you!"}</h1>
+          {version !== "standard" ? <span className="tcs-thanks-eyebrow">Donation confirmed</span> : null}
+          <h1 className="tcs-thanks-heading">{mode === "monthly" ? "You're amazing, thank you!" : "You're amazing, thank you!"}</h1>
           <p className="tcs-thanks-lead">
             {mode === "monthly" ? (
-              <>You've started something lasting. Your <strong>£{amount} will reach a young person every single month</strong> — and your first gift leaves your account on <strong>{firstPaymentDate}</strong>. Thank you for standing with them for the long haul.</>
+              <>With your support, we can improve the lives of even more children and young people across the UK.</>
             ) : (
-              <>Your <strong>£{amount} gift</strong> is on its way to a young person who needs it. Thank you.</>
+              <>We are grateful for every gift. You can have a bigger impact by donating a smaller amount each month, supporting long-term projects and helping more children to grow up happy, healthy and hopeful.</>
             )}
           </p>
+          {mode !== "monthly" ? (
+            <button className="tcs-thanks-monthly-cta" onClick={() => { setMode && setMode("monthly"); navigate("donate"); }}>
+              <span>Donate Monthly</span>
+              <Icon name="chevron-right" size="sm" />
+            </button>
+          ) : null}
 
+          {version === "standard" ? (
+            <div className="tcs-thanks-standard-foot">
+              <p className="tcs-thanks-care">If you have any queries or want to update your details please get in touch with our Supporter Care team on <a href="#" onClick={(e) => e.preventDefault()}>0300 303 7000</a> or email <a href="#" onClick={(e) => e.preventDefault()}>supportercare@childrenssociety.org.uk</a></p>
+              {mode === "monthly" ? (
+                <button className="tcs-thanks-follow"><span>Follow us</span><Icon name="facebook" size="sm" /></button>
+              ) : null}
+            </div>
+          ) : (
+          <>
           <div className="tcs-thanks-summary">
             <div className="row"><span className="lbl">Amount</span><span className="val">£{amount}{mode === "monthly" ? " a month" : ""}</span></div>
             <div className="row"><span className="lbl">{mode === "monthly" ? "First payment" : "Date"}</span><span className="val">{firstPaymentDate}</span></div>
@@ -1161,6 +1244,16 @@ function ThanksPage({ navigate, mode = "monthly", setMode, amount: amountProp })
             </div>
           </div>
 
+          <div className="tcs-thanks-assurance">
+            <div className="fr-badge">
+              <span className="fr-roundel">FR</span>
+              <span className="fr-text">Registered 2025/26<br/><strong>FUNDRAISING REGULATOR</strong></span>
+            </div>
+            <p className="charity-no">Registered charity no. 221124</p>
+          </div>
+          </>
+          )}
+
           <p className="tcs-thanks-mode-toggle">
             Previewing the <strong>{mode === "monthly" ? "monthly" : "one-off"}</strong> confirmation. Switch journey via the prototype nav above.
           </p>
@@ -1172,10 +1265,201 @@ function ThanksPage({ navigate, mode = "monthly", setMode, amount: amountProp })
   );
 }
 
+function StandardFormPage({ navigate, mode = "monthly", setMode, amount: amountProp }) {
+  const amount = amountProp != null ? amountProp : (mode === "monthly" ? "10" : "25");
+  const [step, setStep] = useStatePages(1); // 1 = your details · 2 = payment details
+  const [title, setTitle] = useStatePages("");
+  const [emailPref, setEmailPref] = useStatePages(null);
+  const [textPref, setTextPref] = useStatePages(null);
+  const [confirmOneoff, setConfirmOneoff] = useStatePages(false);
+  const [ddDay, setDdDay] = useStatePages("3rd");
+  const [giftAid, setGiftAid] = useStatePages(false);
+  const [ddAuth, setDdAuth] = useStatePages(false);
+
+  function go(n) {
+    setStep(n);
+    const win = document.querySelector(".tcs-prototype-window");
+    if (win) win.scrollTo({ top: 0, behavior: "instant" });
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }
+
+  return (
+    <div className="tcs-page-content" data-screen-label={mode === "monthly" ? "Existing — Monthly" : "Existing — One-off"}>
+      <section className="tcs-form-slice img-portrait-2">
+        <a href="#" className="tcs-form-logo" onClick={(e) => { e.preventDefault(); navigate("home"); }} aria-label="The Children's Society — home">
+          <img src="./assets/logo-white.svg" alt="The Children's Society" />
+        </a>
+        <div className="tcs-form-panel">
+          {step === 1 ? (
+            <>
+              <h1 className="tcs-form-heading">You're about to do something special</h1>
+              <p className="tcs-form-context">
+                {mode === "monthly"
+                  ? <>You're giving a <strong>monthly donation of £{amount}</strong> by Direct Debit. Thank you, your gift will give a child a brighter future.</>
+                  : <>You're giving a <strong>donation of £{amount}</strong>. Thank you, your gift will give a child a brighter future.</>}
+              </p>
+              <StepIndicator current={1} />
+
+              <div className="tcs-form-field">
+                <label className="tcs-form-label">Title <span className="required">*</span></label>
+                <div className="tcs-form-select">
+                  <select value={title} onChange={(e) => setTitle(e.target.value)}>
+                    <option value="">Please select</option>
+                    {["Mr", "Mrs", "Ms", "Miss", "Mx", "Dr"].map((t) => <option key={t} value={t}>{t}</option>)}
+                  </select>
+                  <Icon name="chevron-down-accordion" size="sm" />
+                </div>
+              </div>
+              <FormField label="First name" required />
+              <FormField label="Last name" required />
+              <FormField label="Email address" type="email" required />
+              <PostcodeLookup hint="So we can keep your records up to date." />
+              <FormField label="Phone number" type="tel" />
+
+              <div className="tcs-std-section">
+                <h2 className="tcs-form-section-heading">Keep in touch</h2>
+                <p className="tcs-form-section-body">The Children's Society would like to contact you about how you can support children by campaigning, volunteering and providing financial support.</p>
+                <ConsentChoice label="I'm happy to be contacted by email:" value={emailPref} onChange={setEmailPref} />
+                <ConsentChoice label="I'm happy to be contacted by text:" value={textPref} onChange={setTextPref} />
+                <p className="tcs-form-section-body tcs-form-consent-post">We may also contact you by post and, if you have provided your number, telephone. If you do not wish to hear from us, or have a preferred contact method, simply let our friendly Supporter Care team know by calling <a href="#" onClick={(e) => e.preventDefault()}>0300 303 7000</a> or emailing <a href="#" onClick={(e) => e.preventDefault()}>supportercare@childrenssociety.org.uk</a>.</p>
+              </div>
+
+              <p className="tcs-form-privacy">Please see our <a href="#" onClick={(e) => e.preventDefault()}>Privacy Policy</a> for details of how we will use your personal information and keep it safe and secure.</p>
+
+              {mode !== "monthly" ? (
+                <>
+                  <p className="tcs-form-section-body">Please confirm that <strong>you are donating £{amount}</strong> to help keep hope alive for vulnerable young people</p>
+                  <label className="tcs-form-check tcs-form-confirm-check">
+                    <input type="checkbox" checked={confirmOneoff} onChange={(e) => setConfirmOneoff(e.target.checked)} />
+                    <span className="tcs-form-check-box"></span>
+                    <span className="tcs-form-check-label">Yes, I confirm</span>
+                  </label>
+                </>
+              ) : null}
+
+              <button className="tcs-form-submit" onClick={() => go(2)}><span>Continue</span></button>
+              <FormTrustBand showLogos={false} />
+            </>
+          ) : (
+            <>
+              <h1 className="tcs-form-heading">Payment details</h1>
+              <StepIndicator current={2} />
+
+              {mode === "monthly" ? (
+                <>
+                  <div className="tcs-form-field">
+                    <label className="tcs-form-label">What day would you like your Direct Debit to go out?</label>
+                    <div className="tcs-form-day-picker">
+                      {["3rd", "10th", "17th"].map((d) => (
+                        <button key={d} type="button" className={"day-pill " + (ddDay === d ? "active" : "")} onClick={() => setDdDay(d)}>{d}</button>
+                      ))}
+                    </div>
+                  </div>
+                  <FormField label="Name of account holder(s)" required hint="Exactly as it appears on your bank statement" />
+                  <FormField label="Account number" required hint="Should be a maximum of 8 digits" />
+                  <div className="tcs-form-field">
+                    <label className="tcs-form-label">Sort code <span className="required">*</span></label>
+                    <p className="tcs-form-hint">Enter the 6 digit sort code for your account</p>
+                    <div className="tcs-form-sort-code">
+                      <input className="tcs-form-input" type="text" maxLength={2} />
+                      <span>—</span>
+                      <input className="tcs-form-input" type="text" maxLength={2} />
+                      <span>—</span>
+                      <input className="tcs-form-input" type="text" maxLength={2} />
+                    </div>
+                  </div>
+
+                  <GiftAidBand amount={amount} mode={mode} checked={giftAid} onChange={setGiftAid} />
+
+                  <div className="tcs-form-mandate">
+                    <h3 className="tcs-form-mandate-title">Direct Debit mandate</h3>
+                    <p className="tcs-form-hint">If you are not the only required signatory on your account, please call our friendly Supporter Care team on <a href="#" onClick={(e) => e.preventDefault()}>0300 303 7000</a> or email <a href="#" onClick={(e) => e.preventDefault()}>supportercare@childrenssociety.org.uk</a></p>
+                    <label className="tcs-form-check">
+                      <input type="checkbox" checked={ddAuth} onChange={(e) => setDdAuth(e.target.checked)} />
+                      <span className="tcs-form-check-box"></span>
+                      <span className="tcs-form-check-label">I am the account holder and I am the only person required to authorise debits from this account</span>
+                    </label>
+                    <div className="tcs-form-dd-guarantee">
+                      <img className="dd-logo" src="./assets/logos/direct-debit-mark.png" alt="Direct Debit" />
+                      <span className="dd-guarantee-text">The Direct Debit Guarantee</span>
+                    </div>
+                  </div>
+
+                  <div className="tcs-form-commit">
+                    <p className="tcs-form-commit-confirm">You're about to donate <strong>£{amount} a month</strong>, with your first payment taken on the {ddDay} of next month.</p>
+                    <button className="tcs-form-submit" onClick={() => navigate("thanks")}><span>Donate</span></button>
+                    <a href="#" className="tcs-form-changemethod" onClick={(e) => { e.preventDefault(); go(1); }}>Back to your details</a>
+                  </div>
+                  <FormTrustBand showLogos={false} />
+                </>
+              ) : (
+                <>
+                  <GiftAidBand amount={amount} mode={mode} checked={giftAid} onChange={setGiftAid} />
+                  <div className="tcs-pay-buttons">
+                    <button type="button" className="tcs-pay-btn pay-primary" onClick={() => navigate("thanks")}><span>Pay by card</span></button>
+                    <button type="button" className="tcs-pay-btn pay-paypal" onClick={() => navigate("thanks")}><span>Pay with <span className="pp">PayPal</span></span></button>
+                  </div>
+                  <a href="#" className="tcs-form-changemethod" onClick={(e) => { e.preventDefault(); go(1); }}>Back to your details</a>
+                  <FormTrustBand />
+                </>
+              )}
+            </>
+          )}
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}
+
+function HomeDonateSlice({ navigate }) {
+  const [tab, setTab] = useStatePages("monthly");
+  const [amount, setAmount] = useStatePages("10");
+  const changeTab = (t) => { setTab(t); setAmount(t === "oneoff" ? "25" : "10"); };
+  return (
+    <DonateSlice navigate={navigate} image="img-portrait-2" tab={tab} setTab={changeTab} amount={amount} setAmount={setAmount} />
+  );
+}
+
+function WeekInFocus() {
+  const items = [
+    { eyebrow: "News and blogs", title: "The real young carers behind the EastEnders storyline", date: "27 May 2026", body: "Every child should receive the support they need to learn and thrive — this is doubly true for those young people who have caring responsibilities. This is what that looks like in real life.", image: "img-news-1" },
+    { eyebrow: "News and blogs", title: "The Children's Society responds to the government ban on social media for under-16s", date: "", body: "The Government's decision to ban social media for under-16s will undoubtedly shape the lives of millions of young people, but the debate is asking the wrong question.", image: "img-news-2" },
+    { eyebrow: "News and blogs", title: "Protecting young people from misogyny and the manosphere", date: "13 March 2026", body: "We break down the terminology of the manosphere, and some of its risks to young people. Learn what parents and carers can look out for to keep young people safe.", image: "img-news-3" },
+  ];
+  return (
+    <section className="tcs-news-slice">
+      <h2>This week in <span className="hl">focus</span></h2>
+      <div className="tcs-news-grid">
+        {items.map((it, i) => (
+          <article className="tcs-news-card" key={i}>
+            <a href="#" className="news-media" onClick={(e) => e.preventDefault()}>
+              <div className={`img ${it.image}`}></div>
+            </a>
+            <span className="eyebrow">{it.eyebrow}</span>
+            <a href="#" className="news-heading" onClick={(e) => e.preventDefault()}>{it.title}</a>
+            {it.date ? <p className="news-date">{it.date}</p> : null}
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function QuoteSlice({ image }) {
+  return (
+    <section className={`tcs-quote-slice ${image}`}>
+      <div className="scrim"></div>
+      <img className="quote-headline" src="./assets/illustrations/freefall-headline-white.png" alt="It's like I'm in free fall" />
+    </section>
+  );
+}
+
 Object.assign(window, {
-  HomePage, DonatePage, DonateSlice, DonateWidget, DonateArticleHeader,
+  HomePage, DonatePage, DonateSlice, DonateWidget, DonateArticleHeader, HomeDonateSlice, WeekInFocus, QuoteSlice,
   OtherWaysToGive, DonateDifference, DonateImpactBlock, AccordionSection,
   ShareBlock, RelatedBlock, StoryPage,
-  DetailsPage, StepIndicator, FormField, FormCheck, FormTrustBand,
+  DetailsPage, StandardFormPage, StepIndicator, FormField, FormCheck, FormTrustBand,
   PaymentPage, ThanksPage,
 });

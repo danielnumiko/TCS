@@ -62,7 +62,7 @@ function Header({ route, navigate }) {
             Search <Icon name="search" />
           </button>
           <button className="tcs-header-donate" onClick={() => navigate("donate")}>
-            Donate <Icon name="donate" />
+            Donate now
           </button>
         </div>
       </div>
@@ -83,7 +83,7 @@ function Hero({ ctaLabel, onCtaClick, image = "img-park" }) {
       <div className="scrim"></div>
       <div className="content">
         <img className="hero-badge" src="./assets/illustrations/save-teenhood-sticker.png" alt="Save Teenhood" />
-        <h1 className="hero-heading">We're raising the alarm for teenhood. And we need you support.</h1>
+        <h1 className="hero-heading">We're raising the alarm for teenhood. And we need your support.</h1>
         {ctaLabel ? (
           <div className="hero-cta"><TCSButton kind="white" glyph="play" onClick={onCtaClick}>{ctaLabel}</TCSButton></div>
         ) : null}
@@ -117,7 +117,6 @@ function TeaserCard({ eyebrow, title, image }) {
   return (
     <div className="tcs-teaser">
       <div className={`img ${image}`}></div>
-      <img className="teaser-sticker" src="./assets/illustrations/explore-sticker.png" alt="" aria-hidden="true" />
       {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
       <h3>{title}</h3>
     </div>
@@ -128,7 +127,6 @@ function StoryCard({ name, image, onClick }) {
   return (
     <div className={`tcs-story-card ${image}`} onClick={onClick}>
       <div className="story-media"></div>
-      <img className="story-sticker" src="./assets/illustrations/read-sticker.png" alt="" aria-hidden="true" />
       <div className="nm">
         {name}
         <Icon name="chevron-right" size="sm" />
@@ -276,7 +274,7 @@ function Footer() {
             <p style={{ marginTop: 16 }}>Supporter Care: 0300 303 7000</p>
             <div className="tcs-footer-fr" aria-label="Registered with Fundraising Regulator">
               <div className="ic">FR</div>
-              <div>Registered with<br/><strong>FUNDRAISING REGULATOR</strong></div>
+              <div>Registered 2025/26<br/><strong>FUNDRAISING REGULATOR</strong></div>
             </div>
           </div>
           <div>
@@ -306,7 +304,7 @@ function Footer() {
         <div className="tcs-footer-meta">© The Children's Society 2026 &nbsp;&nbsp; All rights reserved &nbsp;&nbsp; Charity Registration No. 221124</div>
       </div>
       <div className="tcs-footer-right">
-        <div className="tcs-footer-sig"><img src="./assets/brand-quote-footer.png" alt="I feel like I belong" /></div>
+        <div className="tcs-footer-sig"><img src="./assets/illustrations/save-teenhood-sticker.png" alt="Save Teenhood" /></div>
         <button className="btn tcs-footer-backtop" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <span>Back to top</span>
           <ChevronUp />

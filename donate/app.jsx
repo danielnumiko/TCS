@@ -6,6 +6,7 @@ function App() {
   const [route, setRoute] = useStateApp("home");
   const [donateMode, setDonateModeRaw] = useStateApp("monthly");
   const [donateAmount, setDonateAmount] = useStateApp(null);
+  const [formVersion, setFormVersion] = useStateApp("ambitious");
 
   // Arm the draw-on-scroll decorations only once JS is running; without this
   // class every decoration shows fully (graceful fallback, never hidden).
@@ -68,9 +69,11 @@ function App() {
   let url = "childrenssociety.org.uk";
   if (route === "home")   { page = <HomePage navigate={navigate} />;   url = "childrenssociety.org.uk"; }
   else if (route === "donate")  { page = <DonatePage navigate={navigate} mode={donateMode} setMode={setDonateMode} />;  url = "childrenssociety.org.uk/donate"; }
-  else if (route === "details") { page = <DetailsPage navigate={navigate} mode={donateMode} setMode={setDonateMode} amount={donateAmount} setAmount={setDonateAmount} />; url = "childrenssociety.org.uk/donate/details"; }
+  else if (route === "details") { page = formVersion === "standard"
+      ? <StandardFormPage navigate={navigate} mode={donateMode} setMode={setDonateMode} amount={donateAmount} setAmount={setDonateAmount} />
+      : <DetailsPage navigate={navigate} mode={donateMode} setMode={setDonateMode} amount={donateAmount} setAmount={setDonateAmount} />; url = "childrenssociety.org.uk/donate/details"; }
   else if (route === "payment") { page = <PaymentPage navigate={navigate} mode={donateMode} setMode={setDonateMode} />; url = "childrenssociety.org.uk/donate/payment"; }
-  else if (route === "thanks")  { page = <ThanksPage navigate={navigate} mode={donateMode} setMode={setDonateMode} amount={donateAmount} />;  url = "childrenssociety.org.uk/donate/thanks"; }
+  else if (route === "thanks")  { page = <ThanksPage navigate={navigate} mode={donateMode} setMode={setDonateMode} amount={donateAmount} version={formVersion} />;  url = "childrenssociety.org.uk/donate/thanks"; }
   else page = <HomePage navigate={navigate} />;
 
   const pages = [
@@ -83,6 +86,14 @@ function App() {
   return (
     <div className="tcs-prototype-shell">
       <nav className="tcs-prototype-nav" aria-label="Prototype navigation">
+        <div className="tcs-prototype-group">
+          <span className="tcs-prototype-group-label">Form</span>
+          <div className="tcs-prototype-mode">
+            <button className={"tcs-prototype-mode-btn" + (formVersion === "standard" ? " active" : "")} onClick={() => { setFormVersion("standard"); if (route === "details") navigate("details"); }}>Payment last</button>
+            <button className={"tcs-prototype-mode-btn" + (formVersion === "ambitious" ? " active" : "")} onClick={() => { setFormVersion("ambitious"); if (route === "details") navigate("details"); }}>Payment first</button>
+          </div>
+        </div>
+        <span className="tcs-prototype-divider" aria-hidden="true"></span>
         <div className="tcs-prototype-group">
           <span className="tcs-prototype-group-label">Journey</span>
           <div className="tcs-prototype-mode">

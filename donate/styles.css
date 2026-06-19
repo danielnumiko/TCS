@@ -676,25 +676,21 @@ body {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
   font-family: var(--font-brand);
   font-size: var(--text-headings-tags, 14px);
   font-weight: var(--weight-bold, 700);
   line-height: 1.2;
   letter-spacing: -0.011em;
   color: #000;
-  background: none;
+  background: url('./assets/decoration/tag-outline.svg') center/100% 100% no-repeat;
   border: none;
   align-self: flex-start;
-  padding: 0;
+  padding: 6px 14px;
   margin-top: var(--spacing-scale-m, 16px);
 }
 .tcs-teaser .eyebrow::before {
   content: "";
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-  background: url('./assets/icons/tag-mark.png') center/contain no-repeat;
+  display: none;
 }
 .tcs-teaser h3 {
   font-family: var(--font-brand);
@@ -1028,6 +1024,15 @@ body {
 .tcs-stats-slice {
   padding: var(--pad-vertical-margin) 0;
 }
+.tcs-stats-heading {
+  font-family: var(--font-brand);
+  font-size: var(--text-headings-h2, 64px);
+  font-weight: var(--weight-bold);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: #000;
+  margin: 0 var(--pad-outer-margin, 100px) 48px;
+}
 
 /* Homepage "Take on a challenge" CTA — heading left, button right */
 .tcs-challenge-cta {
@@ -1255,7 +1260,7 @@ body {
 /* Right panel — photo bg + scrim + handwritten signature + back-to-top */
 .tcs-footer-right {
   position: relative;
-  background: #2c2618 url('./assets/photos/footer-skaters.jpg') center/cover no-repeat;
+  background: #2c2618 url('./assets/photos/footer-young-man.png') center/cover no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1330,6 +1335,16 @@ body {
   min-height: 540px;
   display: flex;
   align-items: center;
+}
+.tcs-donate-article-side .donate-article-sticker { width: 150px; height: auto; display: block; transform: rotate(-16deg); transform-origin: center; }
+.tcs-donate-article { position: relative; }
+.tcs-donate-article .donate-article-sticker {
+  position: absolute;
+  right: var(--pad-outer-margin, 100px);
+  top: -60px;
+  width: 370px; height: auto;
+  transform: rotate(20deg); transform-origin: center;
+  z-index: 6;
 }
 .tcs-donate-slice::before {
   content: "";
@@ -1585,67 +1600,67 @@ body {
   color: #000;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-size: 18px;
+  gap: 3px;
+  font-size: 14px;
   line-height: 1;
 }
 .tcs-donate-widget-payments .pay .glyph {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   font-weight: var(--weight-bold);
 }
 .tcs-donate-widget-payments .pay-apple .glyph {
-  font-size: 18px;
+  font-size: 14px;
 }
 .tcs-donate-widget-payments .pay-google .glyph {
-  background: linear-gradient(135deg, #4285F4 0% 25%, #EA4335 25% 50%, #FBBC05 50% 75%, #34A853 75% 100%);
+  background: #000;
   color: #fff;
   border-radius: 50%;
-  font-size: 12px;
-  width: 18px; height: 18px;
+  font-size: 9px;
+  width: 14px; height: 14px;
 }
 .tcs-donate-widget-payments .pay-visa {
   font-style: italic;
   font-weight: 900;
   letter-spacing: -0.04em;
-  color: #1a1f71;
-  font-size: 18px;
+  color: #000;
+  font-size: 14px;
 }
 .tcs-donate-widget-payments .pay-mc {
   position: relative;
-  width: 36px;
-  height: 22px;
+  width: 28px;
+  height: 18px;
   display: inline-block;
 }
 .tcs-donate-widget-payments .pay-mc .mc-r,
 .tcs-donate-widget-payments .pay-mc .mc-y {
   position: absolute;
   top: 0;
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
 }
 .tcs-donate-widget-payments .pay-mc .mc-r {
   left: 0;
-  background: #EB001B;
+  background: #000;
 }
 .tcs-donate-widget-payments .pay-mc .mc-y {
   right: 0;
-  background: #F79E1B;
+  background: #595959;
   mix-blend-mode: multiply;
 }
 .tcs-donate-widget-payments .pay-paypal {
   font-style: italic;
   font-weight: 900;
-  color: #003087;
-  font-size: 18px;
+  color: #000;
+  font-size: 14px;
   letter-spacing: -0.02em;
 }
 .tcs-donate-widget-payments .pay-dd-img {
-  height: 26px;
+  height: 22px;
   width: auto;
   display: inline-block;
 }
@@ -1921,8 +1936,8 @@ body {
 }
 .tcs-form-context {
   font-family: var(--font-brand);
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: var(--text-body, 20px);
+  line-height: 1.45;
   color: #000;
   margin: 0;
 }
@@ -1949,6 +1964,9 @@ body {
 .tcs-form-step.active .dot { background: #F56420; color: #000; }
 .tcs-form-step .label { font-family: var(--font-brand); font-size: 12px; font-weight: var(--weight-medium); color: #000; }
 .tcs-form-step-line { flex: 1; height: 2px; background: #000; margin-bottom: 22px; }
+.tcs-form-step.is-back { cursor: pointer; }
+.tcs-form-step.is-back .label { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--brand-accent, #F56420); }
+.tcs-form-step.is-back:hover .dot { background: #000; color: #fff; }
 
 /* ---- Two-stage progress bar (Your gift → Your details) ---- */
 .tcs-form-progress { display: flex; flex-direction: column; gap: 8px; }
@@ -2139,6 +2157,13 @@ body {
   margin: 0;
 }
 .tcs-giftaid-lead strong { color: #000; }
+.tcs-form-giftaid-band .tcs-giftaid-lead { font-size: 15px; line-height: 1.5; }
+.tcs-giftaid-logo {
+  display: block;
+  height: 48px;
+  width: auto;
+  align-self: flex-start;
+}
 .tcs-giftaid-check {
   display: flex;
   align-items: flex-start;
@@ -2204,7 +2229,7 @@ body {
 .tcs-form-amount-panel {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--space-l, 20px);
 }
 .tcs-form-amount-eyebrow {
   font-family: var(--font-brand);
@@ -2217,10 +2242,10 @@ body {
 }
 .tcs-form-amount-panel .tcs-form-context {
   margin: 0;
-  font-size: var(--text-headings-h5, 30px);
-  font-weight: var(--weight-bold);
-  letter-spacing: -0.015em;
-  line-height: 1.2;
+  font-size: var(--text-body, 20px);
+  font-weight: var(--weight-regular, 400);
+  letter-spacing: 0;
+  line-height: 1.45;
 }
 .tcs-form-amount-panel .tcs-form-context strong { font-weight: var(--weight-bold); }
 .tcs-form-upsell {
@@ -3265,7 +3290,7 @@ body {
 .img-park           { background: #2c2618 url('./assets/photos/rect-1.jpg') center/cover no-repeat; }
 .img-hero-looking-up{ background: #2c2618 url('./assets/photos/rect-8.jpg') center/cover no-repeat; }
 .img-paint          { background: #6E5642 url('./assets/photos/rect-6.jpg') center/cover no-repeat; }
-.img-shoes          { background: #80604A url('./assets/photos/rect-3.jpg') center/cover no-repeat; }
+.img-shoes          { background: #80604A url('./assets/photos/rect-3-skaters.png') center/cover no-repeat; }
 .img-promo-garden   { background: #2c3a20 url('./assets/photos/rect-2.jpg') center/cover no-repeat; }
 .img-young-girl     { background: #80604A url('./assets/photos/rect-4.jpg') center/cover no-repeat; }
 .img-young-boy      { background: #4D3A2A url('./assets/photos/rect-6.jpg') center/cover no-repeat; }
@@ -3274,11 +3299,11 @@ body {
 .img-portrait-3     { background: #6A4A36 url('./assets/photos/rect-0.jpg') center/cover no-repeat; }
 .img-portrait-4     { background: #8B6B45 url('./assets/photos/rect-6.jpg') center/cover no-repeat; }
 .img-group          { background: #5D4030 url('./assets/photos/rect-2.jpg') center/cover no-repeat; }
-.img-three-girls    { background: #5D4030 url('./assets/photos/rect-3.jpg') center/cover no-repeat; }
+.img-three-girls    { background: #5D4030 url('./assets/photos/rect-3-skaters.png') center/cover no-repeat; }
 .img-fundraising-trek        { background: #4a6b2f url('./assets/photos/fundraising-trek.png') center/cover no-repeat; }
 .img-fundraising-arts        { background: #6E5642 url('./assets/photos/fundraising-arts.png') center/cover no-repeat; }
 .img-fundraising-collections { background: #5a2a28 url('./assets/photos/fundraising-collections.png') center/cover no-repeat; }
-.img-flower         { background: #6E8A50 url('./assets/photos/rect-3.jpg') center/cover no-repeat; }
+.img-flower         { background: #6E8A50 url('./assets/photos/rect-3-skaters.png') center/cover no-repeat; }
 .img-christingle    { background: #2C1610 url('./assets/photos/rect-0.jpg') center/cover no-repeat; }
 .img-laughter       { background: #5D4030 url('./assets/photos/rect-2.jpg') center/cover no-repeat; }
 .img-cafe           { background: #C9A488 url('./assets/photos/rect-2.jpg') center/cover no-repeat; }
@@ -3345,6 +3370,8 @@ body {
 .tcs-prototype-frame .tcs-large-promo::before,
 .tcs-prototype-frame .tcs-large-promo::after,
 .tcs-prototype-frame .tcs-large-promo .scrim,
+.tcs-prototype-frame .tcs-quote-slice::before,
+.tcs-prototype-frame .tcs-quote-slice .scrim,
 .tcs-prototype-frame .tcs-newsletter::before,
 .tcs-prototype-frame .tcs-footer::before {
   left: 0;
@@ -3680,6 +3707,24 @@ body { margin: 0; }
 }
 .tcs-newsletter > * { position: relative; z-index: 1; }
 
+/* ===== Homepage feedback: drop brush-strip textures, orange intro CTA ===== */
+.tcs-hero .brush { display: none !important; }
+.tcs-large-promo .scrim { display: none !important; }
+.tcs-donate-slice::before { display: none !important; }
+.tcs-divider::before { display: none !important; }
+.tcs-intro .cta .btn {
+  background: var(--brand-accent, #F56420) !important;
+  color: #000 !important;
+  border-color: var(--brand-accent, #F56420) !important;
+}
+.tcs-intro .cta .btn .tcs-icon { background-color: #000 !important; }
+.tcs-intro .cta .btn:hover {
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+}
+.tcs-intro .cta .btn:hover .tcs-icon { background-color: #fff !important; }
+
 /* Footer: light grey extends full-bleed left; photo column extends full
    to viewport right. */
 .tcs-footer {
@@ -3759,4 +3804,213 @@ body { margin: 0; }
   .tcs-intro .intro-stat-num::before { -webkit-clip-path: inset(0); clip-path: inset(0); transition: none; }
   .tcs-stat .n { background-size: 100% 12px; transition: none; }
   .tcs-donate-impact .impact-stats .stat .n { background-size: 100% 16px; transition: none; }
+}
+
+
+/* ===== Donation form — live compliant copy (consent, DD mandate, confirm, thanks) ===== */
+.tcs-form-consent { display: flex; flex-direction: column; gap: 8px; }
+.tcs-form-consent-q {
+  font-family: var(--font-brand);
+  font-size: 16px;
+  font-weight: var(--weight-bold);
+  color: #000;
+  margin: 0;
+}
+.tcs-form-consent-opts { display: flex; gap: 28px; }
+.tcs-consent-opt {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-brand);
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+}
+.tcs-consent-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
+.tcs-consent-opt > span { position: relative; padding-left: 30px; line-height: 22px; }
+.tcs-consent-opt > span::before {
+  content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 20px; height: 20px; border: 2px solid #000; border-radius: 50%; background: #fff;
+}
+.tcs-consent-opt.sel > span::after {
+  content: ""; position: absolute; left: 5px; top: 50%; transform: translateY(-50%);
+  width: 10px; height: 10px; border-radius: 50%; background: #000;
+}
+.tcs-form-consent-post { color: var(--type-body) !important; }
+.tcs-form-consent-post a { color: #000; text-decoration: underline; text-underline-offset: 2px; }
+
+.tcs-form-mandate {
+  display: flex; flex-direction: column; gap: 14px;
+  margin-top: 8px; padding-top: 20px; border-top: 1px solid #E0E0E0;
+}
+.tcs-form-mandate-title {
+  font-family: var(--font-brand); font-size: 18px;
+  font-weight: var(--weight-bold); color: #000; margin: 0;
+}
+.tcs-form-mandate .tcs-form-hint a { color: #000; text-decoration: underline; text-underline-offset: 2px; }
+.tcs-form-dd-guarantee { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
+.tcs-form-dd-guarantee .dd-logo { height: 26px; width: auto; }
+.tcs-form-dd-guarantee .dd-guarantee-text {
+  font-family: var(--font-brand); font-size: 16px; font-weight: var(--weight-bold); color: #000;
+}
+
+.tcs-form-commit-confirm {
+  font-family: var(--font-brand); font-size: 16px; line-height: 1.45; color: #000; margin: 0 0 4px;
+}
+.tcs-form-commit-confirm strong { font-weight: var(--weight-bold); }
+
+.tcs-form-confirm-check { align-items: flex-start; margin-bottom: 4px; }
+.tcs-form-confirm-check .tcs-form-check-label { line-height: 1.45; }
+
+.tcs-thanks-monthly-cta {
+  display: inline-flex; align-items: center; gap: 10px; align-self: flex-start;
+  background: var(--brand-accent, #F56420); color: #000;
+  border: 2px solid var(--brand-accent, #F56420);
+  font-family: var(--font-brand); font-size: var(--text-headings-cta, 18px);
+  font-weight: var(--weight-bold); padding: 14px 26px; cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+.tcs-thanks-monthly-cta:hover { background: #000; color: #fff; border-color: #000; }
+.tcs-thanks-monthly-cta:hover .tcs-icon { background-color: #fff; }
+
+
+/* ===== Form: clickable progress back, wallet-return capture, thanks assurance ===== */
+.tcs-form-progress-label.is-back { cursor: pointer; display: inline-flex; align-items: baseline; gap: 8px; }
+.tcs-form-progress-label.is-back .back-tag {
+  font-size: 12px; font-weight: var(--weight-bold); color: var(--brand-accent, #F56420);
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.tcs-form-progress-label.is-back:hover { color: #000; }
+.tcs-form-progress-label.is-back:hover .back-tag { color: #000; }
+
+.tcs-wallet-return { display: flex; flex-direction: column; gap: var(--space-m, 16px); }
+.tcs-wallet-badge {
+  display: inline-flex; align-items: center; gap: 8px; align-self: flex-start;
+  background: #E8F4EC; color: #1F6B3B; border: 1px solid #BBD9C6;
+  font-family: var(--font-brand); font-size: 14px; font-weight: var(--weight-bold);
+  padding: 8px 14px;
+}
+.tcs-wallet-badge .tcs-icon { background-color: #1F6B3B; }
+.tcs-wallet-title {
+  font-family: var(--font-brand); font-size: var(--text-headings-h5, 30px);
+  font-weight: var(--weight-bold); line-height: 1.15; color: #000; margin: 0;
+}
+
+.tcs-thanks-assurance {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--white-200, #DCDCDC);
+}
+.tcs-thanks-assurance .fr-badge { display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.tcs-thanks-assurance .fr-roundel {
+  width: 44px; height: 44px; border-radius: 50%; border: 2px solid #000;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-brand); font-weight: 700; font-size: 14px; color: #000; flex-shrink: 0;
+}
+.tcs-thanks-assurance .fr-text {
+  font-family: var(--font-brand); font-size: 11px; line-height: 1.25; color: #000; letter-spacing: 0.02em;
+}
+.tcs-thanks-assurance .fr-text strong { font-weight: 700; }
+.tcs-thanks-assurance .charity-no {
+  font-family: var(--font-brand); font-size: 13px; font-weight: 700; color: #000; margin: 0;
+}
+.tcs-std-section { display: flex; flex-direction: column; gap: 14px; margin-top: 8px; padding-top: 20px; border-top: 1px solid #E0E0E0; }
+
+
+/* ===== Standard thank-you (screenshot-aligned) ===== */
+.tcs-thanks-standard-foot { display: flex; flex-direction: column; gap: 20px; margin-top: 8px; }
+.tcs-thanks-care { font-family: var(--font-brand); font-size: 16px; line-height: 1.5; color: #000; margin: 0; }
+.tcs-thanks-care a { color: #000; text-decoration: underline; text-underline-offset: 2px; }
+.tcs-thanks-follow {
+  display: inline-flex; align-items: center; gap: 12px; align-self: flex-start;
+  background: #EDEDED; color: #000; border: none; cursor: pointer;
+  font-family: var(--font-brand); font-size: 16px; font-weight: var(--weight-bold); padding: 12px 22px;
+}
+.tcs-thanks-follow .tcs-icon { background-color: #000; }
+.tcs-thanks-follow:hover { background: #000; color: #fff; }
+.tcs-thanks-follow:hover .tcs-icon { background-color: #fff; }
+
+
+/* ===== Fundraising Regulator badge inside the donate widget ===== */
+.tcs-donate-widget-foot {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: nowrap; width: 100%;
+  margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.18);
+}
+.tcs-donate-widget-foot .tcs-donate-widget-payments { display: contents; }
+.tcs-donate-widget-fr {
+  display: flex; align-items: center; gap: 7px; margin: 0; padding: 0; border: none; flex-shrink: 0;
+}
+.tcs-donate-widget-fr .fr-roundel {
+  width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid #000;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--font-brand); font-weight: 700; font-size: 9px; color: #000; flex-shrink: 0;
+}
+.tcs-donate-widget-fr .fr-text {
+  font-family: var(--font-brand); font-size: 8px; line-height: 1.2; color: #000; letter-spacing: 0.01em; white-space: nowrap;
+}
+.tcs-donate-widget-fr .fr-text strong { font-weight: 700; }
+
+
+/* ===== This week in focus (news teaser slice) ===== */
+.tcs-news-slice { padding: var(--pad-vertical-margin, 120px) var(--pad-outer-margin, 100px); }
+.tcs-news-slice > h2 {
+  position: relative; display: inline-block;
+  font-family: var(--font-brand); font-size: var(--text-headings-h2, 64px);
+  font-weight: var(--weight-bold); line-height: 1.05; letter-spacing: -0.015em;
+  color: #000; margin: 0 0 56px;
+}
+.tcs-news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; align-items: start; }
+.tcs-news-card { display: flex; flex-direction: column; }
+.tcs-news-card .news-media { display: block; overflow: hidden; }
+.tcs-news-card .news-media .img { aspect-ratio: 16 / 10; background-size: cover; background-position: center; transition: transform 400ms ease-out; }
+.tcs-news-card:hover .news-media .img { transform: scale(1.06); }
+.tcs-news-card .eyebrow { display: inline-flex; align-self: flex-start; font-family: var(--font-brand); font-size: 14px; font-weight: var(--weight-bold); color: #000; background: url('./assets/decoration/tag-outline.svg') center/100% 100% no-repeat; border: none; padding: 6px 14px; margin-top: 20px; }
+.tcs-news-card .news-heading {
+  font-family: var(--font-brand); font-size: var(--text-headings-h5, 30px); font-weight: var(--weight-bold);
+  line-height: 1.15; letter-spacing: -0.01em; color: #000; margin-top: 14px; text-wrap: balance;
+  text-decoration: none;
+}
+.tcs-news-card .news-date { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-family: var(--font-brand); font-size: 14px; font-weight: var(--weight-bold); color: #000; margin-top: 18px; }
+.tcs-news-card .news-date::before { content: ""; width: 24px; height: 24px; flex-shrink: 0; background: url('./assets/icons/date-scribble.png') center/contain no-repeat; }
+.tcs-news-card .news-body { font-family: var(--font-brand); font-size: var(--text-body, 20px); line-height: 1.5; color: #000; margin-top: 14px; }
+
+.img-news-1 { background: #5a4a2a url('./assets/photos/branded-1.png') center/cover no-repeat; }
+.img-news-2 { background: #3a3a3a url('./assets/photos/branded-2.png') center/cover no-repeat; }
+.img-news-3 { background: #2a2a2a url('./assets/photos/branded-5.png') center/cover no-repeat; }
+
+/* ===== Key-word highlighter: hand-drawn orange underline under ONE word in an H2 ===== */
+.hl { position: relative; white-space: nowrap; }
+.hl::after {
+  content: ""; position: absolute; left: -3px; right: -3px; bottom: -0.04em; height: 0.2em;
+  background: url('./assets/decoration/stat-underline.png') center/100% 100% no-repeat;
+  pointer-events: none;
+}
+.tcs-news-slice { position: relative; }
+
+
+/* ===== Quote banner slice (full-bleed photo + left scrim + white quote) ===== */
+.tcs-quote-slice {
+  position: relative;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+  padding: var(--pad-vertical-margin, 120px) var(--pad-outer-margin, 100px);
+  overflow: hidden;
+}
+.tcs-quote-slice::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw;
+  background: #2c2618 url('./assets/photos/quote-redhead.png') center/cover no-repeat;
+  z-index: 0;
+}
+.tcs-quote-slice .scrim {
+  position: absolute; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw;
+  background: linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.4) 42%, rgba(0,0,0,0) 68%);
+  z-index: 1;
+}
+.tcs-quote-slice .quote {
+  position: relative; z-index: 2; margin: 0; max-width: 600px;
+  font-family: var(--font-brand); font-weight: var(--weight-bold);
+  font-size: 48px; line-height: 1.12; letter-spacing: -0.015em; color: #fff; text-wrap: balance;
+}
+.tcs-quote-slice .quote-headline {
+  position: relative; z-index: 2;
+  width: 400px; max-width: 46%; height: auto; display: block;
 }
