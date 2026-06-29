@@ -118,6 +118,7 @@ body {
 .tcs-icon-chevron-up-sm    { -webkit-mask-image: url('./assets/icons/chevron-up-sm.svg'); mask-image: url('./assets/icons/chevron-up-sm.svg'); }
 .tcs-icon-chevron-down-sm  { -webkit-mask-image: url('./assets/icons/chevron-down-sm.svg'); mask-image: url('./assets/icons/chevron-down-sm.svg'); }
 .tcs-icon-twitter       { -webkit-mask-image: url('./assets/icons/twitter.svg'); mask-image: url('./assets/icons/twitter.svg'); }
+.tcs-icon-instagram     { -webkit-mask-image: url('./assets/icons/instagram.svg'); mask-image: url('./assets/icons/instagram.svg'); }
 .tcs-icon-facebook      { -webkit-mask-image: url('./assets/icons/facebook.svg'); mask-image: url('./assets/icons/facebook.svg'); }
 .tcs-icon-linkedin      { -webkit-mask-image: url('./assets/icons/linkedin.svg'); mask-image: url('./assets/icons/linkedin.svg'); }
 .tcs-icon-x             { -webkit-mask-image: url('./assets/icons/x.svg'); mask-image: url('./assets/icons/x.svg'); }
@@ -443,6 +444,13 @@ body {
 .tcs-hero .btn-white:hover svg { color: #fff !important; }
 .tcs-hero .btn:not(.btn-white):hover svg,
 .tcs-hero .btn-yellow:hover svg { color: #000 !important; }
+.tcs-quote-slice .btn-white:hover {
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+}
+.tcs-quote-slice .btn-white:hover .tcs-icon { background-color: #fff !important; }
+.tcs-quote-slice .btn-white:hover svg { color: #fff !important; }
 
 .btn-yellow:hover {
   background: var(--btn-secondary-hover-bg, #EFEFEF);
@@ -1635,6 +1643,9 @@ body {
 .tcs-donate-widget-payments .pay-apple .glyph {
   font-size: 14px;
 }
+.tcs-donate-widget-payments .pay-apple .ap-logo-sm {
+  width: 14px; height: 16px; fill: #000; display: block;
+}
 .tcs-donate-widget-payments .pay-google .glyph {
   background: #000;
   color: #fff;
@@ -2162,8 +2173,8 @@ body {
 }
 .tcs-form-giftaid-band .tcs-form-section-heading { margin: 0; }
 .tcs-giftaid-inner {
-  background: #FFF4EC;
-  border: 2px solid var(--brand-accent, #F56420);
+  background: var(--white-100, #EFEFEF);
+  border: none;
   padding: var(--space-l, 28px);
   display: flex;
   flex-direction: column;
@@ -3867,11 +3878,30 @@ body { margin: 0; }
   font-weight: var(--weight-bold); color: #000; margin: 0;
 }
 .tcs-form-mandate .tcs-form-hint a { color: #000; text-decoration: underline; text-underline-offset: 2px; }
-.tcs-form-dd-guarantee { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
-.tcs-form-dd-guarantee .dd-logo { height: 26px; width: auto; }
-.tcs-form-dd-guarantee .dd-guarantee-text {
-  font-family: var(--font-brand); font-size: 16px; font-weight: var(--weight-bold); color: #000;
+.tcs-dd-guarantee-ac { margin-top: 8px; }
+.tcs-dd-guarantee-head {
+  display: flex; align-items: center; gap: 14px;
+  width: 100%; padding: 0; margin: 0;
+  background: none; border: none; cursor: pointer; text-align: left;
 }
+.tcs-dd-guarantee-head .dd-logo { height: 26px; width: auto; }
+.tcs-dd-guarantee-head .dd-guarantee-text {
+  font-family: var(--font-brand); font-size: 16px; font-weight: var(--weight-bold); color: #000;
+  margin-left: auto;
+}
+.tcs-dd-guarantee-head .dd-guarantee-ic {
+  flex-shrink: 0;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #000; display: inline-flex; align-items: center; justify-content: center;
+  transition: transform 200ms ease;
+}
+.tcs-dd-guarantee-head .dd-guarantee-ic .tcs-icon { background-color: #F56420; width: 14px; height: 14px; }
+.tcs-dd-guarantee-ac.open .dd-guarantee-ic { transform: rotate(180deg); }
+.tcs-dd-guarantee-panel { padding-top: 14px; }
+.tcs-dd-guarantee-panel p {
+  font-family: var(--font-brand); font-size: 14px; line-height: 1.55; color: #000; margin: 0 0 14px;
+}
+.tcs-dd-guarantee-panel p:last-child { margin-bottom: 0; }
 
 .tcs-form-commit-confirm {
   font-family: var(--font-brand); font-size: 16px; line-height: 1.45; color: #000; margin: 0 0 4px;

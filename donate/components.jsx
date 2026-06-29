@@ -293,7 +293,7 @@ function Footer() {
               <h6>Connect with us</h6>
               <div className="tcs-footer-socials">
                 <Icon name="facebook" />
-                <Icon name="twitter" />
+                <Icon name="instagram" />
                 <Icon name="x" />
                 <Icon name="bluesky" />
                 <Icon name="linkedin" />

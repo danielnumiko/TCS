@@ -3,6 +3,30 @@
 
 const { useState: useStatePages } = React;
 
+// Direct Debit Guarantee — collapsible accordion shown at the foot of the DD mandate.
+function DDGuarantee() {
+  const [open, setOpen] = useStatePages(false);
+  return (
+    <div className={"tcs-dd-guarantee-ac" + (open ? " open" : "")}>
+      <button type="button" className="tcs-dd-guarantee-head" aria-expanded={open} onClick={() => setOpen(!open)}>
+        <img className="dd-logo" src="./assets/logos/direct-debit-mark.png" alt="Direct Debit" />
+        <span className="dd-guarantee-text">The Direct Debit Guarantee</span>
+        <span className="dd-guarantee-ic"><Icon name="chevron-down-accordion" /></span>
+      </button>
+      {open ? (
+        <div className="tcs-dd-guarantee-panel">
+          <p>The Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits</p>
+          <p>If there are any changes to the amount, date or frequency of your Direct Debit The Children's Society will notify you (normally 10 working days) in advance of your account being debited or as otherwise agreed. If you request The Children's Society to collect a payment, confirmation of the amount and date will be given to you at the time of the request</p>
+          <p>If an error is made in the payment of your Direct Debit, by The Children's Society or your bank or building society, you are entitled to a full and immediate refund of the amount paid from your bank or building society</p>
+          <p>If you receive a refund you are not entitled to, you must pay it back when The Children's Society asks you to</p>
+          <p>You can cancel a Direct Debit at any time by simply contacting your bank or building society. Written confirmation may be required. Please also notify The Children's Society.</p>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+
 function HomePage({ navigate }) {
   const [videoOpen, setVideoOpen] = useStatePages(false);
   return (
@@ -263,7 +287,7 @@ function DonateWidget({ navigate, tab, setTab, amount, setAmount }) {
           </>
         ) : (
           <>
-            <span className="pay pay-apple"><span className="glyph"></span>Pay</span>
+            <span className="pay pay-apple"><svg className="ap-logo-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.79 1.3 10.34.86 1.25 1.88 2.65 3.22 2.6 1.29-.05 1.78-.83 3.34-.83 1.56 0 2 .83 3.37.81 1.39-.03 2.27-1.27 3.12-2.53.98-1.45 1.39-2.85 1.41-2.92-.03-.01-2.71-1.04-2.74-4.13zM14.6 4.7c.71-.86 1.19-2.06 1.06-3.25-1.02.04-2.26.68-2.99 1.54-.66.76-1.23 1.98-1.08 3.15 1.14.09 2.3-.58 3.01-1.44z"/></svg>Pay</span>
             <span className="pay pay-google"><span className="glyph">G</span>Pay</span>
             <span className="pay pay-visa">VISA</span>
             <span className="pay pay-mc" aria-label="Mastercard"><span className="mc-r"></span><span className="mc-y"></span></span>
@@ -617,10 +641,7 @@ function DetailsPage({ navigate, mode = "monthly", setMode, amount: amountProp, 
                         <span className="tcs-form-check-box"></span>
                         <span className="tcs-form-check-label">I am the account holder and I am the only person required to authorise debits from this account</span>
                       </label>
-                      <div className="tcs-form-dd-guarantee">
-                        <img className="dd-logo" src="./assets/logos/direct-debit-mark.png" alt="Direct Debit" />
-                        <span className="dd-guarantee-text">The Direct Debit Guarantee</span>
-                      </div>
+                      <DDGuarantee />
                     </div>
                   </NumberedSection>
 
@@ -1228,7 +1249,7 @@ function ThanksPage({ navigate, mode = "monthly", setMode, amount: amountProp, v
             <ul>
               <li>We'll email your receipt to <strong>{email}</strong> in the next few minutes.</li>
               {mode === "monthly"
-                ? <li>You'll get a welcome pack with stories of the young people your gift will help.</li>
+                ? null
                 : <li>You'll get a thank-you note from one of the young people we support.</li>}
               <li>To change or cancel your gift, call Supporter Care on <strong>0300 303 7000</strong> or email <strong>supportercare@childrenssociety.org.uk</strong>.</li>
             </ul>
@@ -1238,7 +1259,7 @@ function ThanksPage({ navigate, mode = "monthly", setMode, amount: amountProp, v
             <h2>Tell someone about it</h2>
             <p>Every voice helps. Share where your gift is going and inspire someone else to give.</p>
             <div className="buttons">
-              <button className="share-btn"><Icon name="twitter" size="sm" /><span>Twitter</span></button>
+              <button className="share-btn"><Icon name="instagram" size="sm" /><span>Instagram</span></button>
               <button className="share-btn"><Icon name="facebook" size="sm" /><span>Facebook</span></button>
               <button className="share-btn"><Icon name="linkedin" size="sm" /><span>LinkedIn</span></button>
             </div>
@@ -1379,10 +1400,7 @@ function StandardFormPage({ navigate, mode = "monthly", setMode, amount: amountP
                       <span className="tcs-form-check-box"></span>
                       <span className="tcs-form-check-label">I am the account holder and I am the only person required to authorise debits from this account</span>
                     </label>
-                    <div className="tcs-form-dd-guarantee">
-                      <img className="dd-logo" src="./assets/logos/direct-debit-mark.png" alt="Direct Debit" />
-                      <span className="dd-guarantee-text">The Direct Debit Guarantee</span>
-                    </div>
+                    <DDGuarantee />
                   </div>
 
                   <div className="tcs-form-commit">
